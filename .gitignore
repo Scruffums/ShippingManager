@@ -1,5 +1,5 @@
-/bin
-/obj
+ShippingManager/ShippingManager/bin
+ShippingManager/ShippingManager/obj
 *.user
 *.suo
 *.sln.cache
