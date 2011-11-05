@@ -44,18 +44,35 @@
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.typeComboBox = new System.Windows.Forms.ComboBox();
+            this.employeeTypeComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.employeeAddButton = new System.Windows.Forms.Button();
-            this.editButton = new System.Windows.Forms.Button();
+            this.employeeEditButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.employeesListBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.locationVolumeCapacityTextBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.locationZipcodesServedTextBox = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.locationTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.locationAddButton = new System.Windows.Forms.Button();
+            this.locationZipCodetextBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.locationStreetAddressTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.locationIdTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.locationEditButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.locationsListBox = new System.Windows.Forms.ListBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.objectsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button6
@@ -76,14 +93,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.objectsTabControl.Controls.Add(this.tabPage1);
             this.objectsTabControl.Controls.Add(this.tabPage2);
-            this.objectsTabControl.Controls.Add(this.tabPage3);
-            this.objectsTabControl.Controls.Add(this.tabPage4);
             this.objectsTabControl.Controls.Add(this.tabPage5);
+            this.objectsTabControl.Controls.Add(this.tabPage4);
             this.objectsTabControl.Location = new System.Drawing.Point(12, 12);
             this.objectsTabControl.Name = "objectsTabControl";
             this.objectsTabControl.SelectedIndex = 0;
             this.objectsTabControl.Size = new System.Drawing.Size(595, 457);
-            this.objectsTabControl.TabIndex = 7;
+            this.objectsTabControl.TabIndex = 6;
             // 
             // tabPage1
             // 
@@ -101,10 +117,10 @@
             this.tabPage1.Controls.Add(this.idTextBox);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.typeComboBox);
+            this.tabPage1.Controls.Add(this.employeeTypeComboBox);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.employeeAddButton);
-            this.tabPage1.Controls.Add(this.editButton);
+            this.tabPage1.Controls.Add(this.employeeEditButton);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.employeesListBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -219,19 +235,19 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Type:";
             // 
-            // typeComboBox
+            // employeeTypeComboBox
             // 
-            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.typeComboBox.FormattingEnabled = true;
-            this.typeComboBox.Items.AddRange(new object[] {
+            this.employeeTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.employeeTypeComboBox.FormattingEnabled = true;
+            this.employeeTypeComboBox.Items.AddRange(new object[] {
             "Admin",
             "Acceptance",
             "Warehouse",
             "Delivery"});
-            this.typeComboBox.Location = new System.Drawing.Point(46, 213);
-            this.typeComboBox.Name = "typeComboBox";
-            this.typeComboBox.Size = new System.Drawing.Size(124, 21);
-            this.typeComboBox.TabIndex = 0;
+            this.employeeTypeComboBox.Location = new System.Drawing.Point(46, 213);
+            this.employeeTypeComboBox.Name = "employeeTypeComboBox";
+            this.employeeTypeComboBox.Size = new System.Drawing.Size(124, 21);
+            this.employeeTypeComboBox.TabIndex = 0;
             // 
             // panel1
             // 
@@ -253,17 +269,17 @@
             this.employeeAddButton.UseVisualStyleBackColor = true;
             this.employeeAddButton.Click += new System.EventHandler(this.employeeAddButton_Click);
             // 
-            // editButton
+            // employeeEditButton
             // 
-            this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.editButton.Enabled = false;
-            this.editButton.Location = new System.Drawing.Point(506, 173);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(75, 23);
-            this.editButton.TabIndex = 2;
-            this.editButton.Text = "&Edit";
-            this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.employeeEditButton_Click);
+            this.employeeEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.employeeEditButton.Enabled = false;
+            this.employeeEditButton.Location = new System.Drawing.Point(506, 173);
+            this.employeeEditButton.Name = "employeeEditButton";
+            this.employeeEditButton.Size = new System.Drawing.Size(75, 23);
+            this.employeeEditButton.TabIndex = 2;
+            this.employeeEditButton.Text = "&Edit";
+            this.employeeEditButton.UseVisualStyleBackColor = true;
+            this.employeeEditButton.Click += new System.EventHandler(this.employeeEditButton_Click);
             // 
             // label1
             // 
@@ -288,33 +304,187 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.locationVolumeCapacityTextBox);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.locationZipcodesServedTextBox);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.locationTypeComboBox);
+            this.tabPage2.Controls.Add(this.locationAddButton);
+            this.tabPage2.Controls.Add(this.locationZipCodetextBox);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.locationStreetAddressTextBox);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.locationIdTextBox);
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.panel2);
+            this.tabPage2.Controls.Add(this.locationEditButton);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.locationsListBox);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(587, 431);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Store Fronts";
+            this.tabPage2.Text = "Locations";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // locationVolumeCapacityTextBox
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(587, 431);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Warehouses";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.locationVolumeCapacityTextBox.Enabled = false;
+            this.locationVolumeCapacityTextBox.Location = new System.Drawing.Point(244, 286);
+            this.locationVolumeCapacityTextBox.Name = "locationVolumeCapacityTextBox";
+            this.locationVolumeCapacityTextBox.Size = new System.Drawing.Size(100, 20);
+            this.locationVolumeCapacityTextBox.TabIndex = 25;
             // 
-            // tabPage4
+            // label15
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(587, 431);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Routes";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(150, 289);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(88, 13);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "Volume capacity:";
+            // 
+            // locationZipcodesServedTextBox
+            // 
+            this.locationZipcodesServedTextBox.Enabled = false;
+            this.locationZipcodesServedTextBox.Location = new System.Drawing.Point(10, 318);
+            this.locationZipcodesServedTextBox.Multiline = true;
+            this.locationZipcodesServedTextBox.Name = "locationZipcodesServedTextBox";
+            this.locationZipcodesServedTextBox.Size = new System.Drawing.Size(457, 88);
+            this.locationZipcodesServedTextBox.TabIndex = 23;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 302);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(92, 13);
+            this.label14.TabIndex = 22;
+            this.label14.Text = "Zip codes served:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 210);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Type:";
+            // 
+            // locationTypeComboBox
+            // 
+            this.locationTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.locationTypeComboBox.FormattingEnabled = true;
+            this.locationTypeComboBox.Items.AddRange(new object[] {
+            "Store Front",
+            "Warehouse",
+            "Abroad"});
+            this.locationTypeComboBox.Location = new System.Drawing.Point(47, 207);
+            this.locationTypeComboBox.Name = "locationTypeComboBox";
+            this.locationTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.locationTypeComboBox.TabIndex = 20;
+            this.locationTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.locationTypeComboBox_SelectedIndexChanged);
+            // 
+            // locationAddButton
+            // 
+            this.locationAddButton.Location = new System.Drawing.Point(489, 402);
+            this.locationAddButton.Name = "locationAddButton";
+            this.locationAddButton.Size = new System.Drawing.Size(89, 23);
+            this.locationAddButton.TabIndex = 19;
+            this.locationAddButton.Text = "&Add";
+            this.locationAddButton.UseVisualStyleBackColor = true;
+            this.locationAddButton.Click += new System.EventHandler(this.locationAddButton_Click);
+            // 
+            // locationZipCodetextBox
+            // 
+            this.locationZipCodetextBox.Location = new System.Drawing.Point(244, 259);
+            this.locationZipCodetextBox.Name = "locationZipCodetextBox";
+            this.locationZipCodetextBox.Size = new System.Drawing.Size(100, 20);
+            this.locationZipCodetextBox.TabIndex = 12;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(186, 258);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Zip code:";
+            // 
+            // locationStreetAddressTextBox
+            // 
+            this.locationStreetAddressTextBox.Location = new System.Drawing.Point(244, 233);
+            this.locationStreetAddressTextBox.Name = "locationStreetAddressTextBox";
+            this.locationStreetAddressTextBox.Size = new System.Drawing.Size(223, 20);
+            this.locationStreetAddressTextBox.TabIndex = 10;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(159, 236);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(79, 13);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "Street Address:";
+            // 
+            // locationIdTextBox
+            // 
+            this.locationIdTextBox.Location = new System.Drawing.Point(47, 233);
+            this.locationIdTextBox.Name = "locationIdTextBox";
+            this.locationIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.locationIdTextBox.TabIndex = 8;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(20, 236);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(21, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "ID:";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(3, 202);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(578, 2);
+            this.panel2.TabIndex = 6;
+            // 
+            // locationEditButton
+            // 
+            this.locationEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.locationEditButton.Enabled = false;
+            this.locationEditButton.Location = new System.Drawing.Point(503, 173);
+            this.locationEditButton.Name = "locationEditButton";
+            this.locationEditButton.Size = new System.Drawing.Size(75, 23);
+            this.locationEditButton.TabIndex = 5;
+            this.locationEditButton.Text = "&Edit";
+            this.locationEditButton.UseVisualStyleBackColor = true;
+            this.locationEditButton.Click += new System.EventHandler(this.locationEditButton_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 3);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Current Locations";
+            // 
+            // locationsListBox
+            // 
+            this.locationsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.locationsListBox.FormattingEnabled = true;
+            this.locationsListBox.Location = new System.Drawing.Point(3, 19);
+            this.locationsListBox.Name = "locationsListBox";
+            this.locationsListBox.Size = new System.Drawing.Size(575, 147);
+            this.locationsListBox.TabIndex = 3;
+            this.locationsListBox.SelectedIndexChanged += new System.EventHandler(this.locationsListBox_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -325,6 +495,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Transports & Delivery Vehicles";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(587, 431);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Routes";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // AdminForm
             // 
@@ -339,6 +519,8 @@
             this.objectsTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -359,18 +541,34 @@
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox typeComboBox;
+        private System.Windows.Forms.ComboBox employeeTypeComboBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button employeeAddButton;
-        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button employeeEditButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox employeesListBox;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TextBox confirmPasswordTextBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button locationEditButton;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ListBox locationsListBox;
+        private System.Windows.Forms.Button locationAddButton;
+        private System.Windows.Forms.TextBox locationZipCodetextBox;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox locationStreetAddressTextBox;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox locationIdTextBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox locationZipcodesServedTextBox;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox locationTypeComboBox;
+        private System.Windows.Forms.TextBox locationVolumeCapacityTextBox;
+        private System.Windows.Forms.Label label15;
 
     }
 }

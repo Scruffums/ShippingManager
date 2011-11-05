@@ -12,16 +12,14 @@ namespace ShippingManager
         private Employee loggedInEmployee;
 
         private List<Package> packages;
-        private List<Warehouse> warehouses;
-        private List<StoreFront> storeFronts;
+        private List<Location> locations;
         private List<Employee> employees;
         private List<Moveable> moveables;
 
         public ShippingSystem()
         {
             packages = new List<Package>();
-            warehouses = new List<Warehouse>();
-            storeFronts = new List<StoreFront>();
+            locations = new List<Location>();
             employees = new List<Employee>();
             moveables = new List<Moveable>();
         }
@@ -89,6 +87,38 @@ namespace ShippingManager
             loggedInEmployee = null;
         }
 
-        
+
+
+        public Location[] Locations { get { return locations.ToArray(); } }
+
+        public bool addStoreFront(string id, string streetAddress, string zipcode)
+        {
+            Address a = new Address(id,streetAddress,zipcode);
+            StoreFront sf = new StoreFront(a);
+            if (locations.Contains(sf))
+                return false;
+            locations.Add(sf);
+            return true;
+        }
+
+        public bool addWarehouse(string id, string streetAddress, string zipcode, int volumeCapacity)
+        {
+            Address a = new Address(id, streetAddress, zipcode);
+            Warehouse sf = new Warehouse(a, volumeCapacity);
+            if (locations.Contains(sf))
+                return false;
+            locations.Add(sf);
+            return true;
+        }
+
+        public bool addAbroad(string id, string streetAddress, string zipcode, string[] zipcodesServed)
+        {
+            Address a = new Address(id, streetAddress, zipcode);
+            Abroad sf = new Abroad(a, zipcodesServed);
+            if (locations.Contains(sf))
+                return false;
+            locations.Add(sf);
+            return true;
+        }
     }
 }

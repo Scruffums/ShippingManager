@@ -11,14 +11,13 @@ namespace ShippingManager
         private List<Package> packages;
         private List<DeliveryVehicle> deliveryVehicles;
 
-        public StoreFront(string id, Address locationAddress, DeliveryVehicle[] deliveryVehicles)
+        public StoreFront(Address locationAddress)
         {
-            Id = id;
             LocationAddress = locationAddress;
             
             packages = new List<Package>();
             this.deliveryVehicles = new List<DeliveryVehicle>();
-            this.deliveryVehicles.AddRange(deliveryVehicles);
+            //this.deliveryVehicles.AddRange(deliveryVehicles);
         }
 
         public void addPackage(Package package)
@@ -44,8 +43,6 @@ namespace ShippingManager
         {
             deliveryVehicles.Remove(deliveryVehicle);
         }
-
-        public string Id { get; set; }
 
     }
 }

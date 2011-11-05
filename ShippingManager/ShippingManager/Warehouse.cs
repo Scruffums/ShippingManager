@@ -8,21 +8,21 @@ namespace ShippingManager
     [Serializable()]
     public class Warehouse : Location
     {
-        private List<int> zipCodesServed;
+        //private List<int> zipCodesServed;
         private List<Transport> transports;
         private List<DeliveryVehicle> deliveryVehicles;
 
-        public Warehouse(int volumeCapacity, int[] zipCodesServed, Transport[] transports, DeliveryVehicle[] deliveryVehicles)
+        public Warehouse(Address a, int volumeCapacity)
         {
             VolumeCapacity = volumeCapacity;
-
-            this.zipCodesServed = new List<int>();
+            LocationAddress = a;
+            //this.zipCodesServed = new List<int>();
             this.transports = new List<Transport>();
             this.deliveryVehicles = new List<DeliveryVehicle>();
 
-            this.zipCodesServed.AddRange(zipCodesServed);
-            this.transports.AddRange(transports);
-            this.deliveryVehicles.AddRange(deliveryVehicles);
+            //this.zipCodesServed.AddRange(zipCodesServed);
+            //this.transports.AddRange(transports);
+            //this.deliveryVehicles.AddRange(deliveryVehicles);
         }
 
         public bool addDeliveryVehicle(DeliveryVehicle deliveryVehicle)

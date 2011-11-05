@@ -11,6 +11,7 @@ namespace ShippingManager
         private List<Package> packages;
         private int currentWeight, currentVolume;
         private Location currentLocation;
+        private Location home;
 
         public Moveable(int volumeCapacity, int weightCapacity, Route route)
         {
@@ -43,6 +44,21 @@ namespace ShippingManager
             }
         }
 
+        public bool setHome(Location loc)
+        {
+            if (Homeless && !(loc is Abroad))
+            {
+                home = loc;
+                return true;
+            }
+            return false;
+        }
+
+        public void clearHome()
+        {
+            home = null;
+        }
+
         public int VolumeAvailable { get { return VolumeCapacity - currentVolume; } }
         public int WeightAvailable { get { return WeightCapacity - currentWeight; } }
 
@@ -55,5 +71,9 @@ namespace ShippingManager
         public Location CurrentLocation { get { return currentLocation; } }
 
         public bool Full { get { return (currentWeight > WeightCapacity || currentVolume > VolumeCapacity); } }
+
+        public bool Homeless { get { return home == null; } }
+
+        public Location Home { get { return home; } }
     }
 }

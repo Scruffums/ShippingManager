@@ -8,28 +8,23 @@ namespace ShippingManager
     [Serializable()]
     public class Abroad : Location
     {
-        private int[] zipCodes;
+        //private int[] zipCodes;
 
-        public Abroad(int[] zipCodes)
+        public Abroad(Address locationAddress, string[] zipCodes)
         {
+            LocationAddress = locationAddress;
+            ZipCodes = zipCodes;
         }
 
-        public int[] ZipCodes
+        public String[] ZipCodes
         {
-            get
-            {
-                return zipCodes;
-            }
-            set
-            {
-                zipCodes = value;
-            }
-
+            get;
+            set;
         }
 
-        public bool ContainsZipCode(int zipCode)
+        public bool ContainsZipCode(string zipCode)
         {
-            foreach (int i in zipCodes)
+            foreach (string i in ZipCodes)
                 if (i == zipCode)
                     return true;
 

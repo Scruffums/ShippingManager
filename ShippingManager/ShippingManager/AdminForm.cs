@@ -18,7 +18,9 @@ namespace ShippingManager
         Form parentForm;
 
         Employee currentEmployee;
+        Location currentLocation;
         bool addEmployee = true;
+        bool addLocation = true;
         
         
 
@@ -27,8 +29,10 @@ namespace ShippingManager
             InitializeComponent();
             shippingSystem = sm;
             parentForm = parent;
-            typeComboBox.SelectedIndex = 0;
+            employeeTypeComboBox.SelectedIndex = 0;
+            locationTypeComboBox.SelectedIndex = 0;
             employeesListBox.Items.AddRange(sm.Employees);
+            locationsListBox.Items.AddRange(sm.Locations);
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
@@ -60,19 +64,19 @@ namespace ShippingManager
 
             if (currentEmployee is AdminEmployee)
             {
-                typeComboBox.SelectedIndex = 0;
+                employeeTypeComboBox.SelectedIndex = 0;
             }
             else if (currentEmployee is AcceptanceEmployee)
             {
-                typeComboBox.SelectedIndex = 1;
+                employeeTypeComboBox.SelectedIndex = 1;
             }
             else if (currentEmployee is WarehouseEmployee)
             {
-                typeComboBox.SelectedIndex = 2;
+                employeeTypeComboBox.SelectedIndex = 2;
             }
             else if (currentEmployee is DeliveryEmployee)
             {
-                typeComboBox.SelectedIndex = 3;
+                employeeTypeComboBox.SelectedIndex = 3;
             }
 
         }
@@ -89,7 +93,7 @@ namespace ShippingManager
 
         private void employeesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            editButton.Enabled = !(employeesListBox.SelectedIndex == -1);
+            employeeEditButton.Enabled = !(employeesListBox.SelectedIndex == -1);
         }
 
         private void employeeAddButton_Click(object sender, EventArgs e)
@@ -97,7 +101,7 @@ namespace ShippingManager
             if (addEmployee)
             {
                 bool idAvailable = true;
-                switch (typeComboBox.SelectedIndex)
+                switch (employeeTypeComboBox.SelectedIndex)
                 {
                     case 0:
                         idAvailable = shippingSystem.addAdminEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, idTextBox.Text, confirmPasswordTextBox.Text); break;
@@ -139,5 +143,87 @@ namespace ShippingManager
             clearEmployeeTab();
         } 
         #endregion
+
+        private void locationsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            locationEditButton.Enabled = !(locationsListBox.SelectedIndex == -1);
+        }
+
+        private void locationEditButton_Click(object sender, EventArgs e)
+        {
+            locationTypeComboBox.Enabled = false;
+            locationAddButton.Text = SAVE;
+            addLocation = false;
+
+            currentLocation = locationsListBox.SelectedItem as Location;
+            locationsListBox.ClearSelected();
+
+            locationIdTextBox.Text = currentLocation.Id;
+
+            locationStreetAddressTextBox.Enabled = locationZipCodetextBox.Enabled = !(currentLocation is Abroad);
+
+            if(locationStreetAddressTextBox.Enabled)
+            {
+                locationStreetAddressTextBox.Text = currentLocation.StreetAddress;
+                locationZipCodetextBox.Text = currentLocation.Zipcode;
+            }
+
+            locationVolumeCapacityTextBox.Enabled = currentLocation is Warehouse;
+
+            locationZipcodesServedTextBox.Enabled = currentLocation is Abroad;
+        }
+
+        private void locationAddButton_Click(object sender, EventArgs e)
+        {
+            bool locationAdded = true;
+            if (addLocation)
+            {
+                
+                switch (locationTypeComboBox.SelectedIndex)
+                {
+                    case 0:
+                        locationAdded = shippingSystem.addStoreFront(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text); break;
+                    case 1:
+                        locationAdded = shippingSystem.addWarehouse(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, int.Parse(locationVolumeCapacityTextBox.Text)); break;
+                    case 2:
+                        locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, locationZipcodesServedTextBox.Text.Split(',')); break;
+                }
+                //TODO: Inform user that the location was not added because the address has already been used by another location
+            }
+            else//edit location
+            {
+                locationTypeComboBox.Enabled = true;
+                currentLocation.Id = locationIdTextBox.Text;
+                currentLocation.StreetAddress = locationStreetAddressTextBox.Text;
+                currentLocation.Zipcode = locationZipCodetextBox.Text;
+
+
+
+                if (currentLocation is Abroad)
+                {
+                    (currentLocation as Abroad).ZipCodes = locationZipcodesServedTextBox.Text.Split(',');
+                }
+            }
+
+            locationsListBox.Items.Clear();
+            locationsListBox.Items.AddRange(shippingSystem.Locations);
+            clearLocationsTab();
+        }
+
+        private void clearLocationsTab()
+        {
+            locationIdTextBox.Clear();
+            locationStreetAddressTextBox.Clear();
+            locationZipCodetextBox.Clear();
+            locationZipcodesServedTextBox.Clear();
+            locationVolumeCapacityTextBox.Clear();
+        }
+
+        private void locationTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            locationVolumeCapacityTextBox.Enabled = locationTypeComboBox.SelectedIndex == 1;
+            locationZipcodesServedTextBox.Enabled = locationTypeComboBox.SelectedIndex == 2;
+            locationStreetAddressTextBox.Enabled = locationZipCodetextBox.Enabled = !(locationTypeComboBox.SelectedIndex==2);
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace ShippingManager
                 TestFileStream = File.Create(FileName);
                 TestFileStream.Close();
                 ss = new ShippingSystem();
-                ss.addAdminEmployee("Lotar", "Hasani", "Walace", "lhwalace", "kimbokasteniv");
+                ss.addAdminEmployee("Lotar", "Hasani", "Walace", "lhwalace", "password");
                 Console.WriteLine("Admins added");
             }
 
