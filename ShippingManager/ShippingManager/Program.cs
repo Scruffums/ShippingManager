@@ -16,34 +16,35 @@ namespace ShippingManager
         [STAThread]
         static void Main()
         {
-            ShippingSystem sm;
+            ShippingSystem ss;
             Stream TestFileStream;
 
             if (File.Exists(FileName))
             {
                 TestFileStream = File.OpenRead(FileName);
                 BinaryFormatter deserializer = new BinaryFormatter();
-                sm = (ShippingSystem)deserializer.Deserialize(TestFileStream);
+                ss = (ShippingSystem)deserializer.Deserialize(TestFileStream);
                 TestFileStream.Close();
-                Console.WriteLine("Loaded hey string: "+sm.hey);
             }
             else
             {
                 TestFileStream = File.Create(FileName);
-                sm = new ShippingSystem();
-                sm.hey = "Hello world?";
-                Console.WriteLine("wrote to sm");
+                TestFileStream.Close();
+                ss = new ShippingSystem();
+                ss.addAdminEmployee("Lotar", "Hasani", "Walace", "lhwalace", "kimbokasteniv");
+                Console.WriteLine("Admins added");
             }
+
+            
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new LoginForm(ss));
 
             TestFileStream = File.OpenWrite(FileName);
             BinaryFormatter serializer = new BinaryFormatter();
-            serializer.Serialize(TestFileStream, sm);
+            serializer.Serialize(TestFileStream, ss);
             TestFileStream.Close();
 
-            Console.Read();
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new LoginForm());
         }
     }
 }

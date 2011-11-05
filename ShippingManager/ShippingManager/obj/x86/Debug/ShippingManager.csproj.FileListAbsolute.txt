@@ -9,3 +9,11 @@ I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debu
 C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.pdb
 C:\Users\Public\CLASSES\C-Sharp\teamproject\PJS\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.pdb
 C:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.pdb
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.AddPackageForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.AdminForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.DeliveryForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.FindPackageForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.LoginForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.StoreFrontForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.WarehouseForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.ChangePasswordForm.resources

@@ -15,7 +15,7 @@ namespace ShippingManager
         protected string id;
         protected string passwordHash;
         [field: NonSerialized()]
-        protected readonly MD5CryptoServiceProvider hashFunction;
+        protected static MD5CryptoServiceProvider hashFunction;
 
         protected Employee(string firstName, string middleName, string lastName, string id, string plainTextPassword)
         {
@@ -24,8 +24,14 @@ namespace ShippingManager
             LastName = lastName;
             Id = id;
 
-            hashFunction = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            initializeHashFunction();
             passwordHash = hashPassword(plainTextPassword);
+        }
+
+        private void initializeHashFunction()
+        {
+            if(hashFunction==null)
+                hashFunction = new System.Security.Cryptography.MD5CryptoServiceProvider();
         }
 
         public string FirstName
@@ -64,20 +70,16 @@ namespace ShippingManager
 
         public string Id
         {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
+            get;
+            set;
         }
 
         public bool IdMatch (string id)
         {
-            return id.Equals(this.id);
+            return id.Equals(Id);
         }
+
+        public String StringType { get { if (this is AdminEmployee)return "Admin"; else if (this is AcceptanceEmployee)return "Acceptance"; else if (this is WarehouseEmployee)return "Warehouse"; else return "Delivery"; } }
 
         public string PasswordHash
         {
@@ -93,12 +95,54 @@ namespace ShippingManager
             return hashPassword(plainTextPassword).Equals(passwordHash);
         }
 
+        public bool changePassword(string oldPassword, string newPassword)
+        {
+            if (PasswordMatch(oldPassword))
+            {
+                setPassword(newPassword);
+                return true;
+            }
+            return false;
+        }
+
+        public bool changePassword(Employee employee, string newPassword)
+        {
+            if (employee is AdminEmployee)
+            {
+                setPassword(newPassword);
+                return true;
+            }
+            return false;
+        }
+
+        private void setPassword(string plainTextPassword)
+        {
+            passwordHash = hashPassword(plainTextPassword);
+        }
+
         protected string hashPassword(string plainTextPassword)
         {
+            initializeHashFunction();
             byte[] data = System.Text.Encoding.ASCII.GetBytes(plainTextPassword);
             data = hashFunction.ComputeHash(data);
             return System.Text.Encoding.ASCII.GetString(data);
         }
+
+        /*
+         * Every Employee must have a unique Id, therefore, we only need to check Id equivalency
+         */ 
+        public override bool Equals(object obj)
+        {
+            Employee input = obj as Employee;
+            if (input == null)
+                return false;
+            return input.IdMatch(Id);
+        }
+
+        public override string ToString()
+        {
+            return StringType+": "+Id + ": " + FirstName + " " + LastName;
+        }
 
     }
 }
