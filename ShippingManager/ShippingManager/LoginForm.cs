@@ -51,11 +51,15 @@ namespace ShippingManager
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            //BUG: exit button does not work after logging in, user must use alt-f4 or the default exit button provided by windows to exit
+            //      the application. Either fix, or remove exit button.
             Application.Exit();
         }
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
+
+            //BUG: Windows makes an error noise when the enter key is hit in a textBox. We may need to use the KeyPress event instead of KeyDown
             if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;

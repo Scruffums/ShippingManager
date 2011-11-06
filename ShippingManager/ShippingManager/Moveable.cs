@@ -12,6 +12,7 @@ namespace ShippingManager
         private int currentWeight, currentVolume;
         private Location currentLocation;
         private Location home;
+        private Route route;
 
 
         //Maybe I should use a default value instead of overloading constructors...
@@ -71,6 +72,33 @@ namespace ShippingManager
             return StringType + ": " + Id;
         }
 
+        public bool assignRoute(Route rou)
+        {
+            if (Routeless)
+            {
+                route = rou;
+                return true;
+            }
+            return false;
+        }
+
+        public void removeRoute(Route rou)
+        {
+            if (route.Equals(rou))
+                route = null;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Moveable m = obj as Moveable;
+            if (m == null)
+                return false;
+            return m.Id == Id;
+        }
+
+
+        public bool Routeless { get { return route == null; } }
+
         public String Id { get; set; }
 
         public String StringType { get { return (this is Transport)? "Transport":"Delivery Vehicle"; } }
@@ -82,8 +110,6 @@ namespace ShippingManager
 
         public int WeightCapacity { get; set; }
 
-        public Route CurrentRoute { get; set; }
-
         public Location CurrentLocation { get { return currentLocation; } }
 
         public bool Full { get { return (currentWeight > WeightCapacity || currentVolume > VolumeCapacity); } }
@@ -91,5 +117,7 @@ namespace ShippingManager
         public bool Homeless { get { return home == null; } }
 
         public Location Home { get { return home; } }
+
+        public Route CurrentRoute { get { return route; } set { route = value; } }
     }
 }

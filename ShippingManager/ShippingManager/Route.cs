@@ -10,12 +10,31 @@ namespace ShippingManager
     {
         private Location[] locations;
 
-        public Route (Location[] locations, float durationInDays)
+        public Route (string id, float durationInDays, Location one, Location two, Moveable move)
         {
-            this.locations = locations;
+            locations = new Location[] { one, two };
+            Id = id;
             DurationInDays = durationInDays;
+            CurrentMoveable = move;
         }
 
+        public override bool Equals(object obj)
+        {
+            Route r = obj as Route;
+            if (r == null)
+                return false;
+            return r.Id == Id;
+        }
+
+        public override string ToString()
+        {
+            return CurrentMoveable.StringType+": "+locations[0].Id+" "+CurrentMoveable.Id+" "+locations[1].Id;
+        }
+
+        public Moveable CurrentMoveable { get; set; }
+        public bool Moveableless { get { return CurrentMoveable == null; } }
         public float DurationInDays { get; set; }
+        public string Id { get; set; }
+        public Location[] Locations { get { return locations; } }
     }
 }

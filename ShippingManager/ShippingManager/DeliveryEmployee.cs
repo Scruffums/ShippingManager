@@ -8,7 +8,7 @@ namespace ShippingManager
     [Serializable()]
     public class DeliveryEmployee : Employee
     {
-        public DeliveryVehicle CurrentDeliveryVehicle
+        public Route CurrentRoute
         {
             get;
             set;

@@ -36,7 +36,7 @@ namespace ShippingManager
             if(address==null)
                 return false;
 
-            return (address.StreetAddress == StreetAddress || address.Zip == Zip);
+            return (address.StreetAddress == StreetAddress && address.Zip == Zip);
         }
 
         public override string ToString()

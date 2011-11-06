@@ -13,6 +13,7 @@ namespace ShippingManager
         public Abroad(Address locationAddress, string[] zipCodes)
         {
             LocationAddress = locationAddress;
+            LocationAddress.StreetAddress = zipCodes[0];
             ZipCodes = zipCodes;
         }
 
@@ -29,6 +30,22 @@ namespace ShippingManager
                     return true;
 
             return false;
+        }
+
+        public string ZipcodesString 
+        {
+            get
+            {
+                String[] zipCodes = ZipCodes;
+                StringBuilder b = new StringBuilder();
+                for(int i=0; i<zipCodes.Length; i++)
+                {
+                    b.Append(zipCodes[i]);
+                    if(i<zipCodes.Length-1)
+                        b.Append(",");
+                }
+                return b.ToString();
+            }
         }
     }
 }

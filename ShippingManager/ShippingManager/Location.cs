@@ -13,7 +13,7 @@ namespace ShippingManager
             if (l==null)
                 return false;
 
-            return l.LocationAddress.Equals(LocationAddress); ;
+            return l.LocationAddress.Equals(LocationAddress);
         }
 
         public override string ToString()

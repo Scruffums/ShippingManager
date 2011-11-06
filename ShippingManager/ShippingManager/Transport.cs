@@ -29,7 +29,7 @@ namespace ShippingManager
             TempControlled = tempControlled;
         }
 
-
+        
         public int TransportType { get; set; }
 
         public bool TempControlled { get; set; }

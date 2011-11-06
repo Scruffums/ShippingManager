@@ -11,8 +11,11 @@ namespace ShippingManager
 {
     public partial class AdminForm : Form
     {
-        const String ADD = "&Add and Clear";
-        const String SAVE = "&Save and Clear";
+        const string ADD = "&Add and Clear";
+        const string SAVE = "&Save and Clear";
+        const string STOREFRONT = "Current Storefront:";
+        const string WAREHOUSE = "Current Store Front or Warehouse:";
+        const string ROUTE = "Current Route: ";
 
         ShippingSystem shippingSystem;
         Form parentForm;
@@ -20,9 +23,11 @@ namespace ShippingManager
         Employee currentEmployee;
         Location currentLocation;
         Moveable currentMoveable;
+        Route currentRoute;
         bool addEmployee = true;
         bool addLocation = true;
         bool addMoveable = true;
+        bool addRoute = true;
                 
         public AdminForm(Form parent, ShippingSystem sm)
         {
@@ -34,6 +39,10 @@ namespace ShippingManager
             employeesListBox.Items.AddRange(sm.Employees);
             locationsListBox.Items.AddRange(sm.Locations);
             moveablesListBox.Items.AddRange(sm.Moveables);
+            routesListBox.Items.AddRange(sm.Routes);
+            //routeLocationOneListBox.Items.AddRange(sm.Locations);
+            //routeLocationTwoListBox.Items.AddRange(sm.Locations);
+            //routeUsingListBox.Items.AddRange(sm.RoutelessMoveable);
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
@@ -49,6 +58,19 @@ namespace ShippingManager
             logoutButton_Click(sender, e);
         }
 
+        private void objectsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (objectsTabControl.SelectedIndex == 3)
+            {
+                routeLocationOneListBox.Items.Clear();
+                routeLocationTwoListBox.Items.Clear();
+                routeUsingListBox.Items.Clear();
+                routeLocationOneListBox.Items.AddRange(shippingSystem.Locations);
+                routeLocationTwoListBox.Items.AddRange(shippingSystem.Locations);
+                routeUsingListBox.Items.AddRange(shippingSystem.RoutelessMoveable);
+            }
+        }
+
         #region EmployeeTab
         private void employeeEditButton_Click(object sender, EventArgs e)
         {
@@ -57,7 +79,7 @@ namespace ShippingManager
 
             currentEmployee = employeesListBox.SelectedItem as Employee;
             employeesListBox.ClearSelected();
-            idTextBox.Text = currentEmployee.Id;
+            employeeIdTextBox.Text = currentEmployee.Id;
             firstNameTextBox.Text = currentEmployee.FirstName;
             middleNameTextBox.Text = currentEmployee.MiddleName;
             lastNameTextBox.Text = currentEmployee.LastName;
@@ -70,14 +92,23 @@ namespace ShippingManager
             else if (currentEmployee is AcceptanceEmployee)
             {
                 employeeTypeComboBox.SelectedIndex = 1;
+                AcceptanceEmployee a = currentEmployee as AcceptanceEmployee;
+                if (a != null)
+                    employeeCurrentComboBox.SelectedItem = a.CurrentStoreFront;
             }
             else if (currentEmployee is WarehouseEmployee)
             {
                 employeeTypeComboBox.SelectedIndex = 2;
+                WarehouseEmployee a = currentEmployee as WarehouseEmployee;
+                if (a != null)
+                    employeeCurrentComboBox.SelectedItem = a.CurrentLocation;
             }
             else if (currentEmployee is DeliveryEmployee)
             {
                 employeeTypeComboBox.SelectedIndex = 3;
+                DeliveryEmployee a = currentEmployee as DeliveryEmployee;
+                if (a != null)
+                    employeeCurrentComboBox.SelectedItem = a.CurrentRoute;
             }
 
         }
@@ -89,7 +120,7 @@ namespace ShippingManager
             lastNameTextBox.Clear();
             newPasswordTextBox.Clear();
             confirmPasswordTextBox.Clear();
-            idTextBox.Clear();
+            employeeIdTextBox.Clear();
         }
 
         private void employeesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,13 +136,13 @@ namespace ShippingManager
                 switch (employeeTypeComboBox.SelectedIndex)
                 {
                     case 0:
-                        idAvailable = shippingSystem.addAdminEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, idTextBox.Text, confirmPasswordTextBox.Text); break;
+                        idAvailable = shippingSystem.addAdminEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, employeeIdTextBox.Text, confirmPasswordTextBox.Text); break;
                     case 1:
-                        idAvailable = shippingSystem.addAcceptanceEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, idTextBox.Text, confirmPasswordTextBox.Text); break;
+                        idAvailable = shippingSystem.addAcceptanceEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, employeeIdTextBox.Text, confirmPasswordTextBox.Text, employeeCurrentComboBox.SelectedItem as StoreFront); break;
                     case 2:
-                        idAvailable = shippingSystem.addWarehouseEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, idTextBox.Text, confirmPasswordTextBox.Text); break;
+                        idAvailable = shippingSystem.addWarehouseEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, employeeIdTextBox.Text, confirmPasswordTextBox.Text, employeeCurrentComboBox.SelectedItem as Location); break;
                     case 3:
-                        idAvailable = shippingSystem.addDeliveryEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, idTextBox.Text, confirmPasswordTextBox.Text); break;
+                        idAvailable = shippingSystem.addDeliveryEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, employeeIdTextBox.Text, confirmPasswordTextBox.Text, employeeCurrentComboBox.SelectedItem as Route); break;
                 }
 
                 //TODO: notify user that the ID has already been used if idAvailable == false;
@@ -119,9 +150,20 @@ namespace ShippingManager
             else//Edit employee
             {
                 //TODO: allow user to change type
+                currentEmployee.Id = employeeIdTextBox.Text;
                 currentEmployee.FirstName = firstNameTextBox.Text;
                 currentEmployee.MiddleName = middleNameTextBox.Text;
                 currentEmployee.LastName = lastNameTextBox.Text;
+
+                switch (employeeTypeComboBox.SelectedIndex)
+                {
+                    case 1:
+                        (currentEmployee as AcceptanceEmployee).CurrentStoreFront = employeeCurrentComboBox.SelectedItem as StoreFront; break;
+                    case 2:
+                        (currentEmployee as WarehouseEmployee).CurrentLocation = employeeCurrentComboBox.SelectedItem as Location; break;
+                    case 3:
+                        (currentEmployee as DeliveryEmployee).CurrentRoute = employeeCurrentComboBox.SelectedItem as Route; break;
+                }
 
                 if (newPasswordTextBox.Text != "")
                 {
@@ -135,14 +177,37 @@ namespace ShippingManager
                     }
                 }
 
-
+                addEmployee = true;
                 employeeAddButton.Text = ADD;
             }
 
             employeesListBox.Items.Clear();
             employeesListBox.Items.AddRange(shippingSystem.Employees);
             clearEmployeeTab();
-        } 
+        }
+
+        private void employeeTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            employeeCurrentComboBox.Enabled = employeeTypeComboBox.SelectedIndex != 0;
+            switch (employeeTypeComboBox.SelectedIndex)
+            {
+                case 1://Acceptance
+                    employeeCurrentLabel.Text = STOREFRONT;
+                    employeeCurrentComboBox.Items.Clear();
+                    employeeCurrentComboBox.Items.AddRange(shippingSystem.StoreFronts);
+                    break;
+                case 2://warehouse
+                    employeeCurrentLabel.Text = WAREHOUSE;
+                    employeeCurrentComboBox.Items.Clear();
+                    employeeCurrentComboBox.Items.AddRange(shippingSystem.Locations);//Warehouse employees can be in a storeFront or Warehouse
+                    break;
+                case 3://Delivery
+                    employeeCurrentLabel.Text = ROUTE;
+                    employeeCurrentComboBox.Items.Clear();
+                    employeeCurrentComboBox.Items.AddRange(shippingSystem.Routes);
+                    break;
+            }
+        }
         #endregion
 
         #region LocationTab
@@ -168,6 +233,10 @@ namespace ShippingManager
             {
                 locationStreetAddressTextBox.Text = currentLocation.StreetAddress;
                 locationZipCodetextBox.Text = currentLocation.Zipcode;
+            }
+            else//We have an abroad
+            {
+                locationZipcodesServedTextBox.Text = (currentLocation as Abroad).ZipcodesString;
             }
 
             locationVolumeCapacityTextBox.Enabled = currentLocation is Warehouse;
@@ -207,9 +276,13 @@ namespace ShippingManager
                 }
             }
 
-            locationsListBox.Items.Clear();
-            locationsListBox.Items.AddRange(shippingSystem.Locations);
-            clearLocationsTab();
+            if (locationAdded)
+            {
+                addLocation = true;
+                locationsListBox.Items.Clear();
+                locationsListBox.Items.AddRange(shippingSystem.Locations);
+                clearLocationsTab(); 
+            }
         }
 
         private void clearLocationsTab()
@@ -219,6 +292,10 @@ namespace ShippingManager
             locationZipCodetextBox.Clear();
             locationZipcodesServedTextBox.Clear();
             locationVolumeCapacityTextBox.Clear();
+            locationZipcodesServedTextBox.Enabled = false;
+            locationVolumeCapacityTextBox.Enabled = true;
+            locationStreetAddressTextBox.Enabled = true;
+            locationZipCodetextBox.Enabled = true;
         }
 
         private void locationTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -308,6 +385,75 @@ namespace ShippingManager
         }
         #endregion
 
+        #region RouteTab
+        private void routesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            routeEditButton.Enabled = routesListBox.SelectedIndex != -1;
+        }
+
+        private void routeEditButton_Click(object sender, EventArgs e)
+        {
+            addRoute = false;
+            routeAddButton.Text = SAVE;
+            currentRoute = routesListBox.SelectedItem as Route;
+
+            routeIdTextBox.Text = currentRoute.Id;
+            routeDurationTextBox.Text = currentRoute.DurationInDays + "";
+            routeUsingListBox.Items.Insert(0, currentRoute.CurrentMoveable);
+            routeUsingListBox.SelectedIndex = 0;
+            routeLocationOneListBox.SelectedIndex = shippingSystem.indexOf(currentRoute.Locations[0]);
+            routeLocationTwoListBox.SelectedIndex = shippingSystem.indexOf(currentRoute.Locations[1]);
+        }
+
+        private void routeAddButton_Click(object sender, EventArgs e)
+        {
+            if (addRoute)
+            {
+                bool routeAdded = shippingSystem.addRoute(routeIdTextBox.Text, int.Parse(routeDurationTextBox.Text), routeLocationOneListBox.SelectedItem as Location, routeLocationTwoListBox.SelectedItem as Location, routeUsingListBox.SelectedItem as Moveable);
+                //TODO: add code to inform user route was not added due to ID being used.
+            }
+            else//edit route
+            {
+                currentRoute.Id = routeIdTextBox.Text;
+                currentRoute.DurationInDays = int.Parse(routeDurationTextBox.Text);//TODO: add code to inform user of non numeric input
+                foreach (Location rLocation in currentRoute.Locations)
+                {
+                    if (rLocation is StoreFront)
+                        (rLocation as StoreFront).removeRoute(currentRoute);
+                    else if (rLocation is Warehouse)
+                        (rLocation as Warehouse).removeRoute(currentRoute);
+                }
+                currentRoute.Locations[0] = routeLocationOneListBox.SelectedItem as Location;
+                currentRoute.Locations[1] = routeLocationTwoListBox.SelectedItem as Location;
+                currentRoute.CurrentMoveable = routeUsingListBox.SelectedItem as Moveable;
+                foreach (Location rLocation in currentRoute.Locations)
+                {
+                    if (rLocation is StoreFront)
+                        (rLocation as StoreFront).addRoute(currentRoute);
+                    else if (rLocation is Warehouse)
+                        (rLocation as Warehouse).addRoute(currentRoute);
+                }
+            }
+
+            addRoute = true;
+            routeAddButton.Text = ADD;
+            routesListBox.Items.Clear();
+            routesListBox.Items.AddRange(shippingSystem.Routes);
+            clearRouteTab();
+        }
+
+        private void clearRouteTab()
+        {
+            routeIdTextBox.Clear();
+            routeDurationTextBox.Clear();
+            routeUsingListBox.Items.Clear();
+            routeUsingListBox.Items.AddRange(shippingSystem.RoutelessMoveable);
+        } 
+        #endregion
+
         
+
+        
+
     }
 }

@@ -8,7 +8,7 @@ namespace ShippingManager
     [Serializable()]
     public class WarehouseEmployee : Employee
     {
-        public Warehouse CurrentWareHouse
+        public Location CurrentLocation
         {
             get;
             set;
