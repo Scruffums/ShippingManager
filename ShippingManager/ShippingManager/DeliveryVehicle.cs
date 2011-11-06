@@ -10,8 +10,13 @@ namespace ShippingManager
     {
         private bool assignedToDriver;
 
-        public DeliveryVehicle(int volumeCapacity, int weightCapacity, Route route)
-            : base(volumeCapacity,weightCapacity,route)
+        public DeliveryVehicle(string id, int volumeCapacity, int weightCapacity, Route route)
+            : base(id, volumeCapacity,weightCapacity,route)
+        {
+        }
+
+        public DeliveryVehicle(string id, int volumeCapacity, int weightCapacity)
+            : base(id, volumeCapacity, weightCapacity)
         {
         }
 

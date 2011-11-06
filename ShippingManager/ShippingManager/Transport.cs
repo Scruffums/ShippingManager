@@ -10,13 +10,20 @@ namespace ShippingManager
     {
         public enum TRANPORT_TYPES
         {
-            air,
             truck,
-            train
+            train,
+            air
         }
 
-        public Transport(int transportType, int weightCapacity, int volumeCapacity, bool tempControlled, Route route)
-            : base(volumeCapacity,weightCapacity,route)
+        public Transport(string id, int transportType, int volumeCapacity, int weightCapacity, bool tempControlled, Route route)
+            : base(id, volumeCapacity,weightCapacity,route)
+        {
+            TransportType = transportType;
+            TempControlled = tempControlled;
+        }
+
+        public Transport(string id, int transportType, int volumeCapacity, int weightCapacity, bool tempControlled)
+            : base(id, volumeCapacity, weightCapacity)
         {
             TransportType = transportType;
             TempControlled = tempControlled;

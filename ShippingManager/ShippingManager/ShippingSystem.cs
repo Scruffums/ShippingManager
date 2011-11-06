@@ -120,5 +120,27 @@ namespace ShippingManager
             locations.Add(sf);
             return true;
         }
+
+        public Moveable[] Moveables { get { return moveables.ToArray(); } }
+
+
+
+        public bool addDeliveryVehicle(string id, int volumeCapacity, int weightCapacity)
+        {
+            DeliveryVehicle d = new DeliveryVehicle(id, volumeCapacity, weightCapacity);
+            if (moveables.Contains(d))
+                return false;
+            moveables.Add(d);
+            return true;
+        }
+
+        internal bool addTransport(string id, int type, int volumeCapacity, int weightCapacity, bool temperatureControlled)
+        {
+            Transport d = new Transport(id, type, volumeCapacity, weightCapacity, temperatureControlled);
+            if (moveables.Contains(d))
+                return false;
+            moveables.Add(d);
+            return true;
+        }
     }
 }

@@ -70,9 +70,26 @@
             this.locationsListBox = new System.Windows.Forms.ListBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.moveableEditButton = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.moveablesListBox = new System.Windows.Forms.ListBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.moveableTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.moveableTransportTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.moveableWeightTextBox = new System.Windows.Forms.TextBox();
+            this.moveableVolumeTextBox = new System.Windows.Forms.TextBox();
+            this.moveableAddButton = new System.Windows.Forms.Button();
+            this.moveableTemperatureCheckBox = new System.Windows.Forms.CheckBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.moveableIdTextBox = new System.Windows.Forms.TextBox();
             this.objectsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // button6
@@ -488,6 +505,22 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.moveableIdTextBox);
+            this.tabPage5.Controls.Add(this.label21);
+            this.tabPage5.Controls.Add(this.moveableTemperatureCheckBox);
+            this.tabPage5.Controls.Add(this.moveableAddButton);
+            this.tabPage5.Controls.Add(this.moveableVolumeTextBox);
+            this.tabPage5.Controls.Add(this.moveableWeightTextBox);
+            this.tabPage5.Controls.Add(this.label20);
+            this.tabPage5.Controls.Add(this.label19);
+            this.tabPage5.Controls.Add(this.moveableTransportTypeComboBox);
+            this.tabPage5.Controls.Add(this.label18);
+            this.tabPage5.Controls.Add(this.moveableTypeComboBox);
+            this.tabPage5.Controls.Add(this.label17);
+            this.tabPage5.Controls.Add(this.panel3);
+            this.tabPage5.Controls.Add(this.moveableEditButton);
+            this.tabPage5.Controls.Add(this.label16);
+            this.tabPage5.Controls.Add(this.moveablesListBox);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -506,6 +539,164 @@
             this.tabPage4.Text = "Routes";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // moveableEditButton
+            // 
+            this.moveableEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveableEditButton.Enabled = false;
+            this.moveableEditButton.Location = new System.Drawing.Point(503, 173);
+            this.moveableEditButton.Name = "moveableEditButton";
+            this.moveableEditButton.Size = new System.Drawing.Size(75, 23);
+            this.moveableEditButton.TabIndex = 8;
+            this.moveableEditButton.Text = "&Edit";
+            this.moveableEditButton.UseVisualStyleBackColor = true;
+            this.moveableEditButton.Click += new System.EventHandler(this.moveableEditButton_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(3, 3);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(99, 13);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Current Moveables:";
+            // 
+            // moveablesListBox
+            // 
+            this.moveablesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveablesListBox.FormattingEnabled = true;
+            this.moveablesListBox.Location = new System.Drawing.Point(3, 19);
+            this.moveablesListBox.Name = "moveablesListBox";
+            this.moveablesListBox.Size = new System.Drawing.Size(575, 147);
+            this.moveablesListBox.TabIndex = 6;
+            this.moveablesListBox.SelectedIndexChanged += new System.EventHandler(this.moveablesListBox_SelectedIndexChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Black;
+            this.panel3.Location = new System.Drawing.Point(3, 202);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(575, 2);
+            this.panel3.TabIndex = 9;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(4, 213);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(34, 13);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "Type:";
+            // 
+            // moveableTypeComboBox
+            // 
+            this.moveableTypeComboBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "Delivery Vehicle",
+            "Transport"});
+            this.moveableTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.moveableTypeComboBox.FormattingEnabled = true;
+            this.moveableTypeComboBox.Items.AddRange(new object[] {
+            "Delivery Vehicle",
+            "Transport"});
+            this.moveableTypeComboBox.Location = new System.Drawing.Point(85, 210);
+            this.moveableTypeComboBox.Name = "moveableTypeComboBox";
+            this.moveableTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.moveableTypeComboBox.TabIndex = 11;
+            this.moveableTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.moveableTypeComboBox_SelectedIndexChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 240);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(73, 13);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "Tranport type:";
+            // 
+            // moveableTransportTypeComboBox
+            // 
+            this.moveableTransportTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.moveableTransportTypeComboBox.Enabled = false;
+            this.moveableTransportTypeComboBox.FormattingEnabled = true;
+            this.moveableTransportTypeComboBox.Items.AddRange(new object[] {
+            "Truck",
+            "Train",
+            "Air"});
+            this.moveableTransportTypeComboBox.Location = new System.Drawing.Point(85, 237);
+            this.moveableTransportTypeComboBox.Name = "moveableTransportTypeComboBox";
+            this.moveableTransportTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.moveableTransportTypeComboBox.TabIndex = 13;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 293);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(87, 13);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Weight capacity:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 322);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(89, 13);
+            this.label20.TabIndex = 15;
+            this.label20.Text = "Volume Capacity:";
+            // 
+            // moveableWeightTextBox
+            // 
+            this.moveableWeightTextBox.Location = new System.Drawing.Point(99, 290);
+            this.moveableWeightTextBox.Name = "moveableWeightTextBox";
+            this.moveableWeightTextBox.Size = new System.Drawing.Size(100, 20);
+            this.moveableWeightTextBox.TabIndex = 16;
+            // 
+            // moveableVolumeTextBox
+            // 
+            this.moveableVolumeTextBox.Location = new System.Drawing.Point(99, 319);
+            this.moveableVolumeTextBox.Name = "moveableVolumeTextBox";
+            this.moveableVolumeTextBox.Size = new System.Drawing.Size(100, 20);
+            this.moveableVolumeTextBox.TabIndex = 17;
+            // 
+            // moveableAddButton
+            // 
+            this.moveableAddButton.Location = new System.Drawing.Point(490, 402);
+            this.moveableAddButton.Name = "moveableAddButton";
+            this.moveableAddButton.Size = new System.Drawing.Size(88, 23);
+            this.moveableAddButton.TabIndex = 18;
+            this.moveableAddButton.Text = "&Add";
+            this.moveableAddButton.UseVisualStyleBackColor = true;
+            this.moveableAddButton.Click += new System.EventHandler(this.moveableAddButton_Click);
+            // 
+            // moveableTemperatureCheckBox
+            // 
+            this.moveableTemperatureCheckBox.AutoSize = true;
+            this.moveableTemperatureCheckBox.Enabled = false;
+            this.moveableTemperatureCheckBox.Location = new System.Drawing.Point(99, 355);
+            this.moveableTemperatureCheckBox.Name = "moveableTemperatureCheckBox";
+            this.moveableTemperatureCheckBox.Size = new System.Drawing.Size(136, 17);
+            this.moveableTemperatureCheckBox.TabIndex = 19;
+            this.moveableTemperatureCheckBox.Text = "Temperature Controlled";
+            this.moveableTemperatureCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(58, 267);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(21, 13);
+            this.label21.TabIndex = 20;
+            this.label21.Text = "ID:";
+            // 
+            // moveableIdTextBox
+            // 
+            this.moveableIdTextBox.Location = new System.Drawing.Point(99, 264);
+            this.moveableIdTextBox.Name = "moveableIdTextBox";
+            this.moveableIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.moveableIdTextBox.TabIndex = 21;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,6 +712,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -569,6 +762,22 @@
         private System.Windows.Forms.ComboBox locationTypeComboBox;
         private System.Windows.Forms.TextBox locationVolumeCapacityTextBox;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button moveableEditButton;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ListBox moveablesListBox;
+        private System.Windows.Forms.ComboBox moveableTransportTypeComboBox;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox moveableTypeComboBox;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.CheckBox moveableTemperatureCheckBox;
+        private System.Windows.Forms.Button moveableAddButton;
+        private System.Windows.Forms.TextBox moveableVolumeTextBox;
+        private System.Windows.Forms.TextBox moveableWeightTextBox;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox moveableIdTextBox;
+        private System.Windows.Forms.Label label21;
 
     }
 }

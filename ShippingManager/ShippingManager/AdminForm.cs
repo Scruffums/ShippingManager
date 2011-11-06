@@ -19,11 +19,11 @@ namespace ShippingManager
 
         Employee currentEmployee;
         Location currentLocation;
+        Moveable currentMoveable;
         bool addEmployee = true;
         bool addLocation = true;
-        
-        
-
+        bool addMoveable = true;
+                
         public AdminForm(Form parent, ShippingSystem sm)
         {
             InitializeComponent();
@@ -33,6 +33,7 @@ namespace ShippingManager
             locationTypeComboBox.SelectedIndex = 0;
             employeesListBox.Items.AddRange(sm.Employees);
             locationsListBox.Items.AddRange(sm.Locations);
+            moveablesListBox.Items.AddRange(sm.Moveables);
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
@@ -144,6 +145,7 @@ namespace ShippingManager
         } 
         #endregion
 
+        #region LocationTab
         private void locationsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             locationEditButton.Enabled = !(locationsListBox.SelectedIndex == -1);
@@ -162,7 +164,7 @@ namespace ShippingManager
 
             locationStreetAddressTextBox.Enabled = locationZipCodetextBox.Enabled = !(currentLocation is Abroad);
 
-            if(locationStreetAddressTextBox.Enabled)
+            if (locationStreetAddressTextBox.Enabled)
             {
                 locationStreetAddressTextBox.Text = currentLocation.StreetAddress;
                 locationZipCodetextBox.Text = currentLocation.Zipcode;
@@ -178,12 +180,12 @@ namespace ShippingManager
             bool locationAdded = true;
             if (addLocation)
             {
-                
+
                 switch (locationTypeComboBox.SelectedIndex)
                 {
                     case 0:
                         locationAdded = shippingSystem.addStoreFront(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text); break;
-                    case 1:
+                    case 1://TODO: Add code to handle when the user inputs something other than a number in the volumeCapacityTextbox
                         locationAdded = shippingSystem.addWarehouse(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, int.Parse(locationVolumeCapacityTextBox.Text)); break;
                     case 2:
                         locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, locationZipcodesServedTextBox.Text.Split(',')); break;
@@ -223,7 +225,89 @@ namespace ShippingManager
         {
             locationVolumeCapacityTextBox.Enabled = locationTypeComboBox.SelectedIndex == 1;
             locationZipcodesServedTextBox.Enabled = locationTypeComboBox.SelectedIndex == 2;
-            locationStreetAddressTextBox.Enabled = locationZipCodetextBox.Enabled = !(locationTypeComboBox.SelectedIndex==2);
+            locationStreetAddressTextBox.Enabled = locationZipCodetextBox.Enabled = !(locationTypeComboBox.SelectedIndex == 2);
+        } 
+        #endregion
+
+        #region MoveableTab
+        private void moveableEditButton_Click(object sender, EventArgs e)
+        {
+            moveableTypeComboBox.Enabled = false;
+            moveableAddButton.Text = SAVE;
+            addMoveable = false;
+
+            currentMoveable = moveablesListBox.SelectedItem as Moveable;
+            moveablesListBox.ClearSelected();
+
+            moveableIdTextBox.Text = currentMoveable.Id;
+            moveableVolumeTextBox.Text = currentMoveable.VolumeCapacity + "";
+            moveableWeightTextBox.Text = currentMoveable.WeightCapacity + "";
+
+            moveableTransportTypeComboBox.Enabled = moveableTemperatureCheckBox.Enabled = currentMoveable is Transport;
+
+            if (moveableTransportTypeComboBox.Enabled)
+            {
+                Transport t = currentMoveable as Transport;
+
+                moveableTransportTypeComboBox.SelectedIndex = t.TransportType;
+                moveableTemperatureCheckBox.Checked = t.TempControlled;
+            }
         }
+
+        private void moveableAddButton_Click(object sender, EventArgs e)
+        {
+            bool moveableAdded = true;
+            if (addMoveable)
+            {
+
+                switch (moveableTypeComboBox.SelectedIndex)
+                {
+                    case 0:
+                        moveableAdded = shippingSystem.addDeliveryVehicle(moveableIdTextBox.Text, int.Parse(moveableVolumeTextBox.Text), int.Parse(moveableWeightTextBox.Text)); break;
+                    case 1://TODO: Add code to handle when the user inputs something other than a number in the volumeCapacityTextbox
+                        moveableAdded = shippingSystem.addTransport(moveableIdTextBox.Text, moveableTransportTypeComboBox.SelectedIndex, int.Parse(moveableVolumeTextBox.Text), int.Parse(moveableWeightTextBox.Text), moveableTemperatureCheckBox.Checked); break;
+                }
+                //TODO: Inform user that the location was not added because the address has already been used by another location
+            }
+            else//edit moveable
+            {
+                moveableTypeComboBox.Enabled = true;
+                currentMoveable.Id = moveableIdTextBox.Text;
+                currentMoveable.WeightCapacity = int.Parse(moveableWeightTextBox.Text);
+                currentMoveable.VolumeCapacity = int.Parse(moveableVolumeTextBox.Text);
+
+                Transport transport = currentMoveable as Transport;
+                if (transport != null)
+                {
+                    transport.TempControlled = moveableTemperatureCheckBox.Checked;
+                    transport.TransportType = moveableTransportTypeComboBox.SelectedIndex;
+                }
+            }
+
+            moveablesListBox.Items.Clear();
+            moveablesListBox.Items.AddRange(shippingSystem.Moveables);
+            clearMoveablesTab();
+        }
+
+        private void clearMoveablesTab()
+        {
+            moveableIdTextBox.Clear();
+            moveableTemperatureCheckBox.Checked = false;
+            moveableVolumeTextBox.Clear();
+            moveableWeightTextBox.Clear();
+        }
+
+        private void moveableTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            moveableTemperatureCheckBox.Enabled = moveableTransportTypeComboBox.Enabled = moveableTypeComboBox.SelectedIndex == 1;
+        }
+
+        private void moveablesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            moveableEditButton.Enabled = moveablesListBox.SelectedIndex != -1;
+        }
+        #endregion
+
+        
     }
 }

@@ -13,13 +13,20 @@ namespace ShippingManager
         private Location currentLocation;
         private Location home;
 
-        public Moveable(int volumeCapacity, int weightCapacity, Route route)
+
+        //Maybe I should use a default value instead of overloading constructors...
+        public Moveable(string id, int volumeCapacity, int weightCapacity) : this(id, volumeCapacity, weightCapacity, null)
+        {
+        }
+
+        public Moveable(string id, int volumeCapacity, int weightCapacity, Route route)
         {
             packages = new List<Package>();
 
             VolumeCapacity = volumeCapacity;
             WeightCapacity = weightCapacity;
             CurrentRoute = route;
+            Id = id;
         }
 
         public bool addPackage(Package package)
@@ -58,6 +65,15 @@ namespace ShippingManager
         {
             home = null;
         }
+
+        public override string ToString()
+        {
+            return StringType + ": " + Id;
+        }
+
+        public String Id { get; set; }
+
+        public String StringType { get { return (this is Transport)? "Transport":"Delivery Vehicle"; } }
 
         public int VolumeAvailable { get { return VolumeCapacity - currentVolume; } }
         public int WeightAvailable { get { return WeightCapacity - currentWeight; } }
