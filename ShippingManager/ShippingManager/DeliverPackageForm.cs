@@ -15,5 +15,15 @@ namespace ShippingManager
         {
             InitializeComponent();
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -17,3 +17,4 @@ I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debu
 I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.StoreFrontForm.resources
 I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.WarehouseForm.resources
 I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.ChangePasswordForm.resources
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.DeliverPackageForm.resources

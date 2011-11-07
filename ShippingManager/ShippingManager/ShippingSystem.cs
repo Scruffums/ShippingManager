@@ -178,5 +178,12 @@ namespace ShippingManager
         public Warehouse[] Warehouses { get { List<Warehouse> temp = new List<Warehouse>(); foreach (Location m in locations)if (m is Warehouse)temp.Add(m as Warehouse); return temp.ToArray(); }  }
 
         public DeliveryVehicle[] DeliveryVehicles { get { List<DeliveryVehicle> temp = new List<DeliveryVehicle>(); foreach (DeliveryVehicle m in moveables)if (m is DeliveryVehicle)temp.Add(m as DeliveryVehicle); return temp.ToArray(); } }
+
+        public void AddPackage(int weight, float[] size, int mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
+        {
+            Package p = new Package(weight,size,mailService,fragile,irregular,perishable,source,destination);
+            (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront.addPackage(p);
+            packages.Add(p);
+        }
     }
 }

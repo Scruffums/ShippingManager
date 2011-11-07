@@ -34,7 +34,7 @@ namespace ShippingManager
             _50lb_greater
         }
 
-        public Package(int weight, float[] size, int mailService, bool fragile, bool irregular, bool perishable, Address destination, Address source)
+        public Package(int weight, float[] size, int mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
         {
             Weight = weight;
             Size = size;
@@ -66,6 +66,19 @@ namespace ShippingManager
         {
             //TODO:
             return 1;
+        }
+
+        public override string ToString()
+        {
+            return TrackingNumber+"";
+        }
+
+        public override bool Equals(object obj)
+        {
+            Package p = obj as Package;
+            if (p == null)
+                return false;
+            return p.TrackingNumber==TrackingNumber;
         }
 
         public float Volume { get { return size[0] * size[1] * size[3]; } }

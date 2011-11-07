@@ -51,8 +51,6 @@ namespace ShippingManager
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            //BUG: exit button does not work after logging in, user must use alt-f4 or the default exit button provided by windows to exit
-            //      the application. Either fix, or remove exit button.
             Application.Exit();
         }
 

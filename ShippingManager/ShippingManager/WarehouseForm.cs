@@ -16,12 +16,7 @@ namespace ShippingManager
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

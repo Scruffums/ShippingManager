@@ -47,15 +47,13 @@ namespace ShippingManager
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
-            shippingSystem.logOut();
-            Hide();
-            parentForm.Show();
+            Close();
         }
 
         private void AdminForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            logoutButton_Click(sender, e);
+            shippingSystem.logOut();
+            parentForm.Show();
         }
 
         private void objectsTabControl_SelectedIndexChanged(object sender, EventArgs e)

@@ -130,6 +130,9 @@
     <EmbeddedResource Include="ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DeliverPackageForm.resx">
+      <DependentUpon>DeliverPackageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeliveryForm.resx">
       <DependentUpon>DeliveryForm.cs</DependentUpon>
     </EmbeddedResource>

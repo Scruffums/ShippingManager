@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.packageListBox = new System.Windows.Forms.ListBox();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,45 +51,46 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Packages in Store";
             // 
-            // listBox1
+            // packageListBox
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.packageListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 40);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(237, 316);
-            this.listBox1.TabIndex = 1;
+            this.packageListBox.FormattingEnabled = true;
+            this.packageListBox.Location = new System.Drawing.Point(12, 40);
+            this.packageListBox.Name = "packageListBox";
+            this.packageListBox.Size = new System.Drawing.Size(237, 316);
+            this.packageListBox.TabIndex = 1;
             // 
-            // button1
+            // deleteButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(174, 361);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "&Delete";
-            this.button1.UseVisualStyleBackColor = true;
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteButton.Location = new System.Drawing.Point(174, 361);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 2;
+            this.deleteButton.Text = "&Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // addButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(12, 361);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "&Add";
-            this.button2.UseVisualStyleBackColor = true;
+            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addButton.Location = new System.Drawing.Point(12, 361);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 3;
+            this.addButton.Text = "&Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // button3
+            // editButton
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(93, 361);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "&Edit";
-            this.button3.UseVisualStyleBackColor = true;
+            this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.editButton.Location = new System.Drawing.Point(93, 361);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(75, 23);
+            this.editButton.TabIndex = 4;
+            this.editButton.Text = "&Edit";
+            this.editButton.UseVisualStyleBackColor = true;
             // 
             // logoutButton
             // 
@@ -153,15 +154,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logoutButton);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.packageListBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "StoreFrontForm";
             this.Text = "Clerk";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StoreFrontForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -172,10 +174,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ListBox packageListBox;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;

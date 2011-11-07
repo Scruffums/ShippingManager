@@ -58,5 +58,7 @@ namespace ShippingManager
         //    deliveryVehicles.Remove(deliveryVehicle);
         //}
 
+
+        public Package[] Packages { get { return packages.ToArray(); } }
     }
 }

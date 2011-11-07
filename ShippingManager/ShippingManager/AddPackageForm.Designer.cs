@@ -28,78 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.insuranceCheckBox = new System.Windows.Forms.CheckBox();
+            this.fragileCheckBox = new System.Windows.Forms.CheckBox();
+            this.perishableCheckBox = new System.Windows.Forms.CheckBox();
+            this.irregularCheckBox = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.heightTextBox = new System.Windows.Forms.TextBox();
+            this.widthTextBox = new System.Windows.Forms.TextBox();
+            this.lengthTextbox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.destinationZipTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.sourceZipTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.insuranceAmountTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.serviceTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.destinationAddresseeTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.acceptButton = new System.Windows.Forms.Button();
+            this.sourceAddresseeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.weightClassComboBox = new System.Windows.Forms.ComboBox();
+            this.sourceStreetTextbox = new System.Windows.Forms.TextBox();
+            this.destinationStreetTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // checkBox4
+            // insuranceCheckBox
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(414, 196);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(101, 17);
-            this.checkBox4.TabIndex = 114;
-            this.checkBox4.Text = "Insure Package";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.insuranceCheckBox.AutoSize = true;
+            this.insuranceCheckBox.Location = new System.Drawing.Point(414, 196);
+            this.insuranceCheckBox.Name = "insuranceCheckBox";
+            this.insuranceCheckBox.Size = new System.Drawing.Size(101, 17);
+            this.insuranceCheckBox.TabIndex = 114;
+            this.insuranceCheckBox.Text = "Insure Package";
+            this.insuranceCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // fragileCheckBox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(18, 374);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(57, 17);
-            this.checkBox3.TabIndex = 113;
-            this.checkBox3.Text = "Fragile";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.fragileCheckBox.AutoSize = true;
+            this.fragileCheckBox.Location = new System.Drawing.Point(18, 374);
+            this.fragileCheckBox.Name = "fragileCheckBox";
+            this.fragileCheckBox.Size = new System.Drawing.Size(57, 17);
+            this.fragileCheckBox.TabIndex = 113;
+            this.fragileCheckBox.Text = "Fragile";
+            this.fragileCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // perishableCheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(18, 350);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(75, 17);
-            this.checkBox2.TabIndex = 112;
-            this.checkBox2.Text = "Perishable";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.perishableCheckBox.AutoSize = true;
+            this.perishableCheckBox.Location = new System.Drawing.Point(18, 350);
+            this.perishableCheckBox.Name = "perishableCheckBox";
+            this.perishableCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.perishableCheckBox.TabIndex = 112;
+            this.perishableCheckBox.Text = "Perishable";
+            this.perishableCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // irregularCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(18, 326);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(64, 17);
-            this.checkBox1.TabIndex = 111;
-            this.checkBox1.Text = "Irregular";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.irregularCheckBox.AutoSize = true;
+            this.irregularCheckBox.Location = new System.Drawing.Point(18, 326);
+            this.irregularCheckBox.Name = "irregularCheckBox";
+            this.irregularCheckBox.Size = new System.Drawing.Size(64, 17);
+            this.irregularCheckBox.TabIndex = 111;
+            this.irregularCheckBox.Text = "Irregular";
+            this.irregularCheckBox.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -119,26 +120,26 @@
             this.label12.TabIndex = 109;
             this.label12.Text = "x";
             // 
-            // textBox9
+            // heightTextBox
             // 
-            this.textBox9.Location = new System.Drawing.Point(226, 271);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(53, 20);
-            this.textBox9.TabIndex = 108;
+            this.heightTextBox.Location = new System.Drawing.Point(226, 271);
+            this.heightTextBox.Name = "heightTextBox";
+            this.heightTextBox.Size = new System.Drawing.Size(53, 20);
+            this.heightTextBox.TabIndex = 108;
             // 
-            // textBox8
+            // widthTextBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(141, 271);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(53, 20);
-            this.textBox8.TabIndex = 107;
+            this.widthTextBox.Location = new System.Drawing.Point(141, 271);
+            this.widthTextBox.Name = "widthTextBox";
+            this.widthTextBox.Size = new System.Drawing.Size(53, 20);
+            this.widthTextBox.TabIndex = 107;
             // 
-            // textBox7
+            // lengthTextbox
             // 
-            this.textBox7.Location = new System.Drawing.Point(56, 271);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(53, 20);
-            this.textBox7.TabIndex = 106;
+            this.lengthTextbox.Location = new System.Drawing.Point(56, 271);
+            this.lengthTextbox.Name = "lengthTextbox";
+            this.lengthTextbox.Size = new System.Drawing.Size(53, 20);
+            this.lengthTextbox.TabIndex = 106;
             // 
             // label11
             // 
@@ -154,25 +155,25 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(15, 196);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 13);
+            this.label10.Size = new System.Drawing.Size(73, 13);
             this.label10.TabIndex = 104;
-            this.label10.Text = "Shipping Standard";
+            this.label10.Text = "Service Type:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(411, 166);
+            this.label9.Location = new System.Drawing.Point(411, 162);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.Size = new System.Drawing.Size(96, 13);
             this.label9.TabIndex = 103;
-            this.label9.Text = "Reciver Zip Code";
+            this.label9.Text = "Receiver Zip Code";
             // 
-            // textBox6
+            // destinationZipTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(507, 163);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 102;
+            this.destinationZipTextBox.Location = new System.Drawing.Point(507, 159);
+            this.destinationZipTextBox.Name = "destinationZipTextBox";
+            this.destinationZipTextBox.Size = new System.Drawing.Size(100, 20);
+            this.destinationZipTextBox.TabIndex = 102;
             // 
             // label8
             // 
@@ -183,28 +184,12 @@
             this.label8.TabIndex = 101;
             this.label8.Text = "Sender Zip Code";
             // 
-            // textBox5
+            // sourceZipTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(108, 159);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 100;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(416, 71);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(326, 70);
-            this.richTextBox2.TabIndex = 99;
-            this.richTextBox2.Text = "";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(15, 80);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(326, 61);
-            this.richTextBox1.TabIndex = 98;
-            this.richTextBox1.Text = "";
+            this.sourceZipTextBox.Location = new System.Drawing.Point(108, 159);
+            this.sourceZipTextBox.Name = "sourceZipTextBox";
+            this.sourceZipTextBox.Size = new System.Drawing.Size(100, 20);
+            this.sourceZipTextBox.TabIndex = 100;
             // 
             // label7
             // 
@@ -231,12 +216,12 @@
             this.label6.TabIndex = 95;
             this.label6.Text = "Weight Class";
             // 
-            // textBox3
+            // insuranceAmountTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(413, 233);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 94;
+            this.insuranceAmountTextBox.Location = new System.Drawing.Point(413, 233);
+            this.insuranceAmountTextBox.Name = "insuranceAmountTextBox";
+            this.insuranceAmountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.insuranceAmountTextBox.TabIndex = 94;
             // 
             // label5
             // 
@@ -247,13 +232,19 @@
             this.label5.TabIndex = 93;
             this.label5.Text = "How much would you like to insure the package for?";
             // 
-            // comboBox1
+            // serviceTypeComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(15, 215);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(323, 21);
-            this.comboBox1.TabIndex = 92;
+            this.serviceTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.serviceTypeComboBox.FormattingEnabled = true;
+            this.serviceTypeComboBox.Items.AddRange(new object[] {
+            "Economy",
+            "Priority",
+            "Express",
+            "NextDay"});
+            this.serviceTypeComboBox.Location = new System.Drawing.Point(15, 215);
+            this.serviceTypeComboBox.Name = "serviceTypeComboBox";
+            this.serviceTypeComboBox.Size = new System.Drawing.Size(323, 21);
+            this.serviceTypeComboBox.TabIndex = 92;
             // 
             // label3
             // 
@@ -262,14 +253,14 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 91;
-            this.label3.Text = "Reciever Address";
+            this.label3.Text = "Receiver Address";
             // 
-            // textBox2
+            // destinationAddresseeTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(416, 26);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(326, 20);
-            this.textBox2.TabIndex = 90;
+            this.destinationAddresseeTextBox.Location = new System.Drawing.Point(416, 26);
+            this.destinationAddresseeTextBox.Name = "destinationAddresseeTextBox";
+            this.destinationAddresseeTextBox.Size = new System.Drawing.Size(326, 20);
+            this.destinationAddresseeTextBox.TabIndex = 90;
             // 
             // label4
             // 
@@ -278,7 +269,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 89;
-            this.label4.Text = "Reciever Name";
+            this.label4.Text = "Receiver Name";
             // 
             // label2
             // 
@@ -289,22 +280,23 @@
             this.label2.TabIndex = 88;
             this.label2.Text = "Sender Address";
             // 
-            // button2
+            // acceptButton
             // 
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(467, 391);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(181, 28);
-            this.button2.TabIndex = 87;
-            this.button2.Text = "Accept and Print Label";
-            this.button2.UseVisualStyleBackColor = true;
+            this.acceptButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acceptButton.Location = new System.Drawing.Point(467, 391);
+            this.acceptButton.Name = "acceptButton";
+            this.acceptButton.Size = new System.Drawing.Size(181, 28);
+            this.acceptButton.TabIndex = 87;
+            this.acceptButton.Text = "Accept and Print Label";
+            this.acceptButton.UseVisualStyleBackColor = true;
+            this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
             // 
-            // textBox1
+            // sourceAddresseeTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(326, 20);
-            this.textBox1.TabIndex = 86;
+            this.sourceAddresseeTextBox.Location = new System.Drawing.Point(15, 26);
+            this.sourceAddresseeTextBox.Name = "sourceAddresseeTextBox";
+            this.sourceAddresseeTextBox.Size = new System.Drawing.Size(326, 20);
+            this.sourceAddresseeTextBox.TabIndex = 86;
             // 
             // label1
             // 
@@ -315,54 +307,93 @@
             this.label1.TabIndex = 85;
             this.label1.Text = "Sender Name";
             // 
-            // button1
+            // cancelButton
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(663, 391);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 29);
-            this.button1.TabIndex = 84;
-            this.button1.Text = "Exit";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cancelButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Location = new System.Drawing.Point(663, 391);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(66, 29);
+            this.cancelButton.TabIndex = 84;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
+            // weightClassComboBox
+            // 
+            this.weightClassComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.weightClassComboBox.FormattingEnabled = true;
+            this.weightClassComboBox.Items.AddRange(new object[] {
+            "1oz_8oz",
+            "9oz_1lb",
+            "1lb_2lb",
+            "2lb_3lb",
+            "3lb_5lb",
+            "5lb_8lb",
+            "8lb_15lb",
+            "15lb_25lb",
+            "25lb_50lb",
+            "50lb_greater"});
+            this.weightClassComboBox.Location = new System.Drawing.Point(87, 242);
+            this.weightClassComboBox.Name = "weightClassComboBox";
+            this.weightClassComboBox.Size = new System.Drawing.Size(121, 21);
+            this.weightClassComboBox.TabIndex = 115;
+            // 
+            // sourceStreetTextbox
+            // 
+            this.sourceStreetTextbox.Location = new System.Drawing.Point(18, 69);
+            this.sourceStreetTextbox.Multiline = true;
+            this.sourceStreetTextbox.Name = "sourceStreetTextbox";
+            this.sourceStreetTextbox.Size = new System.Drawing.Size(320, 84);
+            this.sourceStreetTextbox.TabIndex = 116;
+            // 
+            // destinationStreetTextBox
+            // 
+            this.destinationStreetTextBox.Location = new System.Drawing.Point(416, 69);
+            this.destinationStreetTextBox.Multiline = true;
+            this.destinationStreetTextBox.Name = "destinationStreetTextBox";
+            this.destinationStreetTextBox.Size = new System.Drawing.Size(326, 84);
+            this.destinationStreetTextBox.TabIndex = 117;
             // 
             // AddPackageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 435);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.destinationStreetTextBox);
+            this.Controls.Add(this.sourceStreetTextbox);
+            this.Controls.Add(this.weightClassComboBox);
+            this.Controls.Add(this.insuranceCheckBox);
+            this.Controls.Add(this.fragileCheckBox);
+            this.Controls.Add(this.perishableCheckBox);
+            this.Controls.Add(this.irregularCheckBox);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.heightTextBox);
+            this.Controls.Add(this.widthTextBox);
+            this.Controls.Add(this.lengthTextbox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.destinationZipTextBox);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.sourceZipTextBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.insuranceAmountTextBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.serviceTypeComboBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.destinationAddresseeTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.acceptButton);
+            this.Controls.Add(this.sourceAddresseeTextBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cancelButton);
             this.Name = "AddPackageForm";
             this.Text = "AddPackageForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddPackageForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,37 +401,38 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox insuranceCheckBox;
+        private System.Windows.Forms.CheckBox fragileCheckBox;
+        private System.Windows.Forms.CheckBox perishableCheckBox;
+        private System.Windows.Forms.CheckBox irregularCheckBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox heightTextBox;
+        private System.Windows.Forms.TextBox widthTextBox;
+        private System.Windows.Forms.TextBox lengthTextbox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox destinationZipTextBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox sourceZipTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox insuranceAmountTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox serviceTypeComboBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox destinationAddresseeTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button acceptButton;
+        private System.Windows.Forms.TextBox sourceAddresseeTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ComboBox weightClassComboBox;
+        private System.Windows.Forms.TextBox sourceStreetTextbox;
+        private System.Windows.Forms.TextBox destinationStreetTextBox;
 
     }
 }
