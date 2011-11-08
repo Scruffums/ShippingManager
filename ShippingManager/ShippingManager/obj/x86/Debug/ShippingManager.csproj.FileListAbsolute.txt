@@ -18,3 +18,19 @@ I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debu
 I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.WarehouseForm.resources
 I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.ChangePasswordForm.resources
 I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.DeliverPackageForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\bin\Debug\ShippingManager.exe
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\bin\Debug\ShippingManager.pdb
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.AddPackageForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.AdminForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.ChangePasswordForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.DeliverPackageForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.DeliveryForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.FindPackageForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.LoginForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.Properties.Resources.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.StoreFrontForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.WarehouseForm.resources
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.exe

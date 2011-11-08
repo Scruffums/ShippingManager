@@ -203,6 +203,7 @@
             this.Controls.Add(this.button1);
             this.Name = "DeliveryForm";
             this.Text = "Delivery";
+            this.Load += new System.EventHandler(this.DeliveryForm_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

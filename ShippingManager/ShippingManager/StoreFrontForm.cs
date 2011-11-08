@@ -55,5 +55,10 @@ namespace ShippingManager
             this.Hide();
             af.Show();
         }
+
+        private void StoreFrontForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

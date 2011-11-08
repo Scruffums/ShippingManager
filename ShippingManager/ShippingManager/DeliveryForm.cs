@@ -11,9 +11,20 @@ namespace ShippingManager
 {
     public partial class DeliveryForm : Form
     {
+
         public DeliveryForm()
         {
             InitializeComponent();
+        }
+
+        private void DeliveryForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeliveryForm_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
