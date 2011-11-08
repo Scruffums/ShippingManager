@@ -11,6 +11,7 @@ namespace ShippingManager
         private DateTime acceptedDate;
         private DateTime deliveryEstimate;
         private  float[] size;
+        private List<Snapshot> snapshots;
 
         public enum SERVICE_TYPE
         {
@@ -44,16 +45,13 @@ namespace ShippingManager
             Perishable = perishable;
             Destination = destination;
             Source = source;
+            TrackingNumber = generateTrackingNumber();
+            snapshots = new List<Snapshot>();
         }
 
-        public void takeSnapshot()
+        public void takeSnapshot(String message, Location location)
         {
-            //TODO
-        }
-
-        private void addSnapshot(Snapshot snapshot, Route currentRoute)
-        {
-            //TODO
+            snapshots.Add(new Snapshot(message,location));
         }
 
         private DateTime generateETA(DateTime acceptedDate, int mailService)
@@ -62,15 +60,14 @@ namespace ShippingManager
             return DateTime.Now;
         }
 
-        private int generateTrackingNumber(Address sourceAddress, Address destination, DateTime acceptedDate)
+        private String generateTrackingNumber()
         {
-            //TODO:
-            return 1;
+            return DateTime.Now.Ticks.ToString();
         }
 
         public override string ToString()
         {
-            return TrackingNumber+"";
+            return TrackingNumber;
         }
 
         public override bool Equals(object obj)
@@ -87,7 +84,7 @@ namespace ShippingManager
 
         public DateTime DeliveryEstimate { get { return deliveryEstimate; } }
 
-        public int TrackingNumber { get; set; }
+        public String TrackingNumber { get; set; }
 
         public int Weight { get; set; }
 

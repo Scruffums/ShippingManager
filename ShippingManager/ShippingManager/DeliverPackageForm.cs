@@ -11,19 +11,20 @@ namespace ShippingManager
 {
     public partial class DeliverPackageForm : Form
     {
-        public DeliverPackageForm()
+        Form parentForm;
+        ShippingSystem shippingSystem;
+
+        public DeliverPackageForm(Form parent, ShippingSystem sm)
         {
             InitializeComponent();
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
+            parentForm = parent;
+            shippingSystem = sm;
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ChangePasswordForm c = new ChangePasswordForm(this, shippingSystem);
+            c.ShowDialog();
         }
     }
 }

@@ -42,6 +42,12 @@ namespace ShippingManager
                     this.Hide();
                     sf.Show();
                 }
+                else if (employee is WarehouseEmployee)
+                {
+                    WarehouseForm wf = new WarehouseForm(this, shippingSystem);
+                    this.Hide();
+                    wf.Show();
+                }
                 //TODO: Add other employee code
 
                 idTextBox.Clear();

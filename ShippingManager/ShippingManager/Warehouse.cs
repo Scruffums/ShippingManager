@@ -10,6 +10,7 @@ namespace ShippingManager
     {
         //private List<int> zipCodesServed;
         private List<Route> routes;
+        private List<Package> packages;
 
         public Warehouse(Address a, int volumeCapacity)
         {
@@ -20,6 +21,7 @@ namespace ShippingManager
             //this.deliveryVehicles = new List<DeliveryVehicle>();
 
             routes = new List<Route>();
+            packages = new List<Package>();
             //this.zipCodesServed.AddRange(zipCodesServed);
             //this.transports.AddRange(transports);
             //this.deliveryVehicles.AddRange(deliveryVehicles);
@@ -36,6 +38,16 @@ namespace ShippingManager
         public void removeRoute(Route r)
         {
             routes.Remove(r);
+        }
+
+        public void addPackage(Package package)
+        {
+            packages.Add(package);
+        }
+
+        public void removePackage(Package package)
+        {
+            packages.Remove(package);
         }
 
         //public bool addDeliveryVehicle(DeliveryVehicle deliveryVehicle)
@@ -65,5 +77,7 @@ namespace ShippingManager
         //}
 
         public int VolumeCapacity { get; set; }
+
+        public Package[] Packages { get { return packages.ToArray(); } }
     }
 }

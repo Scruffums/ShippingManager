@@ -8,21 +8,20 @@ namespace ShippingManager
     [Serializable()]
     public class Snapshot
     {
-        private Route route;
+        private Location location;
         private DateTime date;
         private string message;
 
-        public Snapshot(Route route)
+        public Snapshot(string message, Location location)
         {
-        }
-
-        public Snapshot(string message)
-        {
+            this.message = message;
+            this.location = location;
+            date = DateTime.Now;
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            return message+": "+location+": "+date;
         }
     }
 }

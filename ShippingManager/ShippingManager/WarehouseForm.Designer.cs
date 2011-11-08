@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.scanButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.addTextBox = new System.Windows.Forms.TextBox();
+            this.logoutButton = new System.Windows.Forms.Button();
+            this.receivingListBox = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,17 +47,17 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // scanButton
             // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(224, 385);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 28);
-            this.button2.TabIndex = 38;
-            this.button2.Text = "Scan";
-            this.button2.UseVisualStyleBackColor = false;
+            this.scanButton.BackColor = System.Drawing.Color.Red;
+            this.scanButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scanButton.ForeColor = System.Drawing.Color.White;
+            this.scanButton.Location = new System.Drawing.Point(224, 385);
+            this.scanButton.Name = "scanButton";
+            this.scanButton.Size = new System.Drawing.Size(75, 28);
+            this.scanButton.TabIndex = 38;
+            this.scanButton.Text = "Scan";
+            this.scanButton.UseVisualStyleBackColor = false;
             // 
             // button4
             // 
@@ -78,15 +78,16 @@
             this.label1.TabIndex = 34;
             this.label1.Text = "Vehicles:";
             // 
-            // button3
+            // addButton
             // 
-            this.button3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(224, 353);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 28);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Add";
-            this.button3.UseVisualStyleBackColor = true;
+            this.addButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addButton.Location = new System.Drawing.Point(224, 353);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 28);
+            this.addButton.TabIndex = 32;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // label5
             // 
@@ -99,7 +100,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 323);
+            this.label4.Location = new System.Drawing.Point(12, 343);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 13);
             this.label4.TabIndex = 30;
@@ -114,30 +115,31 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "Receiving:";
             // 
-            // textBox1
+            // addTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 359);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(206, 20);
-            this.textBox1.TabIndex = 28;
+            this.addTextBox.Location = new System.Drawing.Point(12, 359);
+            this.addTextBox.Name = "addTextBox";
+            this.addTextBox.Size = new System.Drawing.Size(206, 20);
+            this.addTextBox.TabIndex = 28;
             // 
-            // button1
+            // logoutButton
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(589, 457);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 26);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Logout";
-            this.button1.UseVisualStyleBackColor = true;
+            this.logoutButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logoutButton.Location = new System.Drawing.Point(589, 457);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(66, 26);
+            this.logoutButton.TabIndex = 26;
+            this.logoutButton.Text = "Logout";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
-            // listBox1
+            // receivingListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 40);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(206, 290);
-            this.listBox1.TabIndex = 40;
+            this.receivingListBox.FormattingEnabled = true;
+            this.receivingListBox.Location = new System.Drawing.Point(12, 40);
+            this.receivingListBox.Name = "receivingListBox";
+            this.receivingListBox.Size = new System.Drawing.Size(206, 290);
+            this.receivingListBox.TabIndex = 40;
             // 
             // listBox2
             // 
@@ -198,20 +200,21 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.receivingListBox);
+            this.Controls.Add(this.scanButton);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.addTextBox);
+            this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "WarehouseForm";
             this.Text = "Warehouse";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WarehouseForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -221,16 +224,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button scanButton;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox addTextBox;
+        private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.ListBox receivingListBox;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label3;

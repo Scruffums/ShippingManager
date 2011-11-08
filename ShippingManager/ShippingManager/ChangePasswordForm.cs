@@ -34,9 +34,9 @@ namespace ShippingManager
         private void acceptButton_Click(object sender, EventArgs e)
         {
 
-            string oldPassword = textBox1.Text;
-            string newPassword = textBox2.Text;
-            string newPasswordConfirm = textBox3.Text;
+            string oldPassword = oldPasswordTextBox.Text;
+            string newPassword = newPasswordTextBox.Text;
+            string newPasswordConfirm = confirmPasswordTextBox.Text;
 
             if (newPassword == newPasswordConfirm)
             {
@@ -58,12 +58,6 @@ namespace ShippingManager
             }
 
         }
-
-        private void ChangePasswordForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         
     }
 }

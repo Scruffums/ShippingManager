@@ -34,11 +34,11 @@
             this.addButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.packageInfoTextBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,10 +60,12 @@
             this.packageListBox.Name = "packageListBox";
             this.packageListBox.Size = new System.Drawing.Size(237, 316);
             this.packageListBox.TabIndex = 1;
+            this.packageListBox.SelectedIndexChanged += new System.EventHandler(this.packageListBox_SelectedIndexChanged);
             // 
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteButton.Enabled = false;
             this.deleteButton.Location = new System.Drawing.Point(174, 361);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(75, 23);
@@ -85,6 +87,7 @@
             // editButton
             // 
             this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.editButton.Enabled = false;
             this.editButton.Location = new System.Drawing.Point(93, 361);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(75, 23);
@@ -102,15 +105,6 @@
             this.logoutButton.Text = "&Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Location = new System.Drawing.Point(255, 40);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(223, 315);
-            this.panel1.TabIndex = 6;
             // 
             // label2
             // 
@@ -146,13 +140,22 @@
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
+            // packageInfoTextBox
+            // 
+            this.packageInfoTextBox.Location = new System.Drawing.Point(255, 40);
+            this.packageInfoTextBox.Multiline = true;
+            this.packageInfoTextBox.Name = "packageInfoTextBox";
+            this.packageInfoTextBox.ReadOnly = true;
+            this.packageInfoTextBox.Size = new System.Drawing.Size(223, 315);
+            this.packageInfoTextBox.TabIndex = 9;
+            // 
             // StoreFrontForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 396);
+            this.Controls.Add(this.packageInfoTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.addButton);
@@ -179,11 +182,11 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button logoutButton;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.TextBox packageInfoTextBox;
 
     }
 }

@@ -184,6 +184,15 @@ namespace ShippingManager
             Package p = new Package(weight,size,mailService,fragile,irregular,perishable,source,destination);
             (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront.addPackage(p);
             packages.Add(p);
+            p.takeSnapshot("Package Accepted", (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront);
+        }
+
+        public Package lookupTrackingNumber(string trackingNumber)
+        {
+            foreach (Package p in packages)
+                if (p.TrackingNumber == trackingNumber)
+                    return p;
+            return null;
         }
     }
 }

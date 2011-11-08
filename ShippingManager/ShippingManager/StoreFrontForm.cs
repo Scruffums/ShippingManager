@@ -38,7 +38,6 @@ namespace ShippingManager
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //An example of opening the ChangePasswordForm modally (other forms are unfocusable when changePasswordForm is open)
             ChangePasswordForm c = new ChangePasswordForm(this, shippingSystem);
             c.ShowDialog();
         }
@@ -56,9 +55,15 @@ namespace ShippingManager
             af.Show();
         }
 
-        private void StoreFrontForm_Load(object sender, EventArgs e)
+        private void packageListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if ((editButton.Enabled = deleteButton.Enabled = packageListBox.SelectedIndex != -1))
+            {
+                //TODO:Add code to retrieve package information: sender, receiver, service class, any special properties (perishible...)
+                //Once all of this info is received and concatenated into a single multiline string, set the string to the Text property of packageInfoTextBox
+                Package currentPackage = packageListBox.SelectedItem as Package;
 
+            }
         }
     }
 }
