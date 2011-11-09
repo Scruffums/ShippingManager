@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace ShippingManager
 {
@@ -62,8 +63,36 @@ namespace ShippingManager
                 //TODO:Add code to retrieve package information: sender, receiver, service class, any special properties (perishible...)
                 //Once all of this info is received and concatenated into a single multiline string, set the string to the Text property of packageInfoTextBox
                 Package currentPackage = packageListBox.SelectedItem as Package;
-
             }
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Package currentPackage = packageListBox.SelectedItem as Package;
+
+            System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
+            privateFonts.AddFontFile("free3of9.ttf");
+            Font font = new Font(privateFonts.Families[0], 32);
+            privateFonts.Dispose();
+
+            PrintDialog pd = new PrintDialog();
+            PrinterSettings ps = new PrinterSettings();
+            pd.PrinterSettings = ps;
+            DialogResult dr = pd.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                PCPrint printer = new PCPrint(currentPackage.TrackingNumber);
+                printer.PrinterSettings.PrinterName = pd.PrinterSettings.PrinterName;
+                printer.PrinterFont = font;// new Font("Free 3 of 9", 45, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+                printer.Print();
+            }
+        }
+
+        private void packageListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && packageListBox.SelectedIndex != -1)
+                packageContextMenu.Show(packageListBox, new Point(e.X, e.Y));
         }
     }
 }

@@ -179,12 +179,24 @@ namespace ShippingManager
 
         public DeliveryVehicle[] DeliveryVehicles { get { List<DeliveryVehicle> temp = new List<DeliveryVehicle>(); foreach (DeliveryVehicle m in moveables)if (m is DeliveryVehicle)temp.Add(m as DeliveryVehicle); return temp.ToArray(); } }
 
-        public void AddPackage(int weight, float[] size, int mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
+        public Package AddPackage(int weight, float[] size, int mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
         {
             Package p = new Package(weight,size,mailService,fragile,irregular,perishable,source,destination);
             (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront.addPackage(p);
             packages.Add(p);
             p.takeSnapshot("Package Accepted", (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront);
+            return p;
+        }
+
+        public Route[] determineComprehensiveRoute(Package p, Location start)
+        {
+            List<Route> temp = new List<Route>();
+            Route[] routes = (start as StoreFront).Routes;
+            foreach (Route r in routes)
+            {
+
+            }
+            return null;
         }
 
         public Package lookupTrackingNumber(string trackingNumber)

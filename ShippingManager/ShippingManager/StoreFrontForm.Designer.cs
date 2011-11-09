@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.packageListBox = new System.Windows.Forms.ListBox();
             this.deleteButton = new System.Windows.Forms.Button();
@@ -39,7 +40,10 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.packageInfoTextBox = new System.Windows.Forms.TextBox();
+            this.packageContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.packageContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -61,6 +65,7 @@
             this.packageListBox.Size = new System.Drawing.Size(237, 316);
             this.packageListBox.TabIndex = 1;
             this.packageListBox.SelectedIndexChanged += new System.EventHandler(this.packageListBox_SelectedIndexChanged);
+            this.packageListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.packageListBox_MouseDown);
             // 
             // deleteButton
             // 
@@ -149,6 +154,20 @@
             this.packageInfoTextBox.Size = new System.Drawing.Size(223, 315);
             this.packageInfoTextBox.TabIndex = 9;
             // 
+            // packageContextMenu
+            // 
+            this.packageContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToolStripMenuItem});
+            this.packageContextMenu.Name = "packageContextMenu";
+            this.packageContextMenu.Size = new System.Drawing.Size(147, 26);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printToolStripMenuItem.Text = "Print Selected";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
             // StoreFrontForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -169,6 +188,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StoreFrontForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.packageContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,6 +207,8 @@
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.TextBox packageInfoTextBox;
+        private System.Windows.Forms.ContextMenuStrip packageContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
 
     }
 }

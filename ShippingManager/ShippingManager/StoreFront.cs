@@ -60,5 +60,7 @@ namespace ShippingManager
 
 
         public Package[] Packages { get { return packages.ToArray(); } }
+
+        public Route[] Routes { get { return routes.ToArray(); } }
     }
 }
