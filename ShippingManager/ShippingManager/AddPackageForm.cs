@@ -32,7 +32,6 @@ namespace ShippingManager
             Package p = shippingSystem.AddPackage(weightClassComboBox.SelectedIndex, lhw, serviceTypeComboBox.SelectedIndex, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
             (parentForm as StoreFrontForm).updatePackageList();
 
-
             PrintDialog pd = new PrintDialog();
             PrinterSettings ps = new PrinterSettings();
             pd.PrinterSettings = ps;
@@ -42,7 +41,7 @@ namespace ShippingManager
             {
                 System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
                 privateFonts.AddFontFile("free3of9.ttf");
-                Font font = new Font(privateFonts.Families[0], 32);
+                Font font = new Font(privateFonts.Families[0], 64);
 
                 PCPrint printer = new PCPrint(p.TrackingNumber);
                 printer.PrinterSettings.PrinterName = pd.PrinterSettings.PrinterName;

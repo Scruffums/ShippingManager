@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ShippingManager")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard")]
+[assembly: AssemblyCompany("TeamAmerica")]
 [assembly: AssemblyProduct("ShippingManager")]
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2011")]
 [assembly: AssemblyTrademark("")]

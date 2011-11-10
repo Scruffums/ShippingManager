@@ -34,3 +34,6 @@ C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\S
 C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.exe
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\bin\Debug\Interop.WIA.dll
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\Interop.WIA.dll
+I:\Code\C#\GitRepos\shippingmanager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.csproj.ResolveComReference.cache
