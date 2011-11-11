@@ -58,6 +58,7 @@
             this.scanButton.TabIndex = 38;
             this.scanButton.Text = "Scan";
             this.scanButton.UseVisualStyleBackColor = false;
+            this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
             // 
             // button4
             // 
