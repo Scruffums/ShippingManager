@@ -188,15 +188,25 @@ namespace ShippingManager
             return p;
         }
 
-        public Route[] determineComprehensiveRoute(Package p, Location start)
+        public void updateadjacency()
         {
-            List<Route> temp = new List<Route>();
-            Route[] routes = (start as StoreFront).Routes;
-            foreach (Route r in routes)
-            {
+            adjacency(Locations, Routes);
+        }
 
-            }
-            return null;
+        private float[,] adjacency(Location[] locations, Route[] routes)
+        {
+            float[,] temp = new float[locations.Length, locations.Length];
+
+            for(int i=0; i<locations.Length;++i)
+                for(int j=0; j<locations.Length;++j)
+                    temp[i,j] = float.PositiveInfinity;
+
+            for (int j = 0; j < locations.Length - 1; j++)
+                for (int k = j + 1; k < locations.Length; k++)
+                    for (int m = 0; m < routes.Length; m++)
+                        if ((routes[m].Locations[0].Equals(locations[j]) && routes[m].Locations[1].Equals(locations[k])) || (routes[m].Locations[1].Equals(locations[j]) && routes[m].Locations[0].Equals(locations[k])))
+                            temp[k, j] = temp[j, k] = routes[m].DurationInDays;
+            return temp;
         }
 
         public Package lookupTrackingNumber(string trackingNumber)

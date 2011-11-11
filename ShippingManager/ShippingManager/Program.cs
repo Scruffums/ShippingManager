@@ -34,7 +34,8 @@ namespace ShippingManager
                 ss.addAdminEmployee("Lotar", "Hasani", "Walace", "lhwalace", "password");
                 Console.WriteLine("Admins added");
             }
-
+            
+            ss.updateadjacency();
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
