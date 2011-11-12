@@ -226,20 +226,26 @@ namespace ShippingManager
             locationIdTextBox.Text = currentLocation.Id;
 
             locationStreetAddressTextBox.Enabled = locationZipCodetextBox.Enabled = !(currentLocation is Abroad);
+            
 
             if (locationStreetAddressTextBox.Enabled)
             {
                 locationStreetAddressTextBox.Text = currentLocation.StreetAddress;
                 locationZipCodetextBox.Text = currentLocation.Zipcode;
+                if (currentLocation is Warehouse)
+                {
+                    locationVolumeCapacityTextBox.Enabled = true;
+                    locationVolumeCapacityTextBox.Text = (currentLocation as Warehouse).VolumeCapacity+"";
+                }
             }
             else//We have an abroad
             {
+                locationZipcodesServedTextBox.Enabled = true;
                 locationZipcodesServedTextBox.Text = (currentLocation as Abroad).ZipcodesString;
             }
 
-            locationVolumeCapacityTextBox.Enabled = currentLocation is Warehouse;
 
-            locationZipcodesServedTextBox.Enabled = currentLocation is Abroad;
+            
         }
 
         private void locationAddButton_Click(object sender, EventArgs e)
@@ -255,7 +261,23 @@ namespace ShippingManager
                     case 1://TODO: Add code to handle when the user inputs something other than a number in the volumeCapacityTextbox
                         locationAdded = shippingSystem.addWarehouse(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, int.Parse(locationVolumeCapacityTextBox.Text)); break;
                     case 2:
-                        locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, locationZipcodesServedTextBox.Text.Split(',')); break;
+                        if (locationZipcodesServedTextBox.Text.StartsWith("<"))
+                        {
+                            //http://www.zipcodedownload.com/Directory/ZIP5/
+                            List<string> zipcodes = new List<string>();
+                            String text = locationZipcodesServedTextBox.Text;
+                            int i=0;
+                            int j = 0;
+                            while((i=text.IndexOf('(',i))!=-1)
+                            {
+                                j = text.IndexOf(')', i);
+                                zipcodes.Add(text.Substring(i+1,5));
+                                i+=6;
+                            }
+                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, zipcodes.ToArray()); break;
+                        }
+                        else
+                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, locationZipcodesServedTextBox.Text.Split(',')); break;
                 }
                 //TODO: Inform user that the location was not added because the address has already been used by another location
             }
@@ -272,6 +294,7 @@ namespace ShippingManager
                 {
                     (currentLocation as Abroad).ZipCodes = locationZipcodesServedTextBox.Text.Split(',');
                 }
+                locationAddButton.Text = ADD;
             }
 
             if (locationAdded)
@@ -290,10 +313,10 @@ namespace ShippingManager
             locationZipCodetextBox.Clear();
             locationZipcodesServedTextBox.Clear();
             locationVolumeCapacityTextBox.Clear();
-            locationZipcodesServedTextBox.Enabled = false;
-            locationVolumeCapacityTextBox.Enabled = true;
-            locationStreetAddressTextBox.Enabled = true;
-            locationZipCodetextBox.Enabled = true;
+            //locationZipcodesServedTextBox.Enabled = false;
+            //locationVolumeCapacityTextBox.Enabled = true;
+            //locationStreetAddressTextBox.Enabled = true;
+            //locationZipCodetextBox.Enabled = true;
         }
 
         private void locationTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -324,7 +347,7 @@ namespace ShippingManager
             {
                 Transport t = currentMoveable as Transport;
 
-                moveableTransportTypeComboBox.SelectedIndex = t.TransportType;
+                moveableTransportTypeComboBox.SelectedIndex = (int)t.TransportType;
                 moveableTemperatureCheckBox.Checked = t.TempControlled;
             }
         }
@@ -343,6 +366,7 @@ namespace ShippingManager
                         moveableAdded = shippingSystem.addTransport(moveableIdTextBox.Text, moveableTransportTypeComboBox.SelectedIndex, int.Parse(moveableVolumeTextBox.Text), int.Parse(moveableWeightTextBox.Text), moveableTemperatureCheckBox.Checked); break;
                 }
                 //TODO: Inform user that the location was not added because the address has already been used by another location
+                moveableIdTextBox.Focus();
             }
             else//edit moveable
             {
@@ -355,7 +379,7 @@ namespace ShippingManager
                 if (transport != null)
                 {
                     transport.TempControlled = moveableTemperatureCheckBox.Checked;
-                    transport.TransportType = moveableTransportTypeComboBox.SelectedIndex;
+                    transport.TransportType = (moveableTransportTypeComboBox.SelectedIndex==0)?Transport.TRANSPORT_TYPES.ground:Transport.TRANSPORT_TYPES.air;
                 }
             }
 
@@ -410,13 +434,13 @@ namespace ShippingManager
         {
             if (addRoute)
             {
-                bool routeAdded = shippingSystem.addRoute(routeIdTextBox.Text, int.Parse(routeDurationTextBox.Text), routeLocationOneListBox.SelectedItem as Location, routeLocationTwoListBox.SelectedItem as Location, routeUsingListBox.SelectedItem as Moveable);
+                bool routeAdded = shippingSystem.addRoute(routeIdTextBox.Text, float.Parse(routeDurationTextBox.Text), routeLocationOneListBox.SelectedItem as Location, routeLocationTwoListBox.SelectedItem as Location, routeUsingListBox.SelectedItem as Moveable);
                 //TODO: add code to inform user route was not added due to ID being used.
             }
             else//edit route
             {
                 currentRoute.Id = routeIdTextBox.Text;
-                currentRoute.DurationInDays = int.Parse(routeDurationTextBox.Text);//TODO: add code to inform user of non numeric input
+                currentRoute.DurationInDays = float.Parse(routeDurationTextBox.Text);//TODO: add code to inform user of non numeric input
                 foreach (Location rLocation in currentRoute.Locations)
                 {
                     if (rLocation is StoreFront)
@@ -436,6 +460,7 @@ namespace ShippingManager
                 }
             }
 
+            routeIdTextBox.Focus();
             addRoute = true;
             routeAddButton.Text = ADD;
             routesListBox.Items.Clear();
@@ -451,10 +476,6 @@ namespace ShippingManager
             routeUsingListBox.Items.AddRange(shippingSystem.RoutelessMoveable);
         } 
         #endregion
-
-        
-
-        
 
     }
 }

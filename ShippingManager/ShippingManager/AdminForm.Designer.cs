@@ -593,7 +593,7 @@
             this.moveableTemperatureCheckBox.Location = new System.Drawing.Point(99, 355);
             this.moveableTemperatureCheckBox.Name = "moveableTemperatureCheckBox";
             this.moveableTemperatureCheckBox.Size = new System.Drawing.Size(136, 17);
-            this.moveableTemperatureCheckBox.TabIndex = 19;
+            this.moveableTemperatureCheckBox.TabIndex = 24;
             this.moveableTemperatureCheckBox.Text = "Temperature Controlled";
             this.moveableTemperatureCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -612,14 +612,14 @@
             this.moveableVolumeTextBox.Location = new System.Drawing.Point(99, 319);
             this.moveableVolumeTextBox.Name = "moveableVolumeTextBox";
             this.moveableVolumeTextBox.Size = new System.Drawing.Size(100, 20);
-            this.moveableVolumeTextBox.TabIndex = 17;
+            this.moveableVolumeTextBox.TabIndex = 23;
             // 
             // moveableWeightTextBox
             // 
             this.moveableWeightTextBox.Location = new System.Drawing.Point(99, 290);
             this.moveableWeightTextBox.Name = "moveableWeightTextBox";
             this.moveableWeightTextBox.Size = new System.Drawing.Size(100, 20);
-            this.moveableWeightTextBox.TabIndex = 16;
+            this.moveableWeightTextBox.TabIndex = 22;
             // 
             // label20
             // 
@@ -645,8 +645,7 @@
             this.moveableTransportTypeComboBox.Enabled = false;
             this.moveableTransportTypeComboBox.FormattingEnabled = true;
             this.moveableTransportTypeComboBox.Items.AddRange(new object[] {
-            "Truck",
-            "Train",
+            "Ground",
             "Air"});
             this.moveableTransportTypeComboBox.Location = new System.Drawing.Point(85, 237);
             this.moveableTransportTypeComboBox.Name = "moveableTransportTypeComboBox";

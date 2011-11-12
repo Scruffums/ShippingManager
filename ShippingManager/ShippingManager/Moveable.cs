@@ -101,7 +101,7 @@ namespace ShippingManager
 
         public String Id { get; set; }
 
-        public String StringType { get { return (this is Transport)? "Transport":"Delivery Vehicle"; } }
+        public String StringType { get { return (this is Transport)? ((this as Transport).TransportType==0)? "Ground Transport":"Air Transport" : "Delivery Vehicle"; } }
 
         public int VolumeAvailable { get { return VolumeCapacity - currentVolume; } }
         public int WeightAvailable { get { return WeightCapacity - currentWeight; } }

@@ -12,13 +12,12 @@ namespace ShippingManager
         private DateTime deliveryEstimate;
         private  float[] size;
         private List<Snapshot> snapshots;
+        private Location destinationLocation;
 
         public enum SERVICE_TYPE
         {
             Economy,
-            Priority,
-            Express,
-            NextDay
+            Air
         }
 
         public enum WEIGHT_CLASS
@@ -35,7 +34,7 @@ namespace ShippingManager
             _50lb_greater
         }
 
-        public Package(int weight, float[] size, int mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
+        public Package(int weight, float[] size, SERVICE_TYPE mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination, Location currentLocation, Location destinationLocation, int travelTime)
         {
             Weight = weight;
             Size = size;
@@ -46,7 +45,11 @@ namespace ShippingManager
             Destination = destination;
             Source = source;
             TrackingNumber = generateTrackingNumber();
+            CurrentLocation = currentLocation;
+            this.destinationLocation = destinationLocation;
             snapshots = new List<Snapshot>();
+            acceptedDate = DateTime.Now;
+            deliveryEstimate = acceptedDate.AddDays(travelTime);
         }
 
         public void takeSnapshot(String message, Location location)
@@ -54,11 +57,6 @@ namespace ShippingManager
             snapshots.Add(new Snapshot(message,location));
         }
 
-        private DateTime generateETA(DateTime acceptedDate, int mailService)
-        {
-            //TODO
-            return DateTime.Now;
-        }
 
         private String generateTrackingNumber()
         {
@@ -90,7 +88,7 @@ namespace ShippingManager
 
         public float[] Size { get{return size;} set{size=value;} }
 
-        public int MailService { get; set; }
+        public SERVICE_TYPE MailService { get; set; }
 
         public bool Fragile { get; set; }
 
@@ -101,5 +99,9 @@ namespace ShippingManager
         public Address Destination { get; set; }
 
         public Address Source { get; set; }
+
+        public Location CurrentLocation { get; set; }
+
+        public Location DestinationLocation { get { return destinationLocation; } }
     }
 }

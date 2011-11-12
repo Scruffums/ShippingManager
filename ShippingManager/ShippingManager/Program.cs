@@ -35,7 +35,7 @@ namespace ShippingManager
                 Console.WriteLine("Admins added");
             }
             
-            ss.updateadjacency();
+            //ss.updateadjacency();
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

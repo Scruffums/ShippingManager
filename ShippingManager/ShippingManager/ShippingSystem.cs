@@ -17,6 +17,10 @@ namespace ShippingManager
         private List<Moveable> moveables;
         private List<Route> routes;
 
+        private float[,] groundWeightedPathMatrix, airWeightedPathMatrix;
+        private int[,] groundPathMatrix, airPathMatrix;
+
+
         public ShippingSystem()
         {
             packages = new List<Package>();
@@ -101,6 +105,8 @@ namespace ShippingManager
 
         public Location[] Locations { get { return locations.ToArray(); } }
 
+        public Abroad[] Abroads { get { List<Abroad> temp = new List<Abroad>(); foreach (Location l in locations)if (l is Abroad)temp.Add(l as Abroad); return temp.ToArray(); } }
+
         public bool addStoreFront(string id, string streetAddress, string zipcode)
         {
             Address a = new Address(id,streetAddress,zipcode);
@@ -146,7 +152,7 @@ namespace ShippingManager
 
         public bool addTransport(string id, int type, int volumeCapacity, int weightCapacity, bool temperatureControlled)
         {
-            Transport d = new Transport(id, type, volumeCapacity, weightCapacity, temperatureControlled);
+            Transport d = new Transport(id, (type==0)?Transport.TRANSPORT_TYPES.ground:Transport.TRANSPORT_TYPES.air, volumeCapacity, weightCapacity, temperatureControlled);
             if (moveables.Contains(d))
                 return false;
             moveables.Add(d);
@@ -172,6 +178,8 @@ namespace ShippingManager
 
 
         public Route[] Routes { get { return routes.ToArray(); } }
+        public Route[] GroundRoutes { get { List<Route> temp = new List<Route>(); foreach (Route r in routes)if (r.CurrentMoveable is DeliveryVehicle || (r.CurrentMoveable as Transport).TransportType==Transport.TRANSPORT_TYPES.ground)temp.Add(r); return temp.ToArray(); } }
+
         public Moveable[] RoutelessMoveable { get { List<Moveable> temp = new List<Moveable>(); foreach (Moveable m in moveables)if (m.Routeless)temp.Add(m); return temp.ToArray(); } }
 
         public StoreFront[] StoreFronts { get{List<StoreFront> temp = new List<StoreFront>(); foreach (Location m in locations)if (m is StoreFront)temp.Add(m as StoreFront); return temp.ToArray(); } }
@@ -179,18 +187,60 @@ namespace ShippingManager
 
         public DeliveryVehicle[] DeliveryVehicles { get { List<DeliveryVehicle> temp = new List<DeliveryVehicle>(); foreach (DeliveryVehicle m in moveables)if (m is DeliveryVehicle)temp.Add(m as DeliveryVehicle); return temp.ToArray(); } }
 
-        public Package AddPackage(int weight, float[] size, int mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
+        public Package AddPackage(int weight, float[] size, Package.SERVICE_TYPE mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
         {
-            Package p = new Package(weight,size,mailService,fragile,irregular,perishable,source,destination);
-            (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront.addPackage(p);
+            Location destinationLocation = determineAbroad(destination.Zip);
+            if(destinationLocation==null)
+                return null;
+
+            StoreFront sf = (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront;
+            int travelTime = (mailService == Package.SERVICE_TYPE.Economy) ? determineGroundTravelTime(sf, destinationLocation) : determineAirTravelTime(sf, destinationLocation);
+
+            Package p = new Package(weight,size,mailService,fragile,irregular,perishable,source,destination,sf,destinationLocation, travelTime);
+            sf.addPackage(p);
             packages.Add(p);
-            p.takeSnapshot("Package Accepted", (LoggedInEmployee as AcceptanceEmployee).CurrentStoreFront);
+            p.takeSnapshot("Package Accepted", sf);
             return p;
         }
 
-        public void updateadjacency()
+        public Location nextLocation(Package p)
         {
-            path(weightedAdjacency(Locations, Routes));
+            int start = locations.IndexOf(p.CurrentLocation);
+            int end = locations.IndexOf(p.DestinationLocation);
+
+            if (p.MailService == Package.SERVICE_TYPE.Air)
+                return Locations[airPathMatrix[start, end]];
+            return Locations[groundPathMatrix[start, end]];
+        }
+
+        private int determineAirTravelTime(Location startLocation, Location endLocation)
+        {
+            int start = locations.IndexOf(startLocation);
+            int end = locations.IndexOf(endLocation);
+            return (int)(airWeightedPathMatrix[start, end]+0.5);
+        }
+
+        private int determineGroundTravelTime(Location startLocation, Location endLocation)
+        {
+            int start = locations.IndexOf(startLocation);
+            int end = locations.IndexOf(endLocation);
+            return (int)(groundWeightedPathMatrix[start, end] + 0.5);
+        }
+        private Abroad determineAbroad(string zip)
+        {
+            foreach(Abroad a in Abroads)
+                if(a.ContainsZipCode(zip))
+                    return a;
+            return null;
+        }
+
+        public void updateMatrices()
+        {
+            groundWeightedPathMatrix = weightedAdjacency(Locations, GroundRoutes);
+            groundPathMatrix = path(ref groundWeightedPathMatrix);
+
+            airWeightedPathMatrix = weightedAdjacency(Locations, Routes);
+            airPathMatrix = path(ref airWeightedPathMatrix);
         }
 
         private float[,] weightedAdjacency(Location[] locations, Route[] routes)
@@ -209,14 +259,14 @@ namespace ShippingManager
             return temp;
         }
 
-        private int[,] path(float[,] weightedAdjacency)
+        private int[,] path(ref float[,] weightedPath)
         {
-            int[,] path = new int[9, 9];
+            int[,] path = new int[weightedPath.GetLength(0), weightedPath.GetLength(1)];
             
             //Seed path
-            for (int i = 0; i < weightedAdjacency.GetLength(0); ++i)
-                for (int j = 0; j < weightedAdjacency.GetLength(1); ++j)
-                    if (weightedAdjacency[i, j] != float.PositiveInfinity)
+            for (int i = 0; i < weightedPath.GetLength(0); ++i)
+                for (int j = 0; j < weightedPath.GetLength(1); ++j)
+                    if (weightedPath[i, j] != float.PositiveInfinity)
                         path[i, j] = -1;
                     else
                         path[i, j] = int.MinValue;
@@ -228,40 +278,41 @@ namespace ShippingManager
                         for (int k = 0; k < path.GetLength(1); ++k)
                             if (path[j, k] == -1 && k != i)
                             {
-                                float weight = weightedAdjacency[i, j] + weightedAdjacency[j, k];
-                                if (weight < weightedAdjacency[i, k])
+                                float weight = weightedPath[i, j] + weightedPath[j, k];
+                                if (weight < weightedPath[i, k])
                                 {
                                     path[i, k] = j;
-                                    weightedAdjacency[i, k] = weight;
+                                    weightedPath[i, k] = weight;
                                 }
                             }
 
-            int[,] augmentedPath;
-            float[,] augmentedWeighted;
+            int[,] augmentedPath = new int[path.GetLength(0),path.GetLength(1)];
+            //float[,] augmentedWeighted = new float[weightedPath.GetLength(0), weightedPath.GetLength(1)];
             bool change;
 
             do
             {
                 change = false;
-                augmentedPath = path;
-                augmentedWeighted = weightedAdjacency;
+                Array.Copy(path, augmentedPath, augmentedPath.Length);
+                //Array.Copy(weightedAdjacency, augmentedWeighted, weightedAdjacency.Length);
 
                 for (int i = 0; i < path.GetLength(0); ++i)
                     for (int j = 0; j < path.GetLength(1); ++j)
                         if (path[i, j] > -1)
                             for (int k = 0; k < path.GetLength(1); ++k)
-                                if (path[j, k] == -1)
+                                if (path[j, k] == -1 && k!=path[i,j])
                                 {
-                                    float weight = weightedAdjacency[i, j] + weightedAdjacency[j, k];//weightedAdjacency[i, path[i,j]] + weightedAdjacency[path[i,j], k]+ weightedAdjacency[j,k];
-                                    if (weight < weightedAdjacency[i, k])
+                                    float weight = weightedPath[i, j] + weightedPath[j, k];//weightedAdjacency[i, path[i,j]] + weightedAdjacency[path[i,j], k]+ weightedAdjacency[j,k];
+                                    if (weight < weightedPath[i, k])
                                     {
                                         change = true;
                                         augmentedPath[i, k] = path[i, j];
-                                        augmentedWeighted[i, k] = weight;
+                                        //augmentedWeighted[i, k] = weight;
+                                        weightedPath[i, k] = weight;
                                     }
                                 }
-                path = augmentedPath;
-                weightedAdjacency = augmentedWeighted;
+                Array.Copy(augmentedPath, path, augmentedPath.Length);
+                //Array.Copy(augmentedWeighted, weightedAdjacency, weightedAdjacency.Length);
             } while (change);
             
 
