@@ -34,3 +34,20 @@ C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\S
 C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Dell\Documents\Comp. Sci\Object Oriented Programming\Shipping Project\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.exe
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.exe
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.pdb
+F:\ShippingManager\ShippingManager\ShippingManager\bin\Debug\ShippingManager.exe
+F:\ShippingManager\ShippingManager\ShippingManager\bin\Debug\ShippingManager.pdb
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.AddPackageForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.AdminForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.ChangePasswordForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.DeliverPackageForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.DeliveryForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.FindPackageForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.LoginForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.Properties.Resources.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.StoreFrontForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\ShippingManager.WarehouseForm.resources
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.read.1.tlog
+F:\ShippingManager\ShippingManager\ShippingManager\obj\x86\Debug\GenerateResource.write.1.tlog
