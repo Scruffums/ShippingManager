@@ -97,11 +97,6 @@ namespace ShippingManager
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void StoreFrontForm_Load(object sender, EventArgs e)
-        {
 
         }
     }
