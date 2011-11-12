@@ -190,10 +190,10 @@ namespace ShippingManager
 
         public void updateadjacency()
         {
-            adjacency(Locations, Routes);
+            path(weightedAdjacency(Locations, Routes));
         }
 
-        private float[,] adjacency(Location[] locations, Route[] routes)
+        private float[,] weightedAdjacency(Location[] locations, Route[] routes)
         {
             float[,] temp = new float[locations.Length, locations.Length];
 
@@ -201,12 +201,72 @@ namespace ShippingManager
                 for(int j=0; j<locations.Length;++j)
                     temp[i,j] = float.PositiveInfinity;
 
-            for (int j = 0; j < locations.Length - 1; j++)
-                for (int k = j + 1; k < locations.Length; k++)
-                    for (int m = 0; m < routes.Length; m++)
-                        if ((routes[m].Locations[0].Equals(locations[j]) && routes[m].Locations[1].Equals(locations[k])) || (routes[m].Locations[1].Equals(locations[j]) && routes[m].Locations[0].Equals(locations[k])))
-                            temp[k, j] = temp[j, k] = routes[m].DurationInDays;
+            for (int i = 0; i < locations.Length - 1; ++i)
+                for (int j = i + 1; j < locations.Length; ++j)
+                    for (int m = 0; m < routes.Length; ++m)
+                        if ((routes[m].Locations[0].Equals(locations[i]) && routes[m].Locations[1].Equals(locations[j])) || (routes[m].Locations[1].Equals(locations[i]) && routes[m].Locations[0].Equals(locations[j])))
+                            temp[j, i] = temp[i, j] = routes[m].DurationInDays;
             return temp;
+        }
+
+        private int[,] path(float[,] weightedAdjacency)
+        {
+            int[,] path = new int[9, 9];
+            
+            //Seed path
+            for (int i = 0; i < weightedAdjacency.GetLength(0); ++i)
+                for (int j = 0; j < weightedAdjacency.GetLength(1); ++j)
+                    if (weightedAdjacency[i, j] != float.PositiveInfinity)
+                        path[i, j] = -1;
+                    else
+                        path[i, j] = int.MinValue;
+            
+            //Transitive closure
+            for (int i = 0; i < path.GetLength(0); ++i)
+                for (int j = 0; j < path.GetLength(1); ++j)
+                    if (path[i, j] == -1)
+                        for (int k = 0; k < path.GetLength(1); ++k)
+                            if (path[j, k] == -1 && k != i)
+                            {
+                                float weight = weightedAdjacency[i, j] + weightedAdjacency[j, k];
+                                if (weight < weightedAdjacency[i, k])
+                                {
+                                    path[i, k] = j;
+                                    weightedAdjacency[i, k] = weight;
+                                }
+                            }
+
+            int[,] augmentedPath;
+            float[,] augmentedWeighted;
+            bool change;
+
+            do
+            {
+                change = false;
+                augmentedPath = path;
+                augmentedWeighted = weightedAdjacency;
+
+                for (int i = 0; i < path.GetLength(0); ++i)
+                    for (int j = 0; j < path.GetLength(1); ++j)
+                        if (path[i, j] > -1)
+                            for (int k = 0; k < path.GetLength(1); ++k)
+                                if (path[j, k] == -1)
+                                {
+                                    float weight = weightedAdjacency[i, j] + weightedAdjacency[j, k];//weightedAdjacency[i, path[i,j]] + weightedAdjacency[path[i,j], k]+ weightedAdjacency[j,k];
+                                    if (weight < weightedAdjacency[i, k])
+                                    {
+                                        change = true;
+                                        augmentedPath[i, k] = path[i, j];
+                                        augmentedWeighted[i, k] = weight;
+                                    }
+                                }
+                path = augmentedPath;
+                weightedAdjacency = augmentedWeighted;
+            } while (change);
+            
+
+
+            return augmentedPath;
         }
 
         public Package lookupTrackingNumber(string trackingNumber)

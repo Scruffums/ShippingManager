@@ -397,6 +397,9 @@ namespace ShippingManager
 
             routeIdTextBox.Text = currentRoute.Id;
             routeDurationTextBox.Text = currentRoute.DurationInDays + "";
+
+            routeUsingListBox.Items.Clear();
+            routeUsingListBox.Items.AddRange(shippingSystem.RoutelessMoveable);
             routeUsingListBox.Items.Insert(0, currentRoute.CurrentMoveable);
             routeUsingListBox.SelectedIndex = 0;
             routeLocationOneListBox.SelectedIndex = shippingSystem.indexOf(currentRoute.Locations[0]);
