@@ -39,7 +39,7 @@ namespace ShippingManager
         {
             Weight = weight;
             Size = size;
-            MaileService = mailService;
+            MailService = mailService;
             Fragile = fragile;
             Irregular = irregular;
             Perishable = perishable;
@@ -90,7 +90,7 @@ namespace ShippingManager
 
         public float[] Size { get{return size;} set{size=value;} }
 
-        public int MaileService { get; set; }
+        public int MailService { get; set; }
 
         public bool Fragile { get; set; }
 

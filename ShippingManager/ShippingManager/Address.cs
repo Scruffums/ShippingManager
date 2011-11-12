@@ -41,7 +41,7 @@ namespace ShippingManager
 
         public override string ToString()
         {
-            return base.ToString();
+            return Addressee + "\n" + StreetAddress + "\n" + City + "\n" + State + "\n" + Zip;
         }
     }
 }

@@ -57,8 +57,8 @@
             // 
             // packageListBox
             // 
-            this.packageListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.packageListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.packageListBox.FormattingEnabled = true;
             this.packageListBox.Location = new System.Drawing.Point(12, 40);
             this.packageListBox.Name = "packageListBox";
@@ -187,6 +187,7 @@
             this.Name = "StoreFrontForm";
             this.Text = "Clerk";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StoreFrontForm_FormClosing);
+            this.Load += new System.EventHandler(this.StoreFrontForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.packageContextMenu.ResumeLayout(false);

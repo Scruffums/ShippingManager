@@ -61,9 +61,8 @@ namespace ShippingManager
         {
             if ((editButton.Enabled = deleteButton.Enabled = packageListBox.SelectedIndex != -1))
             {
-                //TODO:Add code to retrieve package information: sender, receiver, service class, any special properties (perishible...)
-                //Once all of this info is received and concatenated into a single multiline string, set the string to the Text property of packageInfoTextBox
-                Package currentPackage = packageListBox.SelectedItem as Package;
+                 Package currentPackage = packageListBox.SelectedItem as Package;
+                 packageInfoTextBox.Text = currentPackage.Source + "\n" + currentPackage.Destination + "\n" + currentPackage.MailService + "\n";
             }
         }
 
@@ -99,6 +98,11 @@ namespace ShippingManager
         private void editButton_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void StoreFrontForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
