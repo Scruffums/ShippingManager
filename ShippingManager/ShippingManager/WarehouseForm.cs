@@ -33,6 +33,7 @@ namespace ShippingManager
             currentStoreFront = em.CurrentLocation as StoreFront;
 
             updateReceivingListBox();
+            updateVehiclesListBox();
 
             if (currentStoreFront != null)
                 Text = currentStoreFront.Id;
@@ -42,18 +43,21 @@ namespace ShippingManager
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            //An example of opening the ChangePasswordForm modally (other forms are unfocusable when changePasswordForm is open)
             ChangePasswordForm c = new ChangePasswordForm(this, shippingSystem);
             c.ShowDialog();
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            lookupTrackingNumber(addTextBox.Text);
+            if (lookupTrackingNumber(addTextBox.Text))
+                addTextBox.Clear();
+            else
+            {
+                //TODO: add code to notify user if number is not found
+            }
         }
 
-        private void lookupTrackingNumber(string trackingNumber)
+        private bool lookupTrackingNumber(string trackingNumber)
         {
             Package p = shippingSystem.lookupTrackingNumber(trackingNumber);
             if (p != null)
@@ -63,12 +67,9 @@ namespace ShippingManager
                 else
                     currentWarehouse.addPackage(p);
                 updateReceivingListBox();
+                return true;
             }
-            else
-            {
-                //TODO: add code to notify user if number is not found
-            }
-
+            return false;
         }
 
         private void updateReceivingListBox()
@@ -110,7 +111,84 @@ namespace ShippingManager
             ArrayList codes = new ArrayList();
             BarcodeImaging.FullScanPage(ref codes, bmp, 75);
             //BarcodeImaging.ScanPage(ref codes, bmp, 75, BarcodeImaging.ScanDirection.Horizontal, BarcodeImaging.BarcodeType.All);
-            int i = codes.Count;
+            foreach (string code in codes)
+                if (!lookupTrackingNumber(code))
+                    MessageBox.Show("Tracking number: " + code + "\n not found");
+        }
+
+        private void receivingListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateButtons();
+            Package p;
+            if (null != (p = receivingListBox.SelectedItem as Package))
+            {
+                Location nextLocation = shippingSystem.nextLocation(p);
+
+                if (currentStoreFront != null)
+                {
+                    foreach(Route r in currentStoreFront.Routes)
+                        if(r.containsLocation(nextLocation))
+                            vehicleLabel.Text+="\n"+r.CurrentMoveable;
+                }
+                else
+                {
+                    foreach (Route r in currentWarehouse.Routes)
+                        if (r.containsLocation(nextLocation))
+                            vehicleLabel.Text += "\n" + r.CurrentMoveable;
+                }
+            }
+        }
+
+        private void vehiclesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateButtons();
+        }
+
+        private void updateVehiclesListBox()
+        {
+            vehiclesListBox.Items.Clear();
+
+            if (currentStoreFront != null)
+            {
+                foreach (Route r in currentStoreFront.Routes)
+                    if (r.CurrentMoveable.CurrentLocation.Equals(currentStoreFront))
+                        vehiclesListBox.Items.Add(r.CurrentMoveable);
+            }
+            else
+            {
+                foreach (Route r in currentWarehouse.Routes)
+                    if (r.CurrentMoveable.CurrentLocation.Equals(currentWarehouse))
+                        vehiclesListBox.Items.Add(r.CurrentMoveable);
+            }
+        }
+
+        private void updateButtons()
+        {
+            loadButton.Enabled = receivingListBox.SelectedIndex != -1 && vehiclesListBox.SelectedIndex != -1;
+            distributeButton.Enabled = vehiclesListBox.SelectedIndex != -1;
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            Package p = receivingListBox.SelectedItem as Package;
+            Moveable m = vehiclesListBox.SelectedItem as Moveable;
+
+            if (currentStoreFront != null)
+            {
+                shippingSystem.movePackageToMoveable(currentStoreFront, m, p);
+            }
+            else
+            {
+                shippingSystem.movePackageToMoveable(currentWarehouse, m, p);
+            }
+            updateReceivingListBox();
+        }
+
+        private void distributeButton_Click(object sender, EventArgs e)
+        {
+            Moveable m = vehiclesListBox.SelectedItem as Moveable;
+            m.changeLocation();
+            updateVehiclesListBox();
         }
     }
 }

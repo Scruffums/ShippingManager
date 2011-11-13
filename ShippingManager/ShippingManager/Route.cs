@@ -26,6 +26,11 @@ namespace ShippingManager
             return r.Id == Id;
         }
 
+        public bool containsLocation(Location location)
+        {
+            return Locations[0].Equals(location) || Locations[1].Equals(location);
+        }
+
         public override string ToString()
         {
             return CurrentMoveable.StringType+": "+locations[0].Id+" "+CurrentMoveable.Id+" "+locations[1].Id;
@@ -36,5 +41,6 @@ namespace ShippingManager
         public float DurationInDays { get; set; }
         public string Id { get; set; }
         public Location[] Locations { get { return locations; } }
+
     }
 }

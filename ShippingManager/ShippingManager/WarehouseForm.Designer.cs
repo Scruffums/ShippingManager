@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.scanButton = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.distributeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.addButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -38,12 +38,13 @@
             this.addTextBox = new System.Windows.Forms.TextBox();
             this.logoutButton = new System.Windows.Forms.Button();
             this.receivingListBox = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.vehiclesListBox = new System.Windows.Forms.ListBox();
+            this.loadButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,15 +61,17 @@
             this.scanButton.UseVisualStyleBackColor = false;
             this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
             // 
-            // button4
+            // distributeButton
             // 
-            this.button4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(513, 351);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(145, 28);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "Distribute Vehicle";
-            this.button4.UseVisualStyleBackColor = true;
+            this.distributeButton.Enabled = false;
+            this.distributeButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.distributeButton.Location = new System.Drawing.Point(513, 351);
+            this.distributeButton.Name = "distributeButton";
+            this.distributeButton.Size = new System.Drawing.Size(145, 28);
+            this.distributeButton.TabIndex = 37;
+            this.distributeButton.Text = "Distribute Vehicle";
+            this.distributeButton.UseVisualStyleBackColor = true;
+            this.distributeButton.Click += new System.EventHandler(this.distributeButton_Click);
             // 
             // label1
             // 
@@ -141,23 +144,27 @@
             this.receivingListBox.Name = "receivingListBox";
             this.receivingListBox.Size = new System.Drawing.Size(206, 290);
             this.receivingListBox.TabIndex = 40;
+            this.receivingListBox.SelectedIndexChanged += new System.EventHandler(this.receivingListBox_SelectedIndexChanged);
             // 
-            // listBox2
+            // vehiclesListBox
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(383, 40);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(275, 290);
-            this.listBox2.TabIndex = 41;
+            this.vehiclesListBox.FormattingEnabled = true;
+            this.vehiclesListBox.Location = new System.Drawing.Point(383, 40);
+            this.vehiclesListBox.Name = "vehiclesListBox";
+            this.vehiclesListBox.Size = new System.Drawing.Size(275, 290);
+            this.vehiclesListBox.TabIndex = 41;
+            this.vehiclesListBox.SelectedIndexChanged += new System.EventHandler(this.vehiclesListBox_SelectedIndexChanged);
             // 
-            // button5
+            // loadButton
             // 
-            this.button5.Location = new System.Drawing.Point(124, 385);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(94, 23);
-            this.button5.TabIndex = 42;
-            this.button5.Text = "Load Package";
-            this.button5.UseVisualStyleBackColor = true;
+            this.loadButton.Enabled = false;
+            this.loadButton.Location = new System.Drawing.Point(124, 385);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(94, 28);
+            this.loadButton.TabIndex = 42;
+            this.loadButton.Text = "Load Package";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // label3
             // 
@@ -193,17 +200,26 @@
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
+            // vehicleLabel
+            // 
+            this.vehicleLabel.AutoSize = true;
+            this.vehicleLabel.Location = new System.Drawing.Point(224, 53);
+            this.vehicleLabel.Name = "vehicleLabel";
+            this.vehicleLabel.Size = new System.Drawing.Size(0, 13);
+            this.vehicleLabel.TabIndex = 45;
+            // 
             // WarehouseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 501);
+            this.Controls.Add(this.vehicleLabel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.loadButton);
+            this.Controls.Add(this.vehiclesListBox);
             this.Controls.Add(this.receivingListBox);
             this.Controls.Add(this.scanButton);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.distributeButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label5);
@@ -226,7 +242,7 @@
         #endregion
 
         private System.Windows.Forms.Button scanButton;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button distributeButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label label5;
@@ -235,11 +251,12 @@
         private System.Windows.Forms.TextBox addTextBox;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.ListBox receivingListBox;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListBox vehiclesListBox;
+        private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.Label vehicleLabel;
     }
 }

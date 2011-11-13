@@ -119,5 +119,10 @@ namespace ShippingManager
         public Location Home { get { return home; } }
 
         public Route CurrentRoute { get { return route; } set { route = value; } }
+
+        public void changeLocation()
+        {
+            currentLocation = (route.Locations[0]==currentLocation)? route.Locations[1]: route.Locations[0];
+        }
     }
 }

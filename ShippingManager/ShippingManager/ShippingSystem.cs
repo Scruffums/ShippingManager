@@ -17,9 +17,10 @@ namespace ShippingManager
         private List<Moveable> moveables;
         private List<Route> routes;
 
-        private float[,] groundWeightedPathMatrix, airWeightedPathMatrix;
-        private int[,] groundPathMatrix, airPathMatrix;
 
+        private float[,] groundWeightedPathMatrix, airWeightedPathMatrix;
+
+        private int[,] groundPathMatrix, airPathMatrix;
 
         public ShippingSystem()
         {
@@ -98,10 +99,10 @@ namespace ShippingManager
 
         public void logOut()
         {
+            if (loggedInEmployee is AdminEmployee)
+                updateMatrices();
             loggedInEmployee = null;
         }
-
-
 
         public Location[] Locations { get { return locations.ToArray(); } }
 
@@ -139,8 +140,6 @@ namespace ShippingManager
 
         public Moveable[] Moveables { get { return moveables.ToArray(); } }
 
-
-
         public bool addDeliveryVehicle(string id, int volumeCapacity, int weightCapacity)
         {
             DeliveryVehicle d = new DeliveryVehicle(id, volumeCapacity, weightCapacity);
@@ -176,16 +175,17 @@ namespace ShippingManager
             return true;
         }
 
-
         public Route[] Routes { get { return routes.ToArray(); } }
+
         public Route[] GroundRoutes { get { List<Route> temp = new List<Route>(); foreach (Route r in routes)if (r.CurrentMoveable is DeliveryVehicle || (r.CurrentMoveable as Transport).TransportType==Transport.TRANSPORT_TYPES.ground)temp.Add(r); return temp.ToArray(); } }
 
         public Moveable[] RoutelessMoveable { get { List<Moveable> temp = new List<Moveable>(); foreach (Moveable m in moveables)if (m.Routeless)temp.Add(m); return temp.ToArray(); } }
 
         public StoreFront[] StoreFronts { get{List<StoreFront> temp = new List<StoreFront>(); foreach (Location m in locations)if (m is StoreFront)temp.Add(m as StoreFront); return temp.ToArray(); } }
+
         public Warehouse[] Warehouses { get { List<Warehouse> temp = new List<Warehouse>(); foreach (Location m in locations)if (m is Warehouse)temp.Add(m as Warehouse); return temp.ToArray(); }  }
 
-        public DeliveryVehicle[] DeliveryVehicles { get { List<DeliveryVehicle> temp = new List<DeliveryVehicle>(); foreach (DeliveryVehicle m in moveables)if (m is DeliveryVehicle)temp.Add(m as DeliveryVehicle); return temp.ToArray(); } }
+        public DeliveryVehicle[] DeliveryVehicles { get { List<DeliveryVehicle> temp = new List<DeliveryVehicle>(); foreach (Moveable m in moveables)if (m is DeliveryVehicle)temp.Add(m as DeliveryVehicle); return temp.ToArray(); } }
 
         public Package AddPackage(int weight, float[] size, Package.SERVICE_TYPE mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
         {
@@ -226,6 +226,7 @@ namespace ShippingManager
             int end = locations.IndexOf(endLocation);
             return (int)(groundWeightedPathMatrix[start, end] + 0.5);
         }
+
         private Abroad determineAbroad(string zip)
         {
             foreach(Abroad a in Abroads)
@@ -326,6 +327,34 @@ namespace ShippingManager
                 if (p.TrackingNumber == trackingNumber)
                     return p;
             return null;
+        }
+
+        public bool movePackageToMoveable(Location location, Moveable moveable, Package package)
+        {
+            if (!moveable.addPackage(package))
+                return false;
+
+            StoreFront sf = location as StoreFront;
+
+            if (sf == null)
+            {
+                (location as Warehouse).removePackage(package);
+            }
+            else
+            {
+                sf.removePackage(package);
+            }
+
+            return true;
+        }
+
+        public bool movePackageToWarehouse(Moveable moveable, Warehouse warehouse, Package package)
+        {
+            if(!warehouse.addPackage(package))
+                return false;
+
+            moveable.removePackage(package);
+            return true;
         }
     }
 }

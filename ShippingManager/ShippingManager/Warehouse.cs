@@ -8,9 +8,9 @@ namespace ShippingManager
     [Serializable()]
     public class Warehouse : Location
     {
-        //private List<int> zipCodesServed;
         private List<Route> routes;
         private List<Package> packages;
+        private int currentVolume;
 
         public Warehouse(Address a, int volumeCapacity)
         {
@@ -40,44 +40,28 @@ namespace ShippingManager
             routes.Remove(r);
         }
 
-        public void addPackage(Package package)
+        public bool addPackage(Package package)
         {
+            if (VolumeAvailable < package.Volume)
+                return false;
+
             packages.Add(package);
+            currentVolume += (int)package.Volume;
+            return true;
         }
 
         public void removePackage(Package package)
         {
             packages.Remove(package);
+            currentVolume -= (int)package.Volume;
         }
 
-        //public bool addDeliveryVehicle(DeliveryVehicle deliveryVehicle)
-        //{
-        //    if (deliveryVehicles.Contains(deliveryVehicle))
-        //        return false;
-        //    deliveryVehicles.Add(deliveryVehicle);
-        //    return true;
-        //}
-
-        //public void removeDeliveryVehicle(DeliveryVehicle deliveryVehicle)
-        //{
-        //    deliveryVehicles.Remove(deliveryVehicle);
-        //}
-
-        //public bool addTransport(Transport transport)
-        //{
-        //    if (transports.Contains(transport))
-        //        return false;
-        //    transports.Add(transport);
-        //    return true;
-        //}
-
-        //public void removeTransport(Transport transport)
-        //{
-        //    transports.Remove(transport);
-        //}
+        public int VolumeAvailable { get { return VolumeCapacity - currentVolume; } }
 
         public int VolumeCapacity { get; set; }
 
         public Package[] Packages { get { return packages.ToArray(); } }
+
+        public Route[] Routes { get { return routes.ToArray(); } }
     }
 }
