@@ -13,18 +13,53 @@ namespace ShippingManager
     {
         Form parentForm;
         ShippingSystem shippingSystem;
+        DeliveryEmployee currentEmployee;
 
         public DeliverPackageForm(Form parent, ShippingSystem sm)
         {
             InitializeComponent();
             parentForm = parent;
             shippingSystem = sm;
+            currentEmployee = shippingSystem.LoggedInEmployee as DeliveryEmployee;
+            if (!(currentEmployee.CurrentRoute.CurrentMoveable.CurrentLocation is Abroad))
+                currentEmployee.CurrentRoute.CurrentMoveable.changeLocation();
+            updatePackagesListBox();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChangePasswordForm c = new ChangePasswordForm(this, shippingSystem);
             c.ShowDialog();
+        }
+
+        private void DeliverPackageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            shippingSystem.logOut();
+            currentEmployee.CurrentRoute.CurrentMoveable.changeLocation();
+            parentForm.Show();
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void packagesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            deliverButton.Enabled = postponeButton.Enabled = packagesListBox.SelectedIndex != -1;
+        }
+
+        public void updatePackagesListBox()
+        {
+            packagesListBox.Items.Clear();
+            packagesListBox.Items.AddRange(currentEmployee.CurrentRoute.CurrentMoveable.Packages);
+        }
+
+        private void deliverButton_Click(object sender, EventArgs e)
+        {
+            DeliveryForm df = new DeliveryForm(this, shippingSystem, packagesListBox.SelectedItem as Package);
+            Hide();
+            df.ShowDialog();
         }
     }
 }

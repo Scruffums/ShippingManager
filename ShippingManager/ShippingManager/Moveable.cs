@@ -129,5 +129,7 @@ namespace ShippingManager
         {
             currentLocation = (route.Locations[0]==currentLocation)? route.Locations[1]: route.Locations[0];
         }
+
+        public Package[] Packages { get { return packages.ToArray(); } }
     }
 }

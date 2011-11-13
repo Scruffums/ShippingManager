@@ -13,6 +13,7 @@ namespace ShippingManager
         private  float[] size;
         private List<Snapshot> snapshots;
         private Location destinationLocation;
+        private  bool delivered;
 
         public enum SERVICE_TYPE
         {
@@ -103,5 +104,7 @@ namespace ShippingManager
         public Location CurrentLocation { get; set; }
 
         public Location DestinationLocation { get { return destinationLocation; } }
+
+        public bool Delivered { get { return delivered; } set { delivered = value; if (Delivered)CurrentLocation = null; } }
     }
 }

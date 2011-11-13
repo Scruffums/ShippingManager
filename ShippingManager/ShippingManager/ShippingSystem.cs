@@ -353,7 +353,7 @@ namespace ShippingManager
             {
                 sf.removePackage(package);
             }
-
+            package.takeSnapshot("Left from", location);
             return true;
         }
 
@@ -362,9 +362,17 @@ namespace ShippingManager
             if(!warehouse.addPackage(package))
                 return false;
 
+            package.takeSnapshot("Arrived at", warehouse);
             moveable.removePackage(package);
             package.CurrentLocation = warehouse;
             return true;
+        }
+
+        public void deliverPackage(Package p)
+        {
+            DeliveryEmployee em = loggedInEmployee as DeliveryEmployee;
+            p.Delivered = true;
+            em.CurrentRoute.CurrentMoveable.removePackage(p);
         }
     }
 }

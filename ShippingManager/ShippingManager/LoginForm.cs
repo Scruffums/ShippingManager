@@ -22,33 +22,47 @@ namespace ShippingManager
         private void acceptButton_Click(object sender, EventArgs e)
         {
             idTextBox.Focus();
-            Employee employee = shippingSystem.validateEmployeeLogin(idTextBox.Text, passwordTextBox.Text);
-
-            if (employee == null)
+            if (idTextBox.Text == "guest")
             {
-                //TODO: notify user that their id or password is incorrect
+                GuestForm g = new GuestForm(this, shippingSystem);
+                Hide();
+                g.Show();
             }
             else
             {
-                if (employee is AdminEmployee)
+                Employee employee = shippingSystem.validateEmployeeLogin(idTextBox.Text, passwordTextBox.Text);
+
+                if (employee == null)
                 {
-                    AdminForm af = new AdminForm(this, shippingSystem);
-                    this.Hide();
-                    af.Show();
+                    //TODO: notify user that their id or password is incorrect or does not exist
                 }
-                else if (employee is AcceptanceEmployee)
+                else
                 {
-                    StoreFrontForm sf = new StoreFrontForm(this, shippingSystem);
-                    this.Hide();
-                    sf.Show();
+                    if (employee is AdminEmployee)
+                    {
+                        AdminForm af = new AdminForm(this, shippingSystem);
+                        this.Hide();
+                        af.Show();
+                    }
+                    else if (employee is AcceptanceEmployee)
+                    {
+                        StoreFrontForm sf = new StoreFrontForm(this, shippingSystem);
+                        this.Hide();
+                        sf.Show();
+                    }
+                    else if (employee is WarehouseEmployee)
+                    {
+                        WarehouseForm wf = new WarehouseForm(this, shippingSystem);
+                        this.Hide();
+                        wf.Show();
+                    }
+                    else//Employee is delivery
+                    {
+                        DeliverPackageForm dp = new DeliverPackageForm(this, shippingSystem);
+                        this.Hide();
+                        dp.Show();
+                    } 
                 }
-                else if (employee is WarehouseEmployee)
-                {
-                    WarehouseForm wf = new WarehouseForm(this, shippingSystem);
-                    this.Hide();
-                    wf.Show();
-                }
-                //TODO: Add other employee code
 
                 idTextBox.Clear();
                 passwordTextBox.Clear();
