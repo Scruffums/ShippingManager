@@ -106,5 +106,7 @@ namespace ShippingManager
         public Location DestinationLocation { get { return destinationLocation; } }
 
         public bool Delivered { get { return delivered; } set { delivered = value; if (Delivered)CurrentLocation = null; } }
+
+        public Snapshot[] Snapshots { get { return snapshots.ToArray(); } }
     }
 }
