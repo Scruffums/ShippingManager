@@ -30,6 +30,11 @@ namespace ShippingManager
             Id = id;
         }
 
+        public bool hasPackage(Package p)
+        {
+            return -1 != packages.IndexOf(p);
+        }
+
         public bool addPackage(Package package)
         {
             if (packages.Contains(package))

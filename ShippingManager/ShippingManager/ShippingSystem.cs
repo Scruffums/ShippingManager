@@ -205,12 +205,21 @@ namespace ShippingManager
 
         public Location nextLocation(Package p)
         {
+            int index;
             int start = locations.IndexOf(p.CurrentLocation);
             int end = locations.IndexOf(p.DestinationLocation);
 
             if (p.MailService == Package.SERVICE_TYPE.Air)
-                return Locations[airPathMatrix[start, end]];
-            return Locations[groundPathMatrix[start, end]];
+            {
+                index = airPathMatrix[start, end];
+                if(index==-1)
+                    return Locations[end];
+                return Locations[index];
+            }
+            index =  groundPathMatrix[start, end];
+            if (index == -1)
+                return Locations[end];
+            return Locations[index];
         }
 
         private int determineAirTravelTime(Location startLocation, Location endLocation)
@@ -354,6 +363,7 @@ namespace ShippingManager
                 return false;
 
             moveable.removePackage(package);
+            package.CurrentLocation = warehouse;
             return true;
         }
     }

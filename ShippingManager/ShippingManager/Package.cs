@@ -76,7 +76,7 @@ namespace ShippingManager
             return p.TrackingNumber==TrackingNumber;
         }
 
-        public float Volume { get { return size[0] * size[1] * size[3]; } }
+        public float Volume { get { return size[0] * size[1] * size[2]; } }
 
         public DateTime AcceptedDate { get { return acceptedDate; } }
 

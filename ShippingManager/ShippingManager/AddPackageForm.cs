@@ -29,7 +29,7 @@ namespace ShippingManager
             Address source = new Address(sourceAddresseeTextBox.Text, sourceStreetTextbox.Text, sourceZipTextBox.Text);
             Address destination = new Address(destinationAddresseeTextBox.Text, destinationStreetTextBox.Text, destinationZipTextBox.Text);
             float[] lhw = { float.Parse(lengthTextbox.Text),float.Parse(widthTextBox.Text),float.Parse(heightTextBox.Text)};
-            Package p = shippingSystem.AddPackage(weightClassComboBox.SelectedIndex, lhw, (serviceTypeComboBox.SelectedIndex==0)?Package.SERVICE_TYPE.Economy:Package.SERVICE_TYPE.Economy, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
+            Package p = shippingSystem.AddPackage(weightClassComboBox.SelectedIndex, lhw, (serviceTypeComboBox.SelectedIndex==0)?Package.SERVICE_TYPE.Economy:Package.SERVICE_TYPE.Air, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
             (parentForm as StoreFrontForm).updatePackageList();
 
             PrintDialog pd = new PrintDialog();

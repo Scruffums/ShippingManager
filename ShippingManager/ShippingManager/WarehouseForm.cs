@@ -62,10 +62,11 @@ namespace ShippingManager
             Package p = shippingSystem.lookupTrackingNumber(trackingNumber);
             if (p != null)
             {
-                if (currentStoreFront != null)
-                    currentStoreFront.addPackage(p);
-                else
-                    currentWarehouse.addPackage(p);
+                foreach(Moveable m in vehiclesListBox.Items)
+                    if(m.hasPackage(p))
+                    {
+                        shippingSystem.movePackageToWarehouse(m, currentWarehouse, p);
+                    }
                 updateReceivingListBox();
                 return true;
             }
@@ -74,6 +75,7 @@ namespace ShippingManager
 
         private void updateReceivingListBox()
         {
+            receivingListBox.Items.Clear();
             if (currentStoreFront != null)
                 receivingListBox.Items.AddRange(currentStoreFront.Packages);
             else

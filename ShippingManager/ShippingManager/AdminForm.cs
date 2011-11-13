@@ -38,7 +38,7 @@ namespace ShippingManager
             locationTypeComboBox.SelectedIndex = 0;
             employeesListBox.Items.AddRange(sm.Employees);
             locationsListBox.Items.AddRange(sm.Locations);
-            moveablesListBox.Items.AddRange(sm.Moveables);
+            moveablesListBox.Items.AddRange(sm.DeliveryVehicles);
             routesListBox.Items.AddRange(sm.Routes);
             //routeLocationOneListBox.Items.AddRange(sm.Locations);
             //routeLocationTwoListBox.Items.AddRange(sm.Locations);
@@ -476,6 +476,17 @@ namespace ShippingManager
             routeUsingListBox.Items.AddRange(shippingSystem.RoutelessMoveable);
         } 
         #endregion
+
+        private void moveablesListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && moveablesListBox.SelectedIndex != -1)
+                moveableContextMenu.Show(moveablesListBox, new Point(e.X, e.Y));
+        }
+
+        private void changeCurrentLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (moveablesListBox.SelectedItem as Moveable).changeLocation();
+        }
 
     }
 }

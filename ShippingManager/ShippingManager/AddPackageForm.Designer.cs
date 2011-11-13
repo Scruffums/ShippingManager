@@ -125,21 +125,21 @@
             this.heightTextBox.Location = new System.Drawing.Point(226, 271);
             this.heightTextBox.Name = "heightTextBox";
             this.heightTextBox.Size = new System.Drawing.Size(53, 20);
-            this.heightTextBox.TabIndex = 108;
+            this.heightTextBox.TabIndex = 10;
             // 
             // widthTextBox
             // 
             this.widthTextBox.Location = new System.Drawing.Point(141, 271);
             this.widthTextBox.Name = "widthTextBox";
             this.widthTextBox.Size = new System.Drawing.Size(53, 20);
-            this.widthTextBox.TabIndex = 107;
+            this.widthTextBox.TabIndex = 9;
             // 
             // lengthTextbox
             // 
             this.lengthTextbox.Location = new System.Drawing.Point(56, 271);
             this.lengthTextbox.Name = "lengthTextbox";
             this.lengthTextbox.Size = new System.Drawing.Size(53, 20);
-            this.lengthTextbox.TabIndex = 106;
+            this.lengthTextbox.TabIndex = 8;
             // 
             // label11
             // 
@@ -173,7 +173,7 @@
             this.destinationZipTextBox.Location = new System.Drawing.Point(507, 159);
             this.destinationZipTextBox.Name = "destinationZipTextBox";
             this.destinationZipTextBox.Size = new System.Drawing.Size(100, 20);
-            this.destinationZipTextBox.TabIndex = 102;
+            this.destinationZipTextBox.TabIndex = 5;
             // 
             // label8
             // 
@@ -189,7 +189,7 @@
             this.sourceZipTextBox.Location = new System.Drawing.Point(108, 159);
             this.sourceZipTextBox.Name = "sourceZipTextBox";
             this.sourceZipTextBox.Size = new System.Drawing.Size(100, 20);
-            this.sourceZipTextBox.TabIndex = 100;
+            this.sourceZipTextBox.TabIndex = 2;
             // 
             // label7
             // 
@@ -204,6 +204,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(413, 272);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(265, 20);
             this.textBox4.TabIndex = 96;
             // 
@@ -237,14 +238,12 @@
             this.serviceTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.serviceTypeComboBox.FormattingEnabled = true;
             this.serviceTypeComboBox.Items.AddRange(new object[] {
-            "Economy",
-            "Priority",
-            "Express",
-            "NextDay"});
+            "Economy,",
+            "Air"});
             this.serviceTypeComboBox.Location = new System.Drawing.Point(15, 215);
             this.serviceTypeComboBox.Name = "serviceTypeComboBox";
             this.serviceTypeComboBox.Size = new System.Drawing.Size(323, 21);
-            this.serviceTypeComboBox.TabIndex = 92;
+            this.serviceTypeComboBox.TabIndex = 6;
             // 
             // label3
             // 
@@ -260,7 +259,7 @@
             this.destinationAddresseeTextBox.Location = new System.Drawing.Point(416, 26);
             this.destinationAddresseeTextBox.Name = "destinationAddresseeTextBox";
             this.destinationAddresseeTextBox.Size = new System.Drawing.Size(326, 20);
-            this.destinationAddresseeTextBox.TabIndex = 90;
+            this.destinationAddresseeTextBox.TabIndex = 3;
             // 
             // label4
             // 
@@ -296,7 +295,7 @@
             this.sourceAddresseeTextBox.Location = new System.Drawing.Point(15, 26);
             this.sourceAddresseeTextBox.Name = "sourceAddresseeTextBox";
             this.sourceAddresseeTextBox.Size = new System.Drawing.Size(326, 20);
-            this.sourceAddresseeTextBox.TabIndex = 86;
+            this.sourceAddresseeTextBox.TabIndex = 0;
             // 
             // label1
             // 
@@ -336,7 +335,7 @@
             this.weightClassComboBox.Location = new System.Drawing.Point(87, 242);
             this.weightClassComboBox.Name = "weightClassComboBox";
             this.weightClassComboBox.Size = new System.Drawing.Size(121, 21);
-            this.weightClassComboBox.TabIndex = 115;
+            this.weightClassComboBox.TabIndex = 7;
             // 
             // sourceStreetTextbox
             // 
@@ -344,7 +343,7 @@
             this.sourceStreetTextbox.Multiline = true;
             this.sourceStreetTextbox.Name = "sourceStreetTextbox";
             this.sourceStreetTextbox.Size = new System.Drawing.Size(320, 84);
-            this.sourceStreetTextbox.TabIndex = 116;
+            this.sourceStreetTextbox.TabIndex = 1;
             // 
             // destinationStreetTextBox
             // 
@@ -352,7 +351,7 @@
             this.destinationStreetTextBox.Multiline = true;
             this.destinationStreetTextBox.Name = "destinationStreetTextBox";
             this.destinationStreetTextBox.Size = new System.Drawing.Size(326, 84);
-            this.destinationStreetTextBox.TabIndex = 117;
+            this.destinationStreetTextBox.TabIndex = 4;
             // 
             // AddPackageForm
             // 

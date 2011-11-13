@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button6 = new System.Windows.Forms.Button();
             this.objectsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -103,11 +104,14 @@
             this.routeEditButton = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.routesListBox = new System.Windows.Forms.ListBox();
+            this.moveableContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.changeCurrentLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.objectsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.moveableContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // button6
@@ -726,6 +730,7 @@
             this.moveablesListBox.Size = new System.Drawing.Size(575, 147);
             this.moveablesListBox.TabIndex = 6;
             this.moveablesListBox.SelectedIndexChanged += new System.EventHandler(this.moveablesListBox_SelectedIndexChanged);
+            this.moveablesListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.moveablesListBox_MouseDown);
             // 
             // tabPage4
             // 
@@ -886,6 +891,21 @@
             this.routesListBox.TabIndex = 9;
             this.routesListBox.SelectedIndexChanged += new System.EventHandler(this.routesListBox_SelectedIndexChanged);
             // 
+            // moveableContextMenu
+            // 
+            this.moveableContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeCurrentLocationToolStripMenuItem});
+            this.moveableContextMenu.Name = "moveableContextMenu";
+            this.moveableContextMenu.ShowImageMargin = false;
+            this.moveableContextMenu.Size = new System.Drawing.Size(181, 48);
+            // 
+            // changeCurrentLocationToolStripMenuItem
+            // 
+            this.changeCurrentLocationToolStripMenuItem.Name = "changeCurrentLocationToolStripMenuItem";
+            this.changeCurrentLocationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeCurrentLocationToolStripMenuItem.Text = "Change current Location";
+            this.changeCurrentLocationToolStripMenuItem.Click += new System.EventHandler(this.changeCurrentLocationToolStripMenuItem_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -905,6 +925,7 @@
             this.tabPage5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.moveableContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -986,6 +1007,8 @@
         private System.Windows.Forms.ListBox routeLocationTwoListBox;
         private System.Windows.Forms.ListBox routeUsingListBox;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ContextMenuStrip moveableContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem changeCurrentLocationToolStripMenuItem;
 
     }
 }
