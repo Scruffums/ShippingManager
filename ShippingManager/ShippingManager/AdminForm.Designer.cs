@@ -412,6 +412,7 @@
             // 
             this.locationZipcodesServedTextBox.Enabled = false;
             this.locationZipcodesServedTextBox.Location = new System.Drawing.Point(10, 318);
+            this.locationZipcodesServedTextBox.MaxLength = 200000;
             this.locationZipcodesServedTextBox.Multiline = true;
             this.locationZipcodesServedTextBox.Name = "locationZipcodesServedTextBox";
             this.locationZipcodesServedTextBox.Size = new System.Drawing.Size(457, 88);

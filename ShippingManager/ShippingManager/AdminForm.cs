@@ -38,7 +38,7 @@ namespace ShippingManager
             locationTypeComboBox.SelectedIndex = 0;
             employeesListBox.Items.AddRange(sm.Employees);
             locationsListBox.Items.AddRange(sm.Locations);
-            moveablesListBox.Items.AddRange(sm.DeliveryVehicles);
+            moveablesListBox.Items.AddRange(sm.Moveables);
             routesListBox.Items.AddRange(sm.Routes);
             //routeLocationOneListBox.Items.AddRange(sm.Locations);
             //routeLocationTwoListBox.Items.AddRange(sm.Locations);
@@ -292,7 +292,23 @@ namespace ShippingManager
 
                 if (currentLocation is Abroad)
                 {
-                    (currentLocation as Abroad).ZipCodes = locationZipcodesServedTextBox.Text.Split(',');
+                    if (locationZipcodesServedTextBox.Text.StartsWith("<"))
+                    {
+                        //http://www.zipcodedownload.com/Directory/ZIP5/
+                        List<string> zipcodes = new List<string>();
+                        String text = locationZipcodesServedTextBox.Text;
+                        int i = 0;
+                        int j = 0;
+                        while ((i = text.IndexOf('(', i)) != -1)
+                        {
+                            j = text.IndexOf(')', i);
+                            zipcodes.Add(text.Substring(i + 1, 5));
+                            i += 6;
+                        }
+                        (currentLocation as Abroad).ZipCodes = zipcodes.ToArray();
+                    }
+                    else
+                        (currentLocation as Abroad).ZipCodes = locationZipcodesServedTextBox.Text.Split(',');
                 }
                 locationAddButton.Text = ADD;
             }

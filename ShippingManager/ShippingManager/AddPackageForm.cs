@@ -25,31 +25,41 @@ namespace ShippingManager
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            //TODO: Add error checking: empty fields, non-numeric, etc...
-            Address source = new Address(sourceAddresseeTextBox.Text, sourceStreetTextbox.Text, sourceZipTextBox.Text);
-            Address destination = new Address(destinationAddresseeTextBox.Text, destinationStreetTextBox.Text, destinationZipTextBox.Text);
-            float[] lhw = { float.Parse(lengthTextbox.Text),float.Parse(widthTextBox.Text),float.Parse(heightTextBox.Text)};
-            Package p = shippingSystem.AddPackage(weightClassComboBox.SelectedIndex, lhw, (serviceTypeComboBox.SelectedIndex==0)?Package.SERVICE_TYPE.Economy:Package.SERVICE_TYPE.Air, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
-            (parentForm as StoreFrontForm).updatePackageList();
+            float length=0;
+            float width=0;
 
-            PrintDialog pd = new PrintDialog();
-            PrinterSettings ps = new PrinterSettings();
-            pd.PrinterSettings = ps;
-            DialogResult dr = pd.ShowDialog();
-
-            if (dr == DialogResult.OK)
+            if (float.TryParse(lengthTextbox.Text, out length) && float.TryParse(widthTextBox.Text, out width))
             {
-                System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
-                privateFonts.AddFontFile("free3of9.ttf");
-                Font font = new Font(privateFonts.Families[0], 64);
+                //TODO: Add error checking: empty fields, non-numeric, etc...
+                Address source = new Address(sourceAddresseeTextBox.Text, sourceStreetTextbox.Text, sourceZipTextBox.Text);
+                Address destination = new Address(destinationAddresseeTextBox.Text, destinationStreetTextBox.Text, destinationZipTextBox.Text);
+                float[] lhw = { length, width, float.Parse(heightTextBox.Text) };
+                Package p = shippingSystem.AddPackage(weightClassComboBox.SelectedIndex, lhw, (serviceTypeComboBox.SelectedIndex == 0) ? Package.SERVICE_TYPE.Economy : Package.SERVICE_TYPE.Air, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
+                (parentForm as StoreFrontForm).updatePackageList();
 
-                PCPrint printer = new PCPrint(p.TrackingNumber);
-                printer.PrinterSettings.PrinterName = pd.PrinterSettings.PrinterName;
-                printer.PrinterFont = font;
-                printer.Print();
+                PrintDialog pd = new PrintDialog();
+                PrinterSettings ps = new PrinterSettings();
+                pd.PrinterSettings = ps;
+                DialogResult dr = pd.ShowDialog();
+
+                if (dr == DialogResult.OK)
+                {
+                    System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
+                    privateFonts.AddFontFile("free3of9.ttf");
+                    Font font = new Font(privateFonts.Families[0], 64);
+
+                    PCPrint printer = new PCPrint(p.TrackingNumber);
+                    printer.PrinterSettings.PrinterName = pd.PrinterSettings.PrinterName;
+                    printer.PrinterFont = font;
+                    printer.Print();
+                }
+
+                Close();
             }
-
-            Close();
+            else
+            {
+                MessageBox.Show("Invalid input");
+            }
         }
 
         private void AddPackageForm_FormClosing(object sender, FormClosingEventArgs e)
