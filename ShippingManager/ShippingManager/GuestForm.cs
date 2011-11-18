@@ -26,5 +26,36 @@ namespace ShippingManager
         {
             parentForm.Show();
         }
+
+        private void GuestForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string trackNumber = textBox1.Text;
+
+            if (shippingSystem.lookupTrackingNumber(trackNumber) == null)
+            {
+                MessageBox.Show("Tracking number does not exist.");
+            }
+            else
+            {
+                Package p = shippingSystem.lookupTrackingNumber(trackNumber);
+
+                foreach (Snapshot s in p.Snapshots)
+                {
+                    textBox2.Text = s + "\n\n";
+                }
+
+
+            }
+        }
     }
 }
