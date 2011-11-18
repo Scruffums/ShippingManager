@@ -99,5 +99,10 @@ namespace ShippingManager
         {
 
         }
+
+        private void StoreFrontForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
