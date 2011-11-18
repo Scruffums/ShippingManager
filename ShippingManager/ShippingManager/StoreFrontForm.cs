@@ -62,7 +62,7 @@ namespace ShippingManager
             if ((editButton.Enabled = deleteButton.Enabled = packageListBox.SelectedIndex != -1))
             {
                  Package currentPackage = packageListBox.SelectedItem as Package;
-                 packageInfoTextBox.Text = currentPackage.Source + "\n" + currentPackage.Destination + "\n" + currentPackage.MailService + "\n";
+                 packageInfoTextBox.Text = currentPackage.Source + "\r\n" + currentPackage.Destination + "\r\n" + currentPackage.MailService + "\r\n";
             }
         }
 
@@ -79,7 +79,6 @@ namespace ShippingManager
             PrinterSettings ps = new PrinterSettings();
             pd.PrinterSettings = ps;
             DialogResult dr = pd.ShowDialog();
-
             if (dr == DialogResult.OK)
             {
                 PCPrint printer = new PCPrint(currentPackage.TrackingNumber);
