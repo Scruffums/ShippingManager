@@ -5,6 +5,10 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// An instance of this object is the primary method of communication between all underlying shipping related objects and all of the UIs.
+    /// This class also handles	employee login and path finding.
+    /// </summary>
     [Serializable()]
     public class ShippingSystem
     {

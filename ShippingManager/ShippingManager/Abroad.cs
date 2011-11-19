@@ -1,10 +1,15 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Represents a generalized location determined by a group of zipcodes. (Typically used to represent all the zip codes of a county)
+    /// </summary>
     [Serializable()]
     public class Abroad : Location
     {
@@ -15,12 +20,20 @@ namespace ShippingManager
             ZipCodes = zipCodes;
         }
 
-        public String[] ZipCodes
+        /// <summary>
+        /// An array of type string, where each string is a 5 digit zipcode.
+        /// </summary>
+        public string[] ZipCodes
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Used to determine whether a partcular Abroad object contains a specified zip code
+        /// </summary>
+        /// <param name="zipCode">A String representing a zip code</param>
+        /// <returns></returns>
         public bool ContainsZipCode(string zipCode)
         {
             foreach (string i in ZipCodes)
@@ -30,6 +43,9 @@ namespace ShippingManager
             return false;
         }
 
+        /// <summary>
+        /// A convenience method for formatting the contained zip code strings into a single string where each zip code is seperated by a comma.
+        /// </summary>
         public string ZipcodesString 
         {
             get

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Represents all required information to describe a step in a package's route. (i.e. leaving a warehouse)
+    /// </summary>
     [Serializable()]
     public class Snapshot
     {

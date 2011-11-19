@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    ///Represents all of the pertaining details for a physcial address.
+    /// </summary>
     [Serializable()]
     public class Address
     {

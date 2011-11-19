@@ -6,6 +6,10 @@ using System.Security.Cryptography;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Abstract class which states required implemenation for any subclasses. Responsibilites are password hashing and matching, and id matching.
+    /// Also represents basic employee information pertinent to any employee (name, id, password).
+    /// </summary>
     [Serializable()]
     public abstract class Employee
     {
@@ -53,16 +57,32 @@ namespace ShippingManager
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Determines whether the provided string id and the id of an instance of this class match.
+        /// </summary>
+        /// <param name="id">string id to be matched against</param>
+        /// <returns>Returns true if id matches</returns>
         public bool IdMatch(string id)
         {
             return id.Equals(Id);
         }
 
+        /// <summary>
+        /// Hashes provided plain text password and checks for a match against this instance's password hash value
+        /// </summary>
+        /// <param name="plainTextPassword">string of a plaint text password</param>
+        /// <returns>Returns true if the plain text password matches</returns>
         public bool PasswordMatch(string plainTextPassword)
         {
             return hashPassword(plainTextPassword).Equals(passwordHash);
         }
 
+        /// <summary>
+        /// Password of this instance is changed if oldPassword matches the current password of this instance.
+        /// </summary>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
         public bool changePassword(string oldPassword, string newPassword)
         {
             if (PasswordMatch(oldPassword))
@@ -73,6 +93,12 @@ namespace ShippingManager
             return false;
         }
 
+        /// <summary>
+        /// Password of this instance is changed if the employee is of type AdminEmployee.
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
         public bool changePassword(Employee employee, string newPassword)
         {
             if (employee is AdminEmployee)

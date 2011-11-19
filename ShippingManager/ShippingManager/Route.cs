@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Represents all pertinent information to describe a route which consists of two endpoints a vehicle.
+    /// </summary>
     [Serializable()]
     public class Route
     {

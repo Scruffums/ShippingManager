@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Represents all pertinent information to describe a third party transport vehicle which travels between locations.
+    /// </summary>
     [Serializable()]
     public class Transport : Moveable
     {

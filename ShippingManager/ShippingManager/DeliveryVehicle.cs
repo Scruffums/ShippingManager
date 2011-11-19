@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Sublcass of Moveable, which represents all of the pertaining details for a delivery vehicle.
+    /// </summary>
     [Serializable()]
     public class DeliveryVehicle : Moveable
     {

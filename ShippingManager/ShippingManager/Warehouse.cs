@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Subclass of location, represents all pertinent information to describe a warehouse
+    /// </summary>
     [Serializable()]
     public class Warehouse : Location
     {

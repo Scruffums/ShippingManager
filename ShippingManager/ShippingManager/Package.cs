@@ -5,6 +5,10 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Represents all pertinent information to describe a package enroute. This includes snap shots of each step along the route, as well as the destination address
+    /// various other properties such as weight, fragility, delivery estimate, etc.
+    /// </summary>
     [Serializable()]
     public class Package
     {

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Abstract class which states required implemenation for any subclasses. Describes Package and route manipulation methods, and capicity related properties
+    /// </summary>
     [Serializable()]
     public abstract class Moveable
     {

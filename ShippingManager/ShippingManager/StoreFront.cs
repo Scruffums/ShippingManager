@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Represents all pertinent information to describe a store front which consists of routes and packages.
+    /// </summary>
     [Serializable()]
     public class StoreFront : Location
     {

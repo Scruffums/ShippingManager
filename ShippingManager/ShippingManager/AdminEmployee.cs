@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShippingManager
 {
+    /// <summary>
+    /// Sublcass of Employee, which represents an employee who does not actually work at any specified location, but does have all possible admin responsibilities
+    /// </summary>
     [Serializable()]
     public class AdminEmployee : Employee
     {
