@@ -33,6 +33,7 @@ namespace ShippingManager
             packageListBox.Items.AddRange(em.CurrentStoreFront.Packages);
         }
 
+        #region Listeners
         private void logoutButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -61,8 +62,8 @@ namespace ShippingManager
         {
             if ((editButton.Enabled = deleteButton.Enabled = packageListBox.SelectedIndex != -1))
             {
-                 Package currentPackage = packageListBox.SelectedItem as Package;
-                 packageInfoTextBox.Text = currentPackage.Source + "\r\n" + currentPackage.Destination + "\r\n" + currentPackage.MailService + "\r\n";
+                Package currentPackage = packageListBox.SelectedItem as Package;
+                packageInfoTextBox.Text = currentPackage.Source + "\r\n" + currentPackage.Destination + "\r\n" + currentPackage.MailService + "\r\n";
             }
         }
 
@@ -96,12 +97,9 @@ namespace ShippingManager
 
         private void editButton_Click(object sender, EventArgs e)
         {
+            //TODO: edit package logic
+        } 
+        #endregion
 
-        }
-
-        private void StoreFrontForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

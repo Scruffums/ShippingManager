@@ -18,6 +18,12 @@ namespace ShippingManager
             CurrentMoveable = move;
         }
 
+
+        public bool containsLocation(Location location)
+        {
+            return Locations[0].Equals(location) || Locations[1].Equals(location);
+        }
+
         public override bool Equals(object obj)
         {
             Route r = obj as Route;
@@ -26,21 +32,18 @@ namespace ShippingManager
             return r.Id == Id;
         }
 
-        public bool containsLocation(Location location)
-        {
-            return Locations[0].Equals(location) || Locations[1].Equals(location);
-        }
-
         public override string ToString()
         {
             return CurrentMoveable.StringType+": "+locations[0].Id+" "+CurrentMoveable.Id+" "+locations[1].Id;
         }
 
+        #region Public Properties
         public Moveable CurrentMoveable { get; set; }
         public bool Moveableless { get { return CurrentMoveable == null; } }
         public float DurationInDays { get; set; }
         public string Id { get; set; }
-        public Location[] Locations { get { return locations; } }
+        public Location[] Locations { get { return locations; } } 
+        #endregion
 
     }
 }

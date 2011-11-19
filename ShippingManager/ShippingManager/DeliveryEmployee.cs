@@ -8,15 +8,15 @@ namespace ShippingManager
     [Serializable()]
     public class DeliveryEmployee : Employee
     {
+        public DeliveryEmployee(string firstName, string middleName, string lastName, string id, string plainTextPassword)
+            : base(firstName, middleName, lastName, id, plainTextPassword)
+        {
+        }
+
         public Route CurrentRoute
         {
             get;
             set;
-        }
-
-        public DeliveryEmployee(string firstName, string middleName, string lastName, string id, string plainTextPassword)
-            : base(firstName, middleName, lastName, id, plainTextPassword)
-        {
         }
     }
 }

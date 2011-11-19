@@ -8,8 +8,6 @@ namespace ShippingManager
     [Serializable()]
     public class Abroad : Location
     {
-        //private int[] zipCodes;
-
         public Abroad(Address locationAddress, string[] zipCodes)
         {
             LocationAddress = locationAddress;

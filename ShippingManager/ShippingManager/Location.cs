@@ -8,6 +8,7 @@ namespace ShippingManager
     {
         private Address locationAddress;
 
+
         public override bool Equals(object obj)
         {
             Location l = obj as Location;
@@ -27,6 +28,7 @@ namespace ShippingManager
             get { return locationAddress; }
             set { locationAddress= value; }
         }
+
 
         public String StringType { get { if (this is StoreFront)return "Store Front"; else if (this is Warehouse)return "Warehouse"; else if (this is Abroad)return "Abroad"; else return "Delivery"; } }
 

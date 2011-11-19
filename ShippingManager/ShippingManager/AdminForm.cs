@@ -11,15 +11,18 @@ namespace ShippingManager
 {
     public partial class AdminForm : Form
     {
+        #region Constants
         const string ADD = "&Add and Clear";
         const string SAVE = "&Save and Clear";
         const string STOREFRONT = "Current Storefront:";
         const string WAREHOUSE = "Current Store Front or Warehouse:";
-        const string ROUTE = "Current Route: ";
+        const string ROUTE = "Current Route: "; 
+        #endregion
 
         ShippingSystem shippingSystem;
         Form parentForm;
 
+        #region Private Fields
         Employee currentEmployee;
         Location currentLocation;
         Moveable currentMoveable;
@@ -27,7 +30,8 @@ namespace ShippingManager
         bool addEmployee = true;
         bool addLocation = true;
         bool addMoveable = true;
-        bool addRoute = true;
+        bool addRoute = true; 
+        #endregion
                 
         public AdminForm(Form parent, ShippingSystem sm)
         {
@@ -44,6 +48,7 @@ namespace ShippingManager
             //routeLocationTwoListBox.Items.AddRange(sm.Locations);
             //routeUsingListBox.Items.AddRange(sm.RoutelessMoveable);
         }
+
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
@@ -340,7 +345,12 @@ namespace ShippingManager
             locationVolumeCapacityTextBox.Enabled = locationTypeComboBox.SelectedIndex == 1;
             locationZipcodesServedTextBox.Enabled = locationTypeComboBox.SelectedIndex == 2;
             locationStreetAddressTextBox.Enabled = locationZipCodetextBox.Enabled = !(locationTypeComboBox.SelectedIndex == 2);
-        } 
+        }
+
+        private void changeCurrentLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (moveablesListBox.SelectedItem as Moveable).changeLocation();
+        }
         #endregion
 
         #region MoveableTab
@@ -421,6 +431,13 @@ namespace ShippingManager
         {
             moveableEditButton.Enabled = moveablesListBox.SelectedIndex != -1;
         }
+
+        private void moveablesListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && moveablesListBox.SelectedIndex != -1)
+                moveableContextMenu.Show(moveablesListBox, new Point(e.X, e.Y));
+        }
+
         #endregion
 
         #region RouteTab
@@ -492,17 +509,5 @@ namespace ShippingManager
             routeUsingListBox.Items.AddRange(shippingSystem.RoutelessMoveable);
         } 
         #endregion
-
-        private void moveablesListBox_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right && moveablesListBox.SelectedIndex != -1)
-                moveableContextMenu.Show(moveablesListBox, new Point(e.X, e.Y));
-        }
-
-        private void changeCurrentLocationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (moveablesListBox.SelectedItem as Moveable).changeLocation();
-        }
-
     }
 }

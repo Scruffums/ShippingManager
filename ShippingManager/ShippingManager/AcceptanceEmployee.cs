@@ -8,15 +8,16 @@ namespace ShippingManager
     [Serializable()]
     public class AcceptanceEmployee : Employee
     {
-        public StoreFront CurrentStoreFront
-        {
-            get;
-            set;
-        }
 
         public AcceptanceEmployee(string firstName, string middleName, string lastName, string id, string plainTextPassword)
             : base(firstName, middleName, lastName, id, plainTextPassword)
         {
+        }
+        
+        public StoreFront CurrentStoreFront
+        {
+            get;
+            set;
         }
 
     }

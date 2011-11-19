@@ -27,6 +27,8 @@ namespace ShippingManager
             //this.deliveryVehicles.AddRange(deliveryVehicles);
         }
 
+
+        #region Public Methods
         public bool addRoute(Route r)
         {
             if (routes.Contains(r))
@@ -54,14 +56,18 @@ namespace ShippingManager
         {
             packages.Remove(package);
             currentVolume -= (int)package.Volume;
-        }
+        } 
+        #endregion
 
+
+        #region Public Properties
         public int VolumeAvailable { get { return VolumeCapacity - currentVolume; } }
 
         public int VolumeCapacity { get; set; }
 
         public Package[] Packages { get { return packages.ToArray(); } }
 
-        public Route[] Routes { get { return routes.ToArray(); } }
+        public Route[] Routes { get { return routes.ToArray(); } } 
+        #endregion
     }
 }

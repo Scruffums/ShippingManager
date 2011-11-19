@@ -41,29 +41,14 @@ namespace ShippingManager
                 Text = currentWarehouse.Id;
         }
 
-        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ChangePasswordForm c = new ChangePasswordForm(this, shippingSystem);
-            c.ShowDialog();
-        }
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            if (lookupTrackingNumber(addTextBox.Text))
-                addTextBox.Clear();
-            else
-            {
-                //TODO: add code to notify user if number is not found
-            }
-        }
 
         private bool lookupTrackingNumber(string trackingNumber)
         {
             Package p = shippingSystem.lookupTrackingNumber(trackingNumber);
             if (p != null)
             {
-                foreach(Moveable m in vehiclesListBox.Items)
-                    if(m.hasPackage(p))
+                foreach (Moveable m in vehiclesListBox.Items)
+                    if (m.hasPackage(p))
                     {
                         shippingSystem.movePackageToWarehouse(m, currentWarehouse, p);
                     }
@@ -80,70 +65,6 @@ namespace ShippingManager
                 receivingListBox.Items.AddRange(currentStoreFront.Packages);
             else
                 receivingListBox.Items.AddRange(currentWarehouse.Packages);
-        }
-
-        private void WarehouseForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            shippingSystem.logOut();
-            parentForm.Show();
-        }
-
-        private void logoutButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void scanButton_Click(object sender, EventArgs e)
-        {
-            //WIA Reference requires "embed interop types" property set to false
-            const string wiaFormatBMP = FormatID.wiaFormatBMP;// "{B96B3CAE-0728-11D3-9D7B-0000F81EF32E}";
-            CommonDialogClass wiaDiag = new CommonDialogClass();
-            WIA.ImageFile wiaImage = null;
-
-            wiaImage = wiaDiag.ShowAcquireImage(
-                    WiaDeviceType.ScannerDeviceType,
-                    WiaImageIntent.GrayscaleIntent,
-                    WiaImageBias.MaximizeQuality,
-                    wiaFormatBMP, true, true, false);
-            
-            byte[] buffer = (byte[])wiaImage.FileData.get_BinaryData();
-            MemoryStream ms = new MemoryStream(buffer);
-            Bitmap bmp = new Bitmap(Image.FromStream(ms));
-
-            ArrayList codes = new ArrayList();
-            BarcodeImaging.FullScanPage(ref codes, bmp, 75);
-            //BarcodeImaging.ScanPage(ref codes, bmp, 75, BarcodeImaging.ScanDirection.Horizontal, BarcodeImaging.BarcodeType.All);
-            foreach (string code in codes)
-                if (!lookupTrackingNumber(code))
-                    MessageBox.Show("Tracking number: " + code + "\n not found");
-        }
-
-        private void receivingListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            updateButtons();
-            Package p;
-            if (null != (p = receivingListBox.SelectedItem as Package))
-            {
-                Location nextLocation = shippingSystem.nextLocation(p);
-
-                if (currentStoreFront != null)
-                {
-                    foreach(Route r in currentStoreFront.Routes)
-                        if(r.containsLocation(nextLocation))
-                            vehicleLabel.Text+="\n"+r.CurrentMoveable;
-                }
-                else
-                {
-                    foreach (Route r in currentWarehouse.Routes)
-                        if (r.containsLocation(nextLocation))
-                            vehicleLabel.Text += "\n" + r.CurrentMoveable;
-                }
-            }
-        }
-
-        private void vehiclesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            updateButtons();
         }
 
         private void updateVehiclesListBox()
@@ -170,6 +91,87 @@ namespace ShippingManager
             distributeButton.Enabled = vehiclesListBox.SelectedIndex != -1;
         }
 
+        #region Listeners
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePasswordForm c = new ChangePasswordForm(this, shippingSystem);
+            c.ShowDialog();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (lookupTrackingNumber(addTextBox.Text))
+                addTextBox.Clear();
+            else
+            {
+                //TODO: add code to notify user if number is not found
+            }
+        }
+
+        private void WarehouseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            shippingSystem.logOut();
+            parentForm.Show();
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void scanButton_Click(object sender, EventArgs e)
+        {
+            //WIA Reference requires "embed interop types" property set to false
+            const string wiaFormatBMP = FormatID.wiaFormatBMP;// "{B96B3CAE-0728-11D3-9D7B-0000F81EF32E}";
+            CommonDialogClass wiaDiag = new CommonDialogClass();
+            WIA.ImageFile wiaImage = null;
+
+            wiaImage = wiaDiag.ShowAcquireImage(
+                    WiaDeviceType.ScannerDeviceType,
+                    WiaImageIntent.GrayscaleIntent,
+                    WiaImageBias.MaximizeQuality,
+                    wiaFormatBMP, true, true, false);
+
+            byte[] buffer = (byte[])wiaImage.FileData.get_BinaryData();
+            MemoryStream ms = new MemoryStream(buffer);
+            Bitmap bmp = new Bitmap(Image.FromStream(ms));
+
+            ArrayList codes = new ArrayList();
+            BarcodeImaging.FullScanPage(ref codes, bmp, 75);
+            //BarcodeImaging.ScanPage(ref codes, bmp, 75, BarcodeImaging.ScanDirection.Horizontal, BarcodeImaging.BarcodeType.All);
+            foreach (string code in codes)
+                if (!lookupTrackingNumber(code))
+                    MessageBox.Show("Tracking number: " + code + "\n not found");
+        }
+
+        private void receivingListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateButtons();
+            Package p;
+            if (null != (p = receivingListBox.SelectedItem as Package))
+            {
+                Location nextLocation = shippingSystem.nextLocation(p);
+
+                if (currentStoreFront != null)
+                {
+                    foreach (Route r in currentStoreFront.Routes)
+                        if (r.containsLocation(nextLocation))
+                            vehicleLabel.Text += "\n" + r.CurrentMoveable;
+                }
+                else
+                {
+                    foreach (Route r in currentWarehouse.Routes)
+                        if (r.containsLocation(nextLocation))
+                            vehicleLabel.Text += "\n" + r.CurrentMoveable;
+                }
+            }
+        }
+
+        private void vehiclesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateButtons();
+        }
+
         private void loadButton_Click(object sender, EventArgs e)
         {
             Package p = receivingListBox.SelectedItem as Package;
@@ -191,6 +193,7 @@ namespace ShippingManager
             Moveable m = vehiclesListBox.SelectedItem as Moveable;
             m.changeLocation();
             updateVehiclesListBox();
-        }
+        } 
+        #endregion
     }
 }

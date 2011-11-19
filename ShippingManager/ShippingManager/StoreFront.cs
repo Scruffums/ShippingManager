@@ -9,7 +9,6 @@ namespace ShippingManager
     public class StoreFront : Location
     {
         private List<Package> packages;
-        //private List<DeliveryVehicle> deliveryVehicles;
         private List<Route> routes;
 
         public StoreFront(Address locationAddress)
@@ -21,6 +20,7 @@ namespace ShippingManager
             //this.deliveryVehicles.AddRange(deliveryVehicles);
         }
 
+        #region Public Methods
         public bool addRoute(Route r)
         {
             if (routes.Contains(r))
@@ -42,25 +42,13 @@ namespace ShippingManager
         public void removePackage(Package package)
         {
             packages.Remove(package);
-        }
+        } 
+        #endregion
 
-        //public bool addDeliveryVehicle(DeliveryVehicle deliveryVehicle)
-        //{
-        //    if (deliveryVehicles.Contains(deliveryVehicle))
-        //        return false;
-
-        //    deliveryVehicles.Add(deliveryVehicle);
-        //    return true;
-        //}
-
-        //public void removeDeliveryVehicle(DeliveryVehicle deliveryVehicle)
-        //{
-        //    deliveryVehicles.Remove(deliveryVehicle);
-        //}
-
-
+        #region Public Properties
         public Package[] Packages { get { return packages.ToArray(); } }
 
-        public Route[] Routes { get { return routes.ToArray(); } }
+        public Route[] Routes { get { return routes.ToArray(); } } 
+        #endregion
     }
 }

@@ -20,7 +20,6 @@ namespace ShippingManager
         {
         }
 
-        public bool Driverless { get { return driver == null; } }
 
         public bool assignDriver(DeliveryEmployee em)
         {
@@ -37,5 +36,9 @@ namespace ShippingManager
             if (driver.Equals(em))
                 driver = null;
         }
+
+
+        public bool Driverless { get { return driver == null; } }
+
     }
 }

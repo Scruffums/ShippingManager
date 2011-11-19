@@ -8,11 +8,13 @@ namespace ShippingManager
     [Serializable()]
     public abstract class Moveable
     {
+        #region Private Fields
         private List<Package> packages;
         private int currentWeight, currentVolume;
         private Location currentLocation;
         private Location home;
-        private Route route;
+        private Route route; 
+        #endregion
 
 
         //Maybe I should use a default value instead of overloading constructors...
@@ -30,6 +32,7 @@ namespace ShippingManager
             Id = id;
         }
 
+        #region Public Methods
         public bool hasPackage(Package p)
         {
             return -1 != packages.IndexOf(p);
@@ -99,16 +102,18 @@ namespace ShippingManager
             if (m == null)
                 return false;
             return m.Id == Id;
-        }
+        } 
+        #endregion
 
-
+        #region Public Properties
         public bool Routeless { get { return route == null; } }
 
         public String Id { get; set; }
 
-        public String StringType { get { return (this is Transport)? ((this as Transport).TransportType==0)? "Ground Transport":"Air Transport" : "Delivery Vehicle"; } }
+        public String StringType { get { return (this is Transport) ? ((this as Transport).TransportType == 0) ? "Ground Transport" : "Air Transport" : "Delivery Vehicle"; } }
 
         public int VolumeAvailable { get { return VolumeCapacity - currentVolume; } }
+
         public int WeightAvailable { get { return WeightCapacity - currentWeight; } }
 
         public int VolumeCapacity { get; set; }
@@ -127,9 +132,10 @@ namespace ShippingManager
 
         public void changeLocation()
         {
-            currentLocation = (route.Locations[0]==currentLocation)? route.Locations[1]: route.Locations[0];
+            currentLocation = (route.Locations[0] == currentLocation) ? route.Locations[1] : route.Locations[0];
         }
 
-        public Package[] Packages { get { return packages.ToArray(); } }
+        public Package[] Packages { get { return packages.ToArray(); } } 
+        #endregion
     }
 }

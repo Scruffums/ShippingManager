@@ -20,6 +20,22 @@ namespace ShippingManager
             Zip = zip;
         }
 
+        
+        public override bool Equals(object obj)
+        {
+            Address address = obj as Address;
+            if (address == null)
+                return false;
+
+            return (address.StreetAddress == StreetAddress && address.Zip == Zip);
+        }
+
+        public override string ToString()
+        {
+            return Addressee + "\n" + StreetAddress + "\n" + City + "\n" + State + "\n" + Zip;
+        }
+
+        
         public string Addressee { get; set; }
 
         public string StreetAddress { get; set; }
@@ -30,18 +46,5 @@ namespace ShippingManager
 
         public string Zip { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            Address address = obj as Address;
-            if(address==null)
-                return false;
-
-            return (address.StreetAddress == StreetAddress && address.Zip == Zip);
-        }
-
-        public override string ToString()
-        {
-            return Addressee + "\n" + StreetAddress + "\n" + City + "\n" + State + "\n" + Zip;
-        }
     }
 }

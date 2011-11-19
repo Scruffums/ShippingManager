@@ -8,12 +8,14 @@ namespace ShippingManager
     [Serializable()]
     public class Package
     {
+        #region Private Fields
         private DateTime acceptedDate;
         private DateTime deliveryEstimate;
-        private  float[] size;
+        private float[] size;
         private List<Snapshot> snapshots;
         private Location destinationLocation;
-        private  bool delivered;
+        private bool delivered; 
+        #endregion
 
         public enum SERVICE_TYPE
         {
@@ -53,17 +55,18 @@ namespace ShippingManager
             deliveryEstimate = acceptedDate.AddDays(travelTime);
         }
 
+
         public void takeSnapshot(String message, Location location)
         {
             snapshots.Add(new Snapshot(message,location));
         }
-
 
         private String generateTrackingNumber()
         {
             return DateTime.Now.Ticks.ToString();
         }
 
+        #region Overriden Methods
         public override string ToString()
         {
             return TrackingNumber;
@@ -74,9 +77,11 @@ namespace ShippingManager
             Package p = obj as Package;
             if (p == null)
                 return false;
-            return p.TrackingNumber==TrackingNumber;
-        }
+            return p.TrackingNumber == TrackingNumber;
+        } 
+        #endregion
 
+        #region Public Properties
         public float Volume { get { return size[0] * size[1] * size[2]; } }
 
         public DateTime AcceptedDate { get { return acceptedDate; } }
@@ -87,7 +92,7 @@ namespace ShippingManager
 
         public int Weight { get; set; }
 
-        public float[] Size { get{return size;} set{size=value;} }
+        public float[] Size { get { return size; } set { size = value; } }
 
         public SERVICE_TYPE MailService { get; set; }
 
@@ -107,6 +112,7 @@ namespace ShippingManager
 
         public bool Delivered { get { return delivered; } set { delivered = value; if (Delivered)CurrentLocation = null; } }
 
-        public Snapshot[] Snapshots { get { return snapshots.ToArray(); } }
+        public Snapshot[] Snapshots { get { return snapshots.ToArray(); } } 
+        #endregion
     }
 }
