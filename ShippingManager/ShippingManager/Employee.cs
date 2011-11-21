@@ -128,7 +128,8 @@ namespace ShippingManager
         } 
         #endregion
 
-        #region Public Fields
+        #region Public Properties
+
         public string FirstName
         {
             get;
@@ -169,7 +170,7 @@ namespace ShippingManager
             set;
         }
 
-        public String StringType { get { if (this is AdminEmployee)return "Admin"; else if (this is AcceptanceEmployee)return "Acceptance"; else if (this is WarehouseEmployee)return "Warehouse"; else return "Delivery"; } }
+        public string StringType { get { if (this is AdminEmployee)return "Admin"; else if (this is AcceptanceEmployee)return "Acceptance"; else if (this is WarehouseEmployee)return "Warehouse"; else return "Delivery"; } }
 
         public string PasswordHash
         {

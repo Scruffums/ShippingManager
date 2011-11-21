@@ -78,11 +78,6 @@ namespace ShippingManager
             home = null;
         }
 
-        public override string ToString()
-        {
-            return StringType + ": " + Id;
-        }
-
         public bool assignRoute(Route rou)
         {
             if (Routeless)
@@ -99,13 +94,24 @@ namespace ShippingManager
                 route = null;
         }
 
+        public void changeLocation()
+        {
+            currentLocation = (route.Locations[0] == currentLocation) ? route.Locations[1] : route.Locations[0];
+        }
+
         public override bool Equals(object obj)
         {
             Moveable m = obj as Moveable;
             if (m == null)
                 return false;
             return m.Id == Id;
-        } 
+        }
+
+        public override string ToString()
+        {
+            return StringType + ": " + Id;
+        }
+
         #endregion
 
         #region Public Properties
@@ -132,11 +138,6 @@ namespace ShippingManager
         public Location Home { get { return home; } }
 
         public Route CurrentRoute { get { return route; } set { route = value; } }
-
-        public void changeLocation()
-        {
-            currentLocation = (route.Locations[0] == currentLocation) ? route.Locations[1] : route.Locations[0];
-        }
 
         public Package[] Packages { get { return packages.ToArray(); } } 
         #endregion

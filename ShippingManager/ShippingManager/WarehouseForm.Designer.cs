@@ -203,9 +203,11 @@
             // vehicleLabel
             // 
             this.vehicleLabel.AutoSize = true;
-            this.vehicleLabel.Location = new System.Drawing.Point(224, 53);
+            this.vehicleLabel.Location = new System.Drawing.Point(224, 64);
+            this.vehicleLabel.MaximumSize = new System.Drawing.Size(150, 250);
+            this.vehicleLabel.MinimumSize = new System.Drawing.Size(150, 250);
             this.vehicleLabel.Name = "vehicleLabel";
-            this.vehicleLabel.Size = new System.Drawing.Size(0, 13);
+            this.vehicleLabel.Size = new System.Drawing.Size(150, 250);
             this.vehicleLabel.TabIndex = 45;
             // 
             // WarehouseForm

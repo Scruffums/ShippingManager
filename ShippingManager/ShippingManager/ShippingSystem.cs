@@ -20,7 +20,11 @@ namespace ShippingManager
         private List<Location> locations;
         private List<Employee> employees;
         private List<Moveable> moveables;
-        private List<Route> routes; 
+        private List<Route> routes;
+
+        private float[,] groundWeightedPathMatrix, airWeightedPathMatrix;
+
+        private int[,] groundPathMatrix, airPathMatrix;
         #endregion
 
         public ShippingSystem()
@@ -140,10 +144,6 @@ namespace ShippingManager
 
             return augmentedPath;
         } 
-
-        private float[,] groundWeightedPathMatrix, airWeightedPathMatrix;
-
-        private int[,] groundPathMatrix, airPathMatrix;
 
         private int determineAirTravelTime(Location startLocation, Location endLocation)
         {
@@ -307,7 +307,7 @@ namespace ShippingManager
 
 
         #region Package Related Methods
-        public Package AddPackage(int weight, float[] size, Package.SERVICE_TYPE mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
+        public Package addPackage(int weight, float[] size, Package.SERVICE_TYPE mailService, bool fragile, bool irregular, bool perishable, Address source, Address destination)
         {
             Location destinationLocation = determineAbroad(destination.Zip);
             if (destinationLocation == null)
@@ -323,7 +323,7 @@ namespace ShippingManager
             return p;
         }
 
-        public Package lookupTrackingNumber(string trackingNumber)
+        public Package lookUpTrackingNumber(string trackingNumber)
         {
             foreach (Package p in packages)
                 if (p.TrackingNumber == trackingNumber)
@@ -384,6 +384,8 @@ namespace ShippingManager
         public Moveable[] Moveables { get { return moveables.ToArray(); } }
 
         public Route[] Routes { get { return routes.ToArray(); } }
+
+        public Route[] DeliveryRoutes { get { List<Route> temp = new List<Route>(); foreach (Route r in routes) if (r.CurrentMoveable is DeliveryVehicle) temp.Add(r); return temp.ToArray(); } }
 
         public Route[] GroundRoutes { get { List<Route> temp = new List<Route>(); foreach (Route r in routes)if (r.CurrentMoveable is DeliveryVehicle || (r.CurrentMoveable as Transport).TransportType == Transport.TRANSPORT_TYPES.ground)temp.Add(r); return temp.ToArray(); } }
 

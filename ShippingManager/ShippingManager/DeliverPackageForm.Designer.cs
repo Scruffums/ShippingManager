@@ -33,7 +33,7 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.packagesListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.detailsTextBox = new System.Windows.Forms.TextBox();
             this.deliverButton = new System.Windows.Forms.Button();
             this.postponeButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
@@ -83,14 +83,14 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Packages:";
             // 
-            // textBox1
+            // detailsTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(277, 40);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(275, 238);
-            this.textBox1.TabIndex = 4;
+            this.detailsTextBox.Location = new System.Drawing.Point(277, 40);
+            this.detailsTextBox.Multiline = true;
+            this.detailsTextBox.Name = "detailsTextBox";
+            this.detailsTextBox.ReadOnly = true;
+            this.detailsTextBox.Size = new System.Drawing.Size(275, 238);
+            this.detailsTextBox.TabIndex = 4;
             // 
             // deliverButton
             // 
@@ -131,7 +131,7 @@
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.postponeButton);
             this.Controls.Add(this.deliverButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.detailsTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.packagesListBox);
             this.Controls.Add(this.menuStrip1);
@@ -153,7 +153,7 @@
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ListBox packagesListBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox detailsTextBox;
         private System.Windows.Forms.Button deliverButton;
         private System.Windows.Forms.Button postponeButton;
         private System.Windows.Forms.Button logoutButton;

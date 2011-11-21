@@ -63,7 +63,7 @@ namespace ShippingManager
             if ((editButton.Enabled = deleteButton.Enabled = packageListBox.SelectedIndex != -1))
             {
                 Package currentPackage = packageListBox.SelectedItem as Package;
-                packageInfoTextBox.Text = currentPackage.Source + "\r\n" + currentPackage.Destination + "\r\n" + currentPackage.MailService + "\r\n";
+                packageInfoTextBox.Text = currentPackage.Source + "\r\n\r\n" + currentPackage.Destination + "\r\n\r\n" + currentPackage.MailService + "\r\n\r\n";
             }
         }
 

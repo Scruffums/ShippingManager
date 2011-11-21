@@ -33,7 +33,7 @@ namespace ShippingManager
             set { locationAddress= value; }
         }
 
-        public String StringType { get { if (this is StoreFront)return "Store Front"; else if (this is Warehouse)return "Warehouse"; else if (this is Abroad)return "Abroad"; else return "Delivery"; } }
+        public string StringType { get { if (this is StoreFront)return "Store Front"; else if (this is Warehouse)return "Warehouse"; else if (this is Abroad)return "Abroad"; else return "Delivery"; } }
 
         public string Id { get { return locationAddress.Addressee; } set { locationAddress.Addressee = value; } }
 

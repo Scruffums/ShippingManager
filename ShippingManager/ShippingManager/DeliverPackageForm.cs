@@ -46,7 +46,12 @@ namespace ShippingManager
 
         private void packagesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            deliverButton.Enabled = postponeButton.Enabled = packagesListBox.SelectedIndex != -1;
+            if (deliverButton.Enabled = postponeButton.Enabled = packagesListBox.SelectedIndex != -1)
+            {
+                Package currentPackage = (packagesListBox.SelectedItem as Package);
+                detailsTextBox.Text = currentPackage.Source + "\r\n\r\n" + currentPackage.Destination + "\r\n\r\n" + currentPackage.MailService + "\r\n\r\n";
+            }
+
         }
 
         public void updatePackagesListBox()

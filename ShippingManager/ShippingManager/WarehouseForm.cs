@@ -44,7 +44,7 @@ namespace ShippingManager
 
         private bool lookupTrackingNumber(string trackingNumber)
         {
-            Package p = shippingSystem.lookupTrackingNumber(trackingNumber);
+            Package p = shippingSystem.lookUpTrackingNumber(trackingNumber);
             if (p != null)
             {
                 foreach (Moveable m in vehiclesListBox.Items)

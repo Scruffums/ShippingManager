@@ -207,7 +207,7 @@ namespace ShippingManager
                 case 3://Delivery
                     employeeCurrentLabel.Text = ROUTE;
                     employeeCurrentComboBox.Items.Clear();
-                    employeeCurrentComboBox.Items.AddRange(shippingSystem.Routes);
+                    employeeCurrentComboBox.Items.AddRange(shippingSystem.DeliveryRoutes);
                     break;
             }
         }

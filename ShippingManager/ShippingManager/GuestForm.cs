@@ -36,17 +36,17 @@ namespace ShippingManager
         {
             string trackNumber = textBox1.Text;
 
-            if (shippingSystem.lookupTrackingNumber(trackNumber) == null)
+            if (shippingSystem.lookUpTrackingNumber(trackNumber) == null)
             {
                 MessageBox.Show(this,"Tracking number does not exist.");
             }
             else
             {
-                Package p = shippingSystem.lookupTrackingNumber(trackNumber);
+                Package p = shippingSystem.lookUpTrackingNumber(trackNumber);
 
                 foreach (Snapshot s in p.Snapshots)
                 {
-                    textBox2.Text += s + "\r\n";
+                    textBox2.Text += s + "\r\n\r\n";
                 }
             }
         }

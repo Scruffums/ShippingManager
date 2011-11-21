@@ -71,10 +71,6 @@ namespace ShippingManager
         }
 
         #region Overriden Methods
-        public override string ToString()
-        {
-            return TrackingNumber;
-        }
 
         public override bool Equals(object obj)
         {
@@ -82,7 +78,13 @@ namespace ShippingManager
             if (p == null)
                 return false;
             return p.TrackingNumber == TrackingNumber;
-        } 
+        }
+
+        public override string ToString()
+        {
+            return TrackingNumber;
+        }
+
         #endregion
 
         #region Public Properties

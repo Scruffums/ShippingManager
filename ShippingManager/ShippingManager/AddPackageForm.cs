@@ -25,16 +25,23 @@ namespace ShippingManager
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            float length=0;
-            float width=0;
+            float length = 0;
+            float width = 0;
+            float height = 0;
+            float insuranceAmount = 0;
+            int zip = 0;
 
-            if (float.TryParse(lengthTextbox.Text, out length) && float.TryParse(widthTextBox.Text, out width))
+
+            if (float.TryParse(lengthTextbox.Text, out length) && float.TryParse(widthTextBox.Text, out width) && float.TryParse(heightTextBox.Text, out height) &&
+                float.TryParse(insuranceAmountTextBox.Text, out insuranceAmount) && destinationZipTextBox.Text.Length == 5 && int.TryParse(destinationZipTextBox.Text, out zip) &&
+                sourceZipTextBox.Text.Length == 5 && int.TryParse(sourceZipTextBox.Text, out zip) && (sourceStreetTextbox.Text != "") && (destinationAddresseeTextBox.Text != "") &&
+                (sourceStreetTextbox.Text != "") && (destinationStreetTextBox.Text != ""))
             {
                 //TODO: Add error checking: empty fields, non-numeric, etc...
                 Address source = new Address(sourceAddresseeTextBox.Text, sourceStreetTextbox.Text, sourceZipTextBox.Text);
                 Address destination = new Address(destinationAddresseeTextBox.Text, destinationStreetTextBox.Text, destinationZipTextBox.Text);
-                float[] lhw = { length, width, float.Parse(heightTextBox.Text) };
-                Package p = shippingSystem.AddPackage(weightClassComboBox.SelectedIndex, lhw, (serviceTypeComboBox.SelectedIndex == 0) ? Package.SERVICE_TYPE.Economy : Package.SERVICE_TYPE.Air, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
+                float[] lhw = { length, width, height};
+                Package p = shippingSystem.addPackage(weightClassComboBox.SelectedIndex, lhw, (serviceTypeComboBox.SelectedIndex == 0) ? Package.SERVICE_TYPE.Economy : Package.SERVICE_TYPE.Air, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
                 (parentForm as StoreFrontForm).updatePackageList();
 
                 PrintDialog pd = new PrintDialog();

@@ -35,7 +35,7 @@ namespace ShippingManager
 
         public override string ToString()
         {
-            return Addressee + "\n" + StreetAddress + "\n" + City + "\n" + State + "\n" + Zip;
+            return Addressee + "\r\n" + StreetAddress + "\r\n" + City + ", " + State + ", " + Zip;
         }
 
         
