@@ -38,7 +38,7 @@ namespace ShippingManager
             string newPassword = newPasswordTextBox.Text;
             string newPasswordConfirm = confirmPasswordTextBox.Text;
 
-            if (newPassword == newPasswordConfirm)
+            if (newPassword == newPasswordConfirm && newPassword!="")
             {
 
                 if (shippingSystem.LoggedInEmployee.changePassword(oldPassword, newPassword) == false)

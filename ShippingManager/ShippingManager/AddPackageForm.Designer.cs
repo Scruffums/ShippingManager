@@ -71,6 +71,7 @@
             this.insuranceCheckBox.TabIndex = 114;
             this.insuranceCheckBox.Text = "Insure Package";
             this.insuranceCheckBox.UseVisualStyleBackColor = true;
+            this.insuranceCheckBox.CheckedChanged += new System.EventHandler(this.insuranceCheckBox_CheckedChanged);
             // 
             // fragileCheckBox
             // 

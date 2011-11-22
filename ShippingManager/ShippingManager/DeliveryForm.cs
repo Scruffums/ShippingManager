@@ -54,10 +54,13 @@ namespace ShippingManager
             shippingSystem.deliverPackage(package);
             if (customerReceivedRadioButton.Checked)
                 package.takeSnapshot(RECEIVED_BY_RECEPIENT, (shippingSystem.LoggedInEmployee as DeliveryEmployee).CurrentRoute.CurrentMoveable.CurrentLocation);
-            else if(customerNotHomeRadioButton.Checked)
+            else if (customerNotHomeRadioButton.Checked)
                 package.takeSnapshot(LEFT_AT_ADDRESS, (shippingSystem.LoggedInEmployee as DeliveryEmployee).CurrentRoute.CurrentMoveable.CurrentLocation);
             else
-                package.takeSnapshot(RECEIVED_BY_OTHER+": "+familyMemberTextBox.Text, (shippingSystem.LoggedInEmployee as DeliveryEmployee).CurrentRoute.CurrentMoveable.CurrentLocation);
+            {
+                //TODO: Make sure familyMemberTextBox.Text is not empty. If it is the user should be notified, and all three lines after this comment should not be executed (the easiest way would be to use an empty return statement (e.g. return;)).
+                package.takeSnapshot(RECEIVED_BY_OTHER + ": " + familyMemberTextBox.Text, (shippingSystem.LoggedInEmployee as DeliveryEmployee).CurrentRoute.CurrentMoveable.CurrentLocation);
+            }
 
             parentForm.updatePackagesListBox();
             Close();

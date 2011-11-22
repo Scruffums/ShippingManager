@@ -32,8 +32,8 @@ namespace ShippingManager
             int zip = 0;
 
 
-            if (float.TryParse(lengthTextbox.Text, out length) && float.TryParse(widthTextBox.Text, out width) && float.TryParse(heightTextBox.Text, out height) &&
-                float.TryParse(insuranceAmountTextBox.Text, out insuranceAmount) && destinationZipTextBox.Text.Length == 5 && int.TryParse(destinationZipTextBox.Text, out zip) &&
+            if (float.TryParse(lengthTextbox.Text, out length) && float.TryParse(widthTextBox.Text, out width) && float.TryParse(heightTextBox.Text, out height) && 
+                ( insuranceCheckBox.Checked == float.TryParse(insuranceAmountTextBox.Text, out insuranceAmount)) && destinationZipTextBox.Text.Length == 5 && int.TryParse(destinationZipTextBox.Text, out zip) &&
                 sourceZipTextBox.Text.Length == 5 && int.TryParse(sourceZipTextBox.Text, out zip) && (sourceStreetTextbox.Text != "") && (destinationAddresseeTextBox.Text != "") &&
                 (sourceStreetTextbox.Text != "") && (destinationStreetTextBox.Text != ""))
             {
@@ -77,6 +77,11 @@ namespace ShippingManager
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void insuranceCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            insuranceAmountTextBox.Enabled = insuranceCheckBox.Checked;
         }
     }
 }
