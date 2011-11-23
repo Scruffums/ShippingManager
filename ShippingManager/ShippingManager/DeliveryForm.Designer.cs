@@ -136,7 +136,7 @@
             this.responsibilityCheckBox.Size = new System.Drawing.Size(418, 17);
             this.responsibilityCheckBox.TabIndex = 22;
             this.responsibilityCheckBox.Text = "By checking this box you accept full responsibility for this package and its cont" +
-    "ents.";
+                "ents.";
             this.responsibilityCheckBox.UseVisualStyleBackColor = true;
             this.responsibilityCheckBox.CheckedChanged += new System.EventHandler(this.responsibilityCheckBox_CheckedChanged);
             // 
@@ -193,6 +193,7 @@
             this.Name = "DeliveryForm";
             this.Text = "Delivery";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeliveryForm_FormClosing);
+            this.Load += new System.EventHandler(this.DeliveryForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -104,7 +104,7 @@ namespace ShippingManager
                 addTextBox.Clear();
             else
             {
-                //TODO: add code to notify user if number is not found
+                MessageBox.Show("Tracking number was not found.");
             }
         }
 
@@ -195,5 +195,10 @@ namespace ShippingManager
             updateVehiclesListBox();
         } 
         #endregion
+
+        private void WarehouseForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

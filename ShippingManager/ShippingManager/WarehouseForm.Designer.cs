@@ -234,6 +234,7 @@
             this.Name = "WarehouseForm";
             this.Text = "Warehouse";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WarehouseForm_FormClosing);
+            this.Load += new System.EventHandler(this.WarehouseForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

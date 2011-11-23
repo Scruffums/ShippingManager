@@ -148,7 +148,12 @@ namespace ShippingManager
                         idAvailable = shippingSystem.addDeliveryEmployee(firstNameTextBox.Text, middleNameTextBox.Text, lastNameTextBox.Text, employeeIdTextBox.Text, confirmPasswordTextBox.Text, employeeCurrentComboBox.SelectedItem as Route); break;
                 }
 
-                //TODO: notify user that the ID has already been used if idAvailable == false;
+                if (idAvailable == false)
+                {
+                    MessageBox.Show("This ID has already been used.");
+
+                }
+                
             }
             else//Edit employee
             {
@@ -176,7 +181,8 @@ namespace ShippingManager
                     }
                     else
                     {
-                        //TODO: Notify user that passwords do not match
+                        
+                        MessageBox.Show("Passwords do not match.");
                     }
                 }
 
@@ -509,5 +515,10 @@ namespace ShippingManager
             routeUsingListBox.Items.AddRange(shippingSystem.RoutelessMoveable);
         } 
         #endregion
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

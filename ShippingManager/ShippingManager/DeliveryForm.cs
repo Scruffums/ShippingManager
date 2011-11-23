@@ -58,12 +58,25 @@ namespace ShippingManager
                 package.takeSnapshot(LEFT_AT_ADDRESS, (shippingSystem.LoggedInEmployee as DeliveryEmployee).CurrentRoute.CurrentMoveable.CurrentLocation);
             else
             {
-                //TODO: Make sure familyMemberTextBox.Text is not empty. If it is the user should be notified, and all three lines after this comment should not be executed (the easiest way would be to use an empty return statement (e.g. return;)).
-                package.takeSnapshot(RECEIVED_BY_OTHER + ": " + familyMemberTextBox.Text, (shippingSystem.LoggedInEmployee as DeliveryEmployee).CurrentRoute.CurrentMoveable.CurrentLocation);
+                
+                if (familyMemberTextBox.Text == null)
+                {
+                    MessageBox.Show("Please enter the name of who accepted the package.");
+                    return;
+                }
+                else
+                {
+                    package.takeSnapshot(RECEIVED_BY_OTHER + ": " + familyMemberTextBox.Text, (shippingSystem.LoggedInEmployee as DeliveryEmployee).CurrentRoute.CurrentMoveable.CurrentLocation);
+                }
             }
 
             parentForm.updatePackagesListBox();
             Close();
+        }
+
+        private void DeliveryForm_Load(object sender, EventArgs e)
+        {
+
         }
 
     }
