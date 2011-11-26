@@ -277,18 +277,21 @@ namespace ShippingManager
                             //http://www.zipcodedownload.com/Directory/ZIP5/
                             List<string> zipcodes = new List<string>();
                             String text = locationZipcodesServedTextBox.Text;
-                            int i=0;
+                            int i = 0;
                             int j = 0;
-                            while((i=text.IndexOf('(',i))!=-1)
+                            while ((i = text.IndexOf('(', i)) != -1)
                             {
                                 j = text.IndexOf(')', i);
-                                zipcodes.Add(text.Substring(i+1,5));
-                                i+=6;
+                                zipcodes.Add(text.Substring(i + 1, 5));
+                                i += 6;
                             }
-                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, zipcodes.ToArray()); break;
+                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, zipcodes.ToArray()[0], zipcodes.ToArray()); break;
                         }
                         else
-                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, locationZipCodetextBox.Text, locationZipcodesServedTextBox.Text.Split(',')); break;
+                        {
+                            string[] temp = locationZipcodesServedTextBox.Text.Split(',');
+                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, temp[0], temp); break;
+                        }
                 }
                 //TODO: Inform user that the location was not added because the address has already been used by another location
             }

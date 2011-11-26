@@ -42,6 +42,7 @@
             this.packageInfoTextBox = new System.Windows.Forms.TextBox();
             this.packageContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.packageContextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -158,16 +159,24 @@
             // packageContextMenu
             // 
             this.packageContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.printToolStripMenuItem});
+            this.printToolStripMenuItem,
+            this.copyTrackingToolStripMenuItem});
             this.packageContextMenu.Name = "packageContextMenu";
-            this.packageContextMenu.Size = new System.Drawing.Size(147, 26);
+            this.packageContextMenu.Size = new System.Drawing.Size(162, 70);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.printToolStripMenuItem.Text = "Print Selected";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
+            // copyTrackingToolStripMenuItem
+            // 
+            this.copyTrackingToolStripMenuItem.Name = "copyTrackingToolStripMenuItem";
+            this.copyTrackingToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.copyTrackingToolStripMenuItem.Text = "Copy Tracking #";
+            this.copyTrackingToolStripMenuItem.Click += new System.EventHandler(this.copyTrackingToolStripMenuItem_Click);
             // 
             // StoreFrontForm
             // 
@@ -210,6 +219,7 @@
         private System.Windows.Forms.TextBox packageInfoTextBox;
         private System.Windows.Forms.ContextMenuStrip packageContextMenu;
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyTrackingToolStripMenuItem;
 
     }
 }

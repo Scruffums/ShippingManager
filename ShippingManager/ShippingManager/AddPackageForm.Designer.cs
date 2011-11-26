@@ -220,6 +220,7 @@
             // 
             // insuranceAmountTextBox
             // 
+            this.insuranceAmountTextBox.Enabled = false;
             this.insuranceAmountTextBox.Location = new System.Drawing.Point(413, 233);
             this.insuranceAmountTextBox.Name = "insuranceAmountTextBox";
             this.insuranceAmountTextBox.Size = new System.Drawing.Size(100, 20);
@@ -287,7 +288,7 @@
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(181, 28);
             this.acceptButton.TabIndex = 87;
-            this.acceptButton.Text = "Accept and Print Label";
+            this.acceptButton.Text = "&Accept and Print Label";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
             // 
@@ -314,7 +315,7 @@
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(66, 29);
             this.cancelButton.TabIndex = 84;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 

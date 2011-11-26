@@ -98,8 +98,15 @@ namespace ShippingManager
         private void editButton_Click(object sender, EventArgs e)
         {
             //TODO: edit package logic
-        } 
+        }
+
+        private void copyTrackingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText((packageListBox.SelectedItem as Package).TrackingNumber);
+        }
+
         #endregion
 
+        
     }
 }

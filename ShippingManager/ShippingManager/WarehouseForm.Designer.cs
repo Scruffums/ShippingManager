@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.scanButton = new System.Windows.Forms.Button();
             this.distributeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,7 +46,10 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleLabel = new System.Windows.Forms.Label();
+            this.receivingContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.receivingContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // scanButton
@@ -145,6 +149,7 @@
             this.receivingListBox.Size = new System.Drawing.Size(206, 290);
             this.receivingListBox.TabIndex = 40;
             this.receivingListBox.SelectedIndexChanged += new System.EventHandler(this.receivingListBox_SelectedIndexChanged);
+            this.receivingListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.receivingListBox_MouseDown);
             // 
             // vehiclesListBox
             // 
@@ -210,6 +215,20 @@
             this.vehicleLabel.Size = new System.Drawing.Size(150, 250);
             this.vehicleLabel.TabIndex = 45;
             // 
+            // receivingContextMenu
+            // 
+            this.receivingContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyTrackingToolStripMenuItem});
+            this.receivingContextMenu.Name = "receivingContextStrip";
+            this.receivingContextMenu.Size = new System.Drawing.Size(162, 26);
+            // 
+            // copyTrackingToolStripMenuItem
+            // 
+            this.copyTrackingToolStripMenuItem.Name = "copyTrackingToolStripMenuItem";
+            this.copyTrackingToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.copyTrackingToolStripMenuItem.Text = "Copy Tracking #";
+            this.copyTrackingToolStripMenuItem.Click += new System.EventHandler(this.copyTrackingToolStripMenuItem_Click);
+            // 
             // WarehouseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,9 +253,9 @@
             this.Name = "WarehouseForm";
             this.Text = "Warehouse";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WarehouseForm_FormClosing);
-            this.Load += new System.EventHandler(this.WarehouseForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.receivingContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,5 +280,7 @@
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.Label vehicleLabel;
+        private System.Windows.Forms.ContextMenuStrip receivingContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem copyTrackingToolStripMenuItem;
     }
 }

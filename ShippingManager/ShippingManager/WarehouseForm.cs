@@ -193,12 +193,20 @@ namespace ShippingManager
             Moveable m = vehiclesListBox.SelectedItem as Moveable;
             m.changeLocation();
             updateVehiclesListBox();
-        } 
+        }
+
+        private void receivingListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && receivingListBox.SelectedIndex != -1)
+                receivingContextMenu.Show(receivingListBox, new Point(e.X, e.Y));
+        }
+
+        private void copyTrackingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText((receivingListBox.SelectedItem as Package).TrackingNumber);
+        }
         #endregion
 
-        private void WarehouseForm_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

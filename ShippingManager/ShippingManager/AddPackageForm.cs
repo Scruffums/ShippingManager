@@ -20,7 +20,8 @@ namespace ShippingManager
             InitializeComponent();
             parentForm = parent;
             shippingSystem = sm;
-
+            serviceTypeComboBox.SelectedIndex = 0;
+            weightClassComboBox.SelectedIndex = 0;
         }
 
         private void acceptButton_Click(object sender, EventArgs e)
@@ -42,26 +43,33 @@ namespace ShippingManager
                 Address destination = new Address(destinationAddresseeTextBox.Text, destinationStreetTextBox.Text, destinationZipTextBox.Text);
                 float[] lhw = { length, width, height};
                 Package p = shippingSystem.addPackage(weightClassComboBox.SelectedIndex, lhw, (serviceTypeComboBox.SelectedIndex == 0) ? Package.SERVICE_TYPE.Economy : Package.SERVICE_TYPE.Air, fragileCheckBox.Checked, irregularCheckBox.Checked, perishableCheckBox.Checked, source, destination);
-                (parentForm as StoreFrontForm).updatePackageList();
-
-                PrintDialog pd = new PrintDialog();
-                PrinterSettings ps = new PrinterSettings();
-                pd.PrinterSettings = ps;
-                DialogResult dr = pd.ShowDialog();
-
-                if (dr == DialogResult.OK)
+                if (p != null)
                 {
-                    System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
-                    privateFonts.AddFontFile("free3of9.ttf");
-                    Font font = new Font(privateFonts.Families[0], 64);
+                    (parentForm as StoreFrontForm).updatePackageList();
 
-                    PCPrint printer = new PCPrint(p.TrackingNumber);
-                    printer.PrinterSettings.PrinterName = pd.PrinterSettings.PrinterName;
-                    printer.PrinterFont = font;
-                    printer.Print();
+                    PrintDialog pd = new PrintDialog();
+                    PrinterSettings ps = new PrinterSettings();
+                    pd.PrinterSettings = ps;
+                    DialogResult dr = pd.ShowDialog();
+
+                    if (dr == DialogResult.OK)
+                    {
+                        System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
+                        privateFonts.AddFontFile("free3of9.ttf");
+                        Font font = new Font(privateFonts.Families[0], 64);
+
+                        PCPrint printer = new PCPrint(p.TrackingNumber);
+                        printer.PrinterSettings.PrinterName = pd.PrinterSettings.PrinterName;
+                        printer.PrinterFont = font;
+                        printer.Print();
+                    }
+
+                    Close();
                 }
-
-                Close();
+                else
+                {
+                    MessageBox.Show("There was a problem creating this package. \r\nMaybe the destination zipcode is not in the system.");
+                }
             }
             else
             {
