@@ -287,13 +287,14 @@ namespace ShippingManager
                                 zipcodes.Add(text.Substring(i + 1, 5));
                                 i += 6;
                             }
-                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, zipcodes.ToArray()[0], zipcodes.ToArray()); break;
+                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, zipcodes.ToArray()[0], zipcodes.ToArray());
                         }
                         else
                         {
                             string[] temp = locationZipcodesServedTextBox.Text.Split(',');
-                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, temp[0], temp); break;
+                            locationAdded = shippingSystem.addAbroad(locationIdTextBox.Text, locationStreetAddressTextBox.Text, temp[0], temp); 
                         }
+                        break;
                 }
                 //TODO: Inform user that the location was not added because the address has already been used by another location
             }
@@ -321,10 +322,16 @@ namespace ShippingManager
                             zipcodes.Add(text.Substring(i + 1, 5));
                             i += 6;
                         }
-                        (currentLocation as Abroad).ZipCodes = zipcodes.ToArray();
+                        string[] temp = zipcodes.ToArray();
+                        (currentLocation as Abroad).ZipCodes = temp;
+                        (currentLocation as Abroad).Zipcode = temp[0];
                     }
                     else
-                        (currentLocation as Abroad).ZipCodes = locationZipcodesServedTextBox.Text.Split(',');
+                    {
+                        string[] temp = locationZipcodesServedTextBox.Text.Split(',');
+                        (currentLocation as Abroad).ZipCodes = temp;
+                        (currentLocation as Abroad).Zipcode = temp[0];
+                    }
                 }
                 locationTypeComboBox.Enabled = false;
                 locationAddButton.Text = ADD;
