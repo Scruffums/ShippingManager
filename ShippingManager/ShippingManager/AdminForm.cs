@@ -77,6 +77,7 @@ namespace ShippingManager
         #region EmployeeTab
         private void employeeEditButton_Click(object sender, EventArgs e)
         {
+            employeeTypeComboBox.Enabled = false;
             employeeAddButton.Text = SAVE;
             addEmployee = false;
 
@@ -181,8 +182,8 @@ namespace ShippingManager
                     }
                     else
                     {
-                        
                         MessageBox.Show("Passwords do not match.");
+                        return;
                     }
                 }
 
@@ -192,6 +193,7 @@ namespace ShippingManager
 
             employeesListBox.Items.Clear();
             employeesListBox.Items.AddRange(shippingSystem.Employees);
+            employeeTypeComboBox.Enabled = true;
             clearEmployeeTab();
         }
 
@@ -301,7 +303,7 @@ namespace ShippingManager
                 currentLocation.Id = locationIdTextBox.Text;
                 currentLocation.StreetAddress = locationStreetAddressTextBox.Text;
                 currentLocation.Zipcode = locationZipCodetextBox.Text;
-
+                locationTypeComboBox.Enabled = false;
 
 
                 if (currentLocation is Abroad)
@@ -324,11 +326,13 @@ namespace ShippingManager
                     else
                         (currentLocation as Abroad).ZipCodes = locationZipcodesServedTextBox.Text.Split(',');
                 }
+                locationTypeComboBox.Enabled = false;
                 locationAddButton.Text = ADD;
             }
 
             if (locationAdded)
             {
+                
                 addLocation = true;
                 locationsListBox.Items.Clear();
                 locationsListBox.Items.AddRange(shippingSystem.Locations);

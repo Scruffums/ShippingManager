@@ -65,24 +65,27 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Confirm Password:";
             // 
-            // textBox1
+            // oldPasswordTextBox
             // 
             this.oldPasswordTextBox.Location = new System.Drawing.Point(111, 6);
-            this.oldPasswordTextBox.Name = "textBox1";
+            this.oldPasswordTextBox.Name = "oldPasswordTextBox";
+            this.oldPasswordTextBox.PasswordChar = '*';
             this.oldPasswordTextBox.Size = new System.Drawing.Size(161, 20);
             this.oldPasswordTextBox.TabIndex = 3;
             // 
-            // textBox2
+            // newPasswordTextBox
             // 
             this.newPasswordTextBox.Location = new System.Drawing.Point(111, 32);
-            this.newPasswordTextBox.Name = "textBox2";
+            this.newPasswordTextBox.Name = "newPasswordTextBox";
+            this.newPasswordTextBox.PasswordChar = '*';
             this.newPasswordTextBox.Size = new System.Drawing.Size(161, 20);
             this.newPasswordTextBox.TabIndex = 4;
             // 
-            // textBox3
+            // confirmPasswordTextBox
             // 
             this.confirmPasswordTextBox.Location = new System.Drawing.Point(111, 58);
-            this.confirmPasswordTextBox.Name = "textBox3";
+            this.confirmPasswordTextBox.Name = "confirmPasswordTextBox";
+            this.confirmPasswordTextBox.PasswordChar = '*';
             this.confirmPasswordTextBox.Size = new System.Drawing.Size(161, 20);
             this.confirmPasswordTextBox.TabIndex = 5;
             // 
