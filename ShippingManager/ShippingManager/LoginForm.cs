@@ -34,7 +34,7 @@ namespace ShippingManager
 
                 if (employee == null)
                 {
-                    //TODO: notify user that their id or password is incorrect or does not exist
+                    MessageBox.Show("User ID or password is incorrect or does not exist.");
                 }
                 else
                 {
@@ -83,6 +83,11 @@ namespace ShippingManager
                 e.Handled = true;
                 acceptButton_Click(sender, e);
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
